@@ -1,0 +1,34 @@
+<div style="padding:10px">
+  <div style="display: flex;" [ngStyle]="{'justify-content': str_titleAlign}">
+    <h2>{{str_formTitle}}</h2>
+  </div>
+  
+  <form [formGroup]="formGroup_form">
+    <div class="row">
+      <ng-container *ngFor="let str_controlName of arrayStr_controls">
+        <div class="{{str_XScolumn}} {{str_SMcolumn}} {{str_MDcolumn}} {{str_LGcolumn}} {{str_XLcolumn}}"
+          *ngIf="!fields[str_controlName].hide">
+          <app-text-input *ngIf="fields[str_controlName].type=='text' || fields[str_controlName].type=='password'"
+            [textInput_field]="fields[str_controlName]" [formGroup_form]="formGroup_form"
+            [formControl_control]="formGroup_form.controls[str_controlName]" [str_labelType]="str_labelType">
+          </app-text-input>
+          <app-select-input *ngIf="fields[str_controlName].type=='select'" [textInput_field]="fields[str_controlName]"
+            [formGroup_form]="formGroup_form" [formControl_control]="formGroup_form.controls[str_controlName]"
+            [str_labelType]="str_labelType">
+          </app-select-input>
+          <app-textarea-input *ngIf="fields[str_controlName].type=='textarea'" [textInput_field]="fields[str_controlName]"
+            [formGroup_form]="formGroup_form" [formControl_control]="formGroup_form.controls[str_controlName]"
+            [str_labelType]="str_labelType"></app-textarea-input>
+        </div>
+      </ng-container>
+    </div>
+    <div class="row">
+      <div class="{{str_XScolumn}} {{str_SMcolumn}} {{str_MDcolumn}} {{str_LGcolumn}} {{str_XLcolumn}}">
+        <button type="button" class="btn btn-primary" (click)="fnSendFormData()" [innerHtml]="str_saveButton"
+          *ngIf="bln_forceValid" [disabled]="formGroup_form.invalid"></button>
+        <button type="button" class="btn btn-primary" (click)="fnSendFormData()" [innerHtml]="str_saveButton"
+          *ngIf="!bln_forceValid"></button>
+      </div>
+    </div>
+  </form>
+</div>

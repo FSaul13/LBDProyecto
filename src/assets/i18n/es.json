@@ -1,0 +1,46 @@
+{
+    "button-save":"Guardar",
+    "button-saving":"Guardando...",
+
+    "pages-employee-control-title":"Control de empleados",
+    "pages-employee-control-breadcrumb-1":"Empleado",
+    "pages-employee-control-pagination-next":"Siguiente",
+    "pages-employee-control-pagination-back":"Anterior",
+    "pages-employee-control-new":"Agregar empleado",
+
+    "pages-employee-edit-title":"Editar empleado",
+    "pages-employee-new-title":"Nuevo empleado",
+    "pages-employee-new-breadcrumb-1":"Empleado",
+    "pages-employee-new-breadcrumb-2":"Nuevo",
+    "pages-employee-edit-breadcrumb-2":"Editar",
+    "pages-employee-new-form-user":"Nombre",
+    "pages-employee-new-form-lastname":"Apellidos",
+    "pages-employee-new-form-mail":"Correo",
+    "pages-employee-new-form-password":"Contraseña",
+    "pages-employee-new-form-employee-type":"Tipo de empleado",
+    "pages-employee-new-form-company-type":"Tipo de empresa",
+
+    "authentication-login-header-text": "Ingresa a tu cuenta",
+    "authentication-login-user": "Correo",
+    "authentication-login-password": "Contraseña",
+    "authentication-login-button-txt": "Ingresar",
+    "authentication-login-remember": "Recuérdame",
+    "authentication-login-forgot-password": "¿Olvide mi contraseña?",
+    "authentication-login-not-account": "¿No tienes una cuenta?",
+    "authentication-login-register": "Regístrate",
+
+    "layout-header-searchbar":"Buscar aqui...",
+    "layout-header-view-all":"Ver todas las notificaciones",
+
+    "layout-sidebar-welcome": "Bienvenido",
+    "layout-sidebar-profile": "Mi perfil",
+    "layout-sidebar-logout": "Salir",
+    "layout-sidebar-menu": "Menu",
+    "layout-sidebar-menu-system": "Sistema",
+    "layout-sidebar-menu-option-employee":"Empleado",
+    "layout-sidebar-menu-option-employee-new":"Nuevo",
+    "layout-sidebar-menu-option-employee.control":"Control",
+    "layout-sidebar-menu-option-employee-edit":"Editar",
+
+    "layout-page-loader-text":"Porvafor espere..."
+}

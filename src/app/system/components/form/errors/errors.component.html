@@ -1,0 +1,11 @@
+<small class="text-danger" *ngIf="errors.required">
+  {{str_required}}
+</small>
+
+<small class="text-danger" *ngIf="errors.email">
+    {{str_email}}
+</small>
+
+<small class="text-danger" *ngIf="errors.fieldsMatch">
+    {{errors.fieldsMatch}}
+</small>

@@ -1,0 +1,13 @@
+.table-button:hover{
+    cursor: pointer;
+}
+
+.table-button{
+    margin: 5px;
+}
+
+.search-bar{
+    max-width: 300px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}

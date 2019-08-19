@@ -1,0 +1,46 @@
+{
+    "button-save":"Save",
+    "button-saving":"Saving...",
+
+    "pages-employee-control-title":"Employees control",
+    "pages-employee-control-breadcrumb-1":"Employee",
+    "pages-employee-control-pagination-next":"Next",
+    "pages-employee-control-pagination-back":"Previous",
+    "pages-employee-control-new":"Add new employee",
+
+    "pages-employee-edit-title":"Edit employee",
+    "pages-employee-new-title":"New employee",
+    "pages-employee-new-breadcrumb-1":"Employee",
+    "pages-employee-new-breadcrumb-2":"New",
+    "pages-employee-edit-breadcrumb-2":"Edit",
+    "pages-employee-new-form-user":"Name",
+    "pages-employee-new-form-lastname":"Last name",
+    "pages-employee-new-form-mail":"Mail",
+    "pages-employee-new-form-password":"Password",
+    "pages-employee-new-form-employee-type":"Employee type",
+    "pages-employee-new-form-company-type":"Company type",
+    
+    "authentication-login-header-text": "Login to your account",
+    "authentication-login-user": "Mail",
+    "authentication-login-password": "Password",
+    "authentication-login-button-txt": "Login",
+    "authentication-login-remember": "Remember me",
+    "authentication-login-forgot-password": "Forgot password?",
+    "authentication-login-not-account": "Don't have an account?",
+    "authentication-login-register": "Register",
+
+    "layout-header-searchbar":"Search here...",
+    "layout-header-view-all":"See all notifications",
+
+    "layout-sidebar-welcome": "Welcome",
+    "layout-sidebar-profile": "My profile",
+    "layout-sidebar-logout": "Logout",
+    "layout-sidebar-menu": "Menu",
+    "layout-sidebar-menu-system": "System",
+    "layout-sidebar-menu-option-employee":"Employee",
+    "layout-sidebar-menu-option-employee-new":"New",
+    "layout-sidebar-menu-option-employee.control":"Control",
+    "layout-sidebar-menu-option-employee-edit":"Edit",
+
+    "layout-page-loader-text":"Please wait..."
+}

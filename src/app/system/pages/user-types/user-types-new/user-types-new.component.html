@@ -1,0 +1,8 @@
+<app-action-header [settings]="headerSettings_header" >
+    </app-action-header>
+<div style="display: flex;justify-content:center">
+    <div style="max-width: 600px">
+        <app-form [formGroup_form]="formGroup_userType" [any_settings]="formSettings_settings"
+            (eventEmmiter_onSendData)="fnSendData($event)"></app-form>
+    </div>
+</div>

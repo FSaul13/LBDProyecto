@@ -1,0 +1,22 @@
+<form [formGroup]="formGroup_form">
+  <div class="form-group">
+    <ng-container *ngIf="str_labelType=='title'">
+      <label for="">{{str_label}}</label>
+      <textarea [formControl]="formControl_control" 
+        class="form-control {{(formControl_control.touched && formControl_control.errors)?'invalid-input':''}}"
+        [placeholder]="str_placeholder" (keyup)="fnOnKeyUp()"></textarea>
+    </ng-container>
+    <ng-container *ngIf="str_labelType=='append'">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">{{str_label}}</span>
+        </div>
+        <textarea [formControl]="formControl_control" 
+        class="form-control {{(formControl_control.touched && formControl_control.errors)?'invalid-input':''}}"
+        [placeholder]="str_placeholder" (keyup)="fnOnKeyUp()"></textarea>
+      </div>
+    </ng-container>
+    <app-errors *ngIf="formControl_control.errors && formControl_control.touched"
+      [formErrors_errors]="textInput_field.errors" [errors]="formControl_control.errors"></app-errors>
+  </div>
+</form>

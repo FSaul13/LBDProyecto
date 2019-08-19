@@ -1,0 +1,10 @@
+<div class="{{str_returnButtonAlign}}" style="padding: 10px">
+  <a href="javascript:void(0)" *ngIf="bln_returnButton" style="margin-right:5px;margin-left: 5px" (click)="fnGoBack()">
+    <i class="{{str_backIcon}} fa-2x"></i>
+  </a>
+  <div  [class]="str_actionsButtons" style="flex-grow:1;margin-right:5px;margin-left: 5px" *ngIf="bln_extraButtons">
+    <a href="javascript:void(0)" *ngFor="let button of buttons" (click)="fnExtraButtonClick(button)"  style="margin-right: 1.5px;margin-left:1.5px">
+      <i class="{{button.icon}} fa-2x"></i>
+    </a>
+  </div>
+</div>
