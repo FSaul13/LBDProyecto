@@ -1,4 +1,4 @@
-export enum APIS_ENUM{
+export enum APIS_ENUM {
     POST_LOGIN = "/api/login/User",
     POST_LOGOUT = "/api/login/close",
     GET_DATA_LOGGED_USER = "/api/login/datosSesion/?",
@@ -13,5 +13,16 @@ export enum APIS_ENUM{
     POST_DELETE_USER = "/api/usuarios/eliminar",
     POST_DELETE_USER_TYPE = "/api/tiposUsuarios/eliminar",
     POST_RESET_USER_PASSWORD = "/api/usuarios/pasword/nuevo",
-    POST_CHANGE_USER_PASSWORD = "/api/usuarios/pasword/editar"
+    POST_CHANGE_USER_PASSWORD = "/api/usuarios/pasword/editar",
+    GET_TERRITORIES = "/api/territorios",
+    POST_NEW_TERRITORIES = "/api/territorios/nuevo",
+    POST_EDIT_TERRITORY = "/api/territorios/editar",
+    GET_TERRITORY_BY_ID = "/api/territorios/idTerritorio/?",
+    POST_DELETE_TERRITORY ="api/territorios/eliminar",
+    GET_CLIENTS="/api/clientes",
+    POST_NEW_CLIENT= '/api/clientes/nuevo',
+    GET_CLIENTS_BY_ID="/api/clientes/idCliente/?",
+    POST_EDIT_CLIENT= "/api/clientes/editar",
+    GET_STATES= '/api/paises/?/estados',
+    GET_COUNTRY='/api/paises',
 }

@@ -15,6 +15,7 @@ import { HTTPInterceptorService } from '../services/http.interceptor';
 import { UsersService } from '../services/users.service';
 import { UserTypesService } from '../services/user-types.service';
 
+
 @NgModule({
 	imports: [
 		CommonModule,
@@ -30,6 +31,7 @@ import { UserTypesService } from '../services/user-types.service';
 	declarations: [
 		AdminComponent,
 		IndexComponent,
+		
 	],
 	providers: [
 		UsersService,

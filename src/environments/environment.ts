@@ -5,6 +5,6 @@
 
 export const environment = {
   production: false,
-  ip : "http://192.168.0.104/",
-  files : "http://192.168.0.104",
+  ip : "http://192.168.0.104:4010/",
+  files : "http://192.168.0.104:4010",
 };

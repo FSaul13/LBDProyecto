@@ -286,6 +286,19 @@
                                 <span>Tipos usuario</span>
                             </a>
                         </li>
+
+                        <li routerLink="/system/admin/territories/control" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                            <a (click)="activeInactiveMenu('territories')">
+                                <i class="icon-home"></i>
+                                <span>Territorios</span>
+                            </a>
+                        </li>
+                        <li routerLink="/system/admin/client/control" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                            <a (click)="activeInactiveMenu('client')">
+                                <i class="icon-home"></i>
+                                <span>Clientes</span>
+                            </a>
+                        </li>
                     </ul>
                 </nav>
             </div>

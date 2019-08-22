@@ -22,6 +22,14 @@ const routes: Routes = [
             {
                 path: "user-types",
                 loadChildren: "../pages/user-types/user-types.module#UserTypesModule"
+            },
+            {
+                path: "territories",
+                loadChildren: "../pages/territories/territories.module#TerritoriesModule"
+            },
+            {
+                path: "client",
+                loadChildren: "../pages/client/client.module#ClientModule"
             }
         ]
     },

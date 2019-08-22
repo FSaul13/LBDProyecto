@@ -1,0 +1,56 @@
+<div  class="col-xl-6  col-lg-6 col-md-6 col-sm-12 offset-xl-3" style="padding:20px" >
+
+
+  <div class="header" style="display:flex " >
+    <h2> Editar cliente</h2>
+  </div>
+
+  <form [formGroup]="formgroup_EditClient" (ngSubmit)="fnSubmitEditClient()">
+      <div class="form-group">
+
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Nombre: </span>
+          </div>
+          <input type="text" class="form-control" formControlName='_nombre' aria-label="Username"
+            aria-describedby="basic-addon1">
+        </div>
+      </div>
+      <div class="form-group">
+
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Apellido: </span>
+          </div>
+          <input type="text" class="form-control" formControlName='_apellidos' aria-label="Username"
+            aria-describedby="basic-addon1">
+        </div>
+
+      </div>
+      <div class="form-group">
+
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Correo: </span>
+          </div>
+          <input type="email" class="form-control" formControlName='_correo' aria-label="Username"
+            aria-describedby="basic-addon1">
+        </div>
+
+      </div>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Razon Social: </span>
+        </div>
+        <input type="text" class="form-control" formControlName='_razonSocial' aria-label="Username"
+          aria-describedby="basic-addon1">
+      </div>
+      
+      
+      <button type="submit" class="btn btn-primary mb-2" [disabled]="formgroup_EditClient.invalid">
+        Editar
+      </button>
+    
+    
+</form>
+</div>
