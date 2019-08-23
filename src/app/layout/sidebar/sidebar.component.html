@@ -3,21 +3,22 @@
         <div class="user-account">
             <img src="assets/images/user.png" class="rounded-circle user-photo" alt="User Profile Picture">
             <div class="dropdown" ngbDropdown>
-                <span>{{ 'layout-sidebar-welcome' | translate }},</span>
+                <span>Bienvenido</span>
                 <a href="javascript:void(0);" class="dropdown-toggle user-name" ngbDropdownToggle>
-                    <strong>Alizee Thomas</strong>
+                    <strong class="txt-userName">{{str_usuario}}</strong>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-right account" ngbDropdownMenu>
+                    <!--
                     <li><a [routerLink]="['/admin/pages/page-profile2']"><i
                                 class="icon-user"></i>{{ 'layout-sidebar-profile' | translate }}</a></li>
-                    <!--
+                    
                     <li><a [routerLink]="['/admin/app/app-inbox']"><i class="icon-envelope-open"></i>Messages</a></li>
                     <li><a href="javascript:void(0);"><i class="icon-settings"></i>Settings</a></li>
                     -->
                     <li class="divider"></li>
 
-                    <li><a [routerLink]="['/authentication/page-login']"><i
-                                class="icon-power"></i>{{ 'layout-sidebar-logout' | translate }}</a></li>
+                    <li><a href="javascript:void()" (click)="fnLogout()"><i
+                                class="icon-power"></i>Logout</a></li>
                 </ul>
             </div>
             <hr>

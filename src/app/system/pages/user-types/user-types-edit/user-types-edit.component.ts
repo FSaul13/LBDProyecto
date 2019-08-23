@@ -38,11 +38,13 @@ export class UserTypesEditComponent implements OnInit {
       } as FormInput,
       _nombre: {
         label: "Nombre:",
-        type: "text"
+        type: "text",
+        trim: true
       } as FormInput,
       _descripcion: {
         label: "Descripción:",
-        type: "textarea"
+        type: "textarea",
+        trim: true
       } as FormInput
     },
     columns: {

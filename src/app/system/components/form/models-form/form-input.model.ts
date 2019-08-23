@@ -10,4 +10,5 @@ export class FormInput{
     value:string;
     errors:FormErrors;
     hide:boolean;
+    trim:boolean;
 }

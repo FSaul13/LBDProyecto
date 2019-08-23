@@ -14,6 +14,7 @@ export enum APIS_ENUM {
     POST_DELETE_USER_TYPE = "/api/tiposUsuarios/eliminar",
     POST_RESET_USER_PASSWORD = "/api/usuarios/pasword/nuevo",
     POST_CHANGE_USER_PASSWORD = "/api/usuarios/pasword/editar",
+    POST_CHANGE_USER_PASSWORD_ADMIN = "/api/usuarios/pasword/administrador/editar",
     GET_TERRITORIES = "/api/territorios",
     POST_NEW_TERRITORIES = "/api/territorios/nuevo",
     POST_EDIT_TERRITORY = "/api/territorios/editar",

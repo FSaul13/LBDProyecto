@@ -34,22 +34,25 @@ export class UsersNewComponent implements OnInit {
     fields: {
       _nombre: {
         label: "Nombre:",
-        type: "text"
+        type: "text",
+        trim:true
       } as FormInput,
       _apellidos: {
         label: "Apellido:",
-        type: "text"
+        type: "text",
+        trim:true
       } as FormInput,
       _correo: {
         label: "Correo:",
-        type: "text"
+        type: "text",
+        trim: true
       } as FormInput,
       _password: {
-        label: "Password:",
+        label: "Contraseña:",
         type: "password"
       } as FormInput,
       _passwordConfirm: {
-        label: "Password:",
+        label: "Confirmar contraseña:",
         type: "password"
       } as FormInput,
       _idTipoUsuario: {

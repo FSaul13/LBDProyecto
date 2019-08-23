@@ -41,15 +41,18 @@ export class UsersEditComponent implements OnInit {
       } as FormInput,
       _nombre: {
         label: "Nombre:",
-        type: "text"
+        type: "text",
+        trim: true
       } as FormInput,
       _apellidos: {
         label: "Apellido:",
-        type: "text"
+        type: "text",
+        trim: true
       } as FormInput,
       _correo: {
         label: "Correo:",
-        type: "text"
+        type: "text",
+        trim:true
       } as FormInput,
       _idTipoUsuario: {
         label: "Tipo usuario:",

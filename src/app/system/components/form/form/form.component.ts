@@ -135,8 +135,16 @@ export class FormComponent implements OnInit {
     let str_icon = '<i class="'+this.str_spinnerIcon+'"></i> ';
     this.str_saveButton = str_icon + " " + this.str_load;
     this.bln_saving = true;
+
+    let any_formData:any = this.formGroup_form.getRawValue()
+    Object.keys(this.formGroup_form.getRawValue()).forEach(str_controlname=>{
+      if(this.any_settings.fields[str_controlname].trim){
+        any_formData[str_controlname] = (any_formData[str_controlname] as string).trim();
+      }
+    });
+
     let event = {
-      data: this.formGroup_form.getRawValue(),
+      data: any_formData,
       fnError: () => {
         this.bln_saving = false;
         let str_icon = '<i class="'+this.str_errorIcon+'"></i> ';

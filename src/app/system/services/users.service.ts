@@ -111,7 +111,7 @@ export class UsersService {
 
   fnChangeUserPassword(user_changePassword:User):Promise<any>{
     return new Promise((resolve,reject)=>{
-      this.apiCall_restfull.fnPostPromise(user_changePassword,APIS_ENUM.POST_CHANGE_USER_PASSWORD)
+      this.apiCall_restfull.fnPostPromise(user_changePassword,APIS_ENUM.POST_CHANGE_USER_PASSWORD_ADMIN)
       .then((res:Response)=>{
         if(res._success){
           resolve(res._message);

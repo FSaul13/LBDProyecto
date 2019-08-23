@@ -1,5 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ThemeService } from '../../services/theme.service';
+import { AuthenticacionService } from '../../system/services/authenticacion.service';
+import { SessionService } from '../../system/services/session.service';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -17,13 +20,35 @@ export class SidebarComponent implements OnInit {
 	@Output() activeInactiveMenuEvent = new EventEmitter();
 	public themeClass: string = "theme-cyan";
 
-	constructor(private themeService: ThemeService) {
+	sub_session:Subscription;
+
+	constructor(
+		private themeService: ThemeService,
+		private authenticationService_apis:AuthenticacionService,
+		private sessionService_loggedSession:SessionService
+		) {
 		this.themeService.themeClassChange.subscribe(themeClass => {
 			this.themeClass = themeClass;
 		});
 	}
 
 	ngOnInit() {
+		this.fnSubscribeToSession();
+	}
+
+	ngOnDestroy(){
+		if(this.sub_session){
+			this.sub_session.unsubscribe();
+		}
+	}
+
+	str_usuario:string="";
+	fnSubscribeToSession():void{
+		this.sub_session = this.sessionService_loggedSession._loginResponse_session.subscribe(res=>{
+			if(res){
+				this.str_usuario = res._Usuario._nombre + " " + res._Usuario._apellidos;
+			}
+		})
 	}
 
 	changeNavTab(tab: string) {
@@ -36,5 +61,15 @@ export class SidebarComponent implements OnInit {
 
 	changeTheme(theme:string){
 		this.themeService.themeChange(theme);
+	}
+
+	fnLogout():void{
+		this.authenticationService_apis.fnLogout()
+		.then(()=>{
+			console.log("Salir")
+		})
+		.catch(()=>{
+			console.log("Error")
+		})
 	}
 }

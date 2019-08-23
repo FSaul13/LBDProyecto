@@ -9,6 +9,7 @@ import { SidebarService } from '../../../services/sidebar.service';
 import { ThemeService } from '../../../services/theme.service';
 import { SessionService } from '../../services/session.service';
 import { ToastrService } from 'ngx-toastr';
+import { Subscription } from 'rxjs';
 
 @Component({
 	selector: 'app-admin',
@@ -27,6 +28,8 @@ export class AdminComponent implements AfterViewInit, OnInit {
 	public themeClass: string = "theme-cyan";
 	public smallScreenMenu = "";
 	//offcanvas-active
+
+	sub_loggedSession:Subscription;
 
 	constructor(
 		private sidebarService: SidebarService, 
@@ -50,7 +53,7 @@ export class AdminComponent implements AfterViewInit, OnInit {
 			this.smallScreenMenu = showMenuClass;
 		});
 
-		this.sessionService_loggedSession._loginResponse_session.subscribe(res=>{
+		this.sub_loggedSession = this.sessionService_loggedSession._loginResponse_session.subscribe(res=>{
 			if(res){
 				console.log("Informacion recuperada")
 			}else{
@@ -82,6 +85,12 @@ export class AdminComponent implements AfterViewInit, OnInit {
 			.filter((route) => route.outlet === 'primary')
 			.mergeMap((route) => route.data)
 			.subscribe((event) => this.titleService.setTitle(event['title']));
+	}
+
+	ngOnDestroy(){
+		if(this.sub_loggedSession){
+			this.sub_loggedSession.unsubscribe();
+		}
 	}
 
 	toggleNotificationDropMenu() {

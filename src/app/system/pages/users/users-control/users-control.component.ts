@@ -44,15 +44,10 @@ export class UsersControlComponent implements OnInit {
       _idUsuario: {
         hide: true
       } as FormInput,
-      _passwordAnterior: {
-        type: "password",
-        label: "Contraseña actual",
-        placeholder: "Ingresa la contraseña actual"
-      } as FormInput,
       _passwordConfirmar: {
         type: "password",
-        label: "Contraseña actual",
-        placeholder: "confirma la contraseña actual"
+        label: "Confirmar contraseña",
+        placeholder: "confirma nuevac ontraseña"
       } as FormInput,
       _password: {
         type: "password",
@@ -128,10 +123,10 @@ export class UsersControlComponent implements OnInit {
     this.formGroup_formPassword = new FormGroup({
       _idUsuario: new FormControl(null,Validators.required)
     });
-    this.formGroup_formPassword.addControl("_passwordAnterior", new FormControl(null,[Validators.required]));
-    this.formGroup_formPassword.addControl("_passwordConfirmar", new FormControl(null,[Validators.required,
-      fnFormValidatorEqualFields(this.formGroup_formPassword.get("_passwordAnterior"),"Los campos de contraseña deben coincidir y confirmar contraseña deben coincidir")]));
     this.formGroup_formPassword.addControl("_password", new FormControl(null,Validators.required));
+    this.formGroup_formPassword.addControl("_passwordConfirmar", new FormControl(null,[Validators.required,
+      fnFormValidatorEqualFields(this.formGroup_formPassword.get("_password"),"Los campos de contraseña y confirmar contraseña deben coincidir")]));
+    
   }
 
   fnGetUsers(): void {
