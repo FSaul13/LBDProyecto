@@ -52,16 +52,16 @@ export class ApiCallService {
     return new Promise((resolve, reject) => {
       let apiHelper: ApiHelper = new ApiHelper();
       let any_validCall = apiHelper.fnSetParams(array_params, str_api);
-      console.log(str_api)
-      console.log(any_validCall)
+      console.log(this.str_ip)
+      console.log(any_validCall._message)
       if (any_validCall._success) {
-        //this.http.get(this.str_ip + any_validCall._message).toPromise()
-        this.http.get("http://localhost:80/prueba.php",
+        this.http.get(this.str_ip + any_validCall._message,
           { responseType: 'json' }).toPromise()
+          //this.http.get("http://localhost:80/prueba.php",
+          // { responseType: 'json' }).toPromise()
           .then((res: any) => {
             console.log(res)
             console.log(res._tickets);
-
             resolve(res)
           })
           .catch(rej => {

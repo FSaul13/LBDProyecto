@@ -30,7 +30,7 @@ export class UserTypesService {
 
   fnGetUserTypes(): Promise<any> {
     return new Promise((resolve, reject) => {
-      this.apiCallService_restfull.fnGetPromise([], APIS_ENUM.GET_USER_TYPE)
+      this.apiCallService_restfull.fnGetPromise([], APIS_ENUM.GET_PRUEBA)
         .then((res) => {
           //console.log(res.data)
           this.$userTypesArray_recoverUserTypes.next(res);

@@ -19,11 +19,13 @@ export enum APIS_ENUM {
     POST_NEW_TERRITORIES = "/api/territorios/nuevo",
     POST_EDIT_TERRITORY = "/api/territorios/editar",
     GET_TERRITORY_BY_ID = "/api/territorios/idTerritorio/?",
-    POST_DELETE_TERRITORY ="api/territorios/eliminar",
-    GET_CLIENTS="/api/clientes",
-    POST_NEW_CLIENT= '/api/clientes/nuevo',
-    GET_CLIENTS_BY_ID="/api/clientes/idCliente/?",
-    POST_EDIT_CLIENT= "/api/clientes/editar",
-    GET_STATES= '/api/paises/?/estados',
-    GET_COUNTRY='/api/paises',
+    POST_DELETE_TERRITORY = "api/territorios/eliminar",
+    GET_CLIENTS = "/api/clientes",
+    POST_NEW_CLIENT = '/api/clientes/nuevo',
+    GET_CLIENTS_BY_ID = "/api/clientes/idCliente/?",
+    POST_EDIT_CLIENT = "/api/clientes/editar",
+    GET_STATES = '/api/paises/?/estados',
+    GET_COUNTRY = '/api/paises',
+
+    GET_PRUEBA = '/prueba.php'
 }
