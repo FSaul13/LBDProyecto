@@ -1,8 +1,16 @@
 <form [formGroup]="formGroup_form">
   <div class="form-group">
     <ng-container *ngIf="str_labelType=='title'">
-      <label for="">{{str_label}}</label>
-      <select class="form-control" [formControl]="formControl_control" (change)="fnOnChange()"
+      <label for="">
+        <ng-container *ngIf="bln_translate">
+          {{this.textInput_field.label?(str_label|translate):"Label"}}
+        </ng-container>
+        <ng-container *ngIf="!bln_translate">
+          {{this.textInput_field.label?str_label:"Label"}}
+        </ng-container>
+
+      </label>
+      <select class="form-control" [formControl]="formControl_control" (change)="fnOnChange($event)"
         class="form-control {{(formControl_control.touched && formControl_control.errors)?'invalid-input':''}}">
         <option *ngFor="let option of (textInput_field?.options|async)" [value]="option[textInput_field?.key]">
           {{option[textInput_field?.value]}}</option>
@@ -11,18 +19,25 @@
     <ng-container *ngIf="str_labelType=='append'">
       <div class="input-group mb-3">
         <div class="input-group-prepend">
-          <label class="input-group-text" for="inputGroupSelect01">{{str_label}}</label>
+          <label class="input-group-text" for="inputGroupSelect01">
+            <ng-container *ngIf="bln_translate">
+              {{this.textInput_field.label?(str_label|translate):"Label"}}
+            </ng-container>
+            <ng-container *ngIf="!bln_translate">
+              {{this.textInput_field.label?str_label:"Label"}}
+            </ng-container>
+          </label>
         </div>
-        <select class="form-control" [formControl]="formControl_control" (change)="fnOnChange()"
+        <select class="form-control" [formControl]="formControl_control" (change)="fnOnChange($event)"
           class="form-control {{(formControl_control.touched && formControl_control.errors)?'invalid-input':''}}">
           <option *ngFor="let option of (textInput_field?.options|async)" [value]="option[textInput_field?.key]">
             {{option[textInput_field?.value]}}</option>
         </select>
-        
+
       </div>
     </ng-container>
     <app-errors *ngIf="formControl_control.errors && formControl_control.touched"
       [formErrors_errors]="textInput_field.errors" [errors]="formControl_control.errors"></app-errors>
-    
+
   </div>
 </form>

@@ -17,11 +17,9 @@ export class ErrorsComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log(this.formErrors_errors)
     if(!this.formErrors_errors){
       this.formErrors_errors = {} as FormErrors
     }
-    console.log(this.formErrors_errors)
     if(this.formErrors_errors.email){
       this.str_email = this.formErrors_errors.email;
     }

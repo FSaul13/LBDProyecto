@@ -1,0 +1,9 @@
+<form [formGroup]="S2FormGroup">
+  <div class="form-group">
+    <label [for]="id">{{fnGetInputLabel()|async}}</label>
+    <input *ngIf="!sending" [id]="id" [type]="type" class="form-control" [placeholder]="fnGetInputPlaceholder()|async"
+      [formControl]="S2FormControl" (keyup)="fnKeyup($event)" (change)="fnChange($event)">
+    <input *ngIf="sending" [type]="type" class="form-control" [placeholder]="fnGetInputPlaceholder()|async"
+      [value]="S2FormControl.value" disabled>
+  </div>
+</form>

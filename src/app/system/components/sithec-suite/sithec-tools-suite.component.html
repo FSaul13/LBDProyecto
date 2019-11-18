@@ -1,0 +1,10 @@
+<sithec-collapse-table *ngIf="tool=='collapse-table'" [settings]="settings" [father]="null"
+    (onClickButton)="fnEmitTableButtonEvent($event)" (onOpenTableChange)="fnEmitTableChangeEvent($event)"
+    (onClickInitFilters)="fnEmitInitFilters($event)" [disabled]="false"></sithec-collapse-table>
+
+<sithec-quiz-generator *ngIf="tool=='quiz-generator'" [settings]="settings" (onSave)="fnEmitSave($event)"
+    (onKeyup)="fnEmitKeyup($event)" (onChange)="fnEmitChange($event)"></sithec-quiz-generator>
+
+<s2-form-generator *ngIf="tool=='form-generator'" [S2FormGroup]="settings._formGroup" [groups]="settings._groups"
+    [translate]="settings._translate" [button]="settings._saveButton" (onKeyup)="fnEmitKeyup($event)"
+    (onChange)="fnEmitChange($event)" (onSubmit)="fnEmitSubmit($event)"></s2-form-generator>

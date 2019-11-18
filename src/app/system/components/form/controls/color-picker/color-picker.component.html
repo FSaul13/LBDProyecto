@@ -1,0 +1,39 @@
+<!--
+<color-alpha-picker color="#fff" (onChangeComplete)="changeComplete($event)"></color-alpha-picker>
+<color-block color="#fff" (onChangeComplete)="changeComplete($event)"></color-block>
+-->
+
+<!--
+<color-circle color="#fff" (onChangeComplete)="changeComplete($event)"></color-circle>
+
+<color-compact color="#fff" (onChangeComplete)="changeComplete($event)"></color-compact>
+
+<color-github color="#fff" (onChangeComplete)="changeComplete($event)"></color-github>
+
+<color-hue-picker color="#fff" (onChangeComplete)="changeComplete($event)"></color-hue-picker>
+<color-material color="#fff" (onChangeComplete)="changeComplete($event)"></color-material>
+<color-photoshop color="#fff" (onChangeComplete)="changeComplete($event)"></color-photoshop>
+<color-sketch color="#fff" (onChangeComplete)="changeComplete($event)"></color-sketch>
+<color-slider color="#fff" (onChangeComplete)="changeComplete($event)"></color-slider>
+<color-swatches color="#fff" (onChangeComplete)="changeComplete($event)"></color-swatches>
+<color-twitter color="#fff" (onChangeComplete)="changeComplete($event)"></color-twitter>
+<color-shade-picker color="#fff" (onChangeComplete)="changeComplete($event)"></color-shade-picker>
+-->
+
+<form [formGroup]="formGroup_form">
+  <label for="">
+    <ng-container *ngIf="bln_translate">
+      {{textInput_field.label?(str_label|translate):"Label"}}
+    </ng-container>
+    <ng-container *ngIf="!bln_translate">
+      {{textInput_field.label?str_label:"Label"}}
+    </ng-container>
+
+  </label>
+  <div class="form-group" style="display: flex;align-items:center;justify-content:center;width:100%">
+    <ng-container *ngIf="(_obs|async)">
+      <color-chrome [color]="(_obs|async)" (onChangeComplete)="changeComplete($event)"></color-chrome>
+    </ng-container>
+    
+  </div>
+</form>

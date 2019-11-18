@@ -1,19 +1,37 @@
 <form [formGroup]="formGroup_form">
   <div class="form-group">
     <ng-container *ngIf="str_labelType=='title'">
-      <label for="">{{str_label}}</label>
+      <label for="">
+        <ng-container *ngIf="bln_translate">
+          {{this.textInput_field.label?(str_label|translate):"Label"}}
+        </ng-container>
+        <ng-container *ngIf="!bln_translate">
+          {{this.textInput_field.label?str_label:"Label"}}
+        </ng-container>
+
+      </label>
       <input [formControl]="formControl_control" [type]="textInput_field.type"
         class="form-control {{(formControl_control.touched && formControl_control.errors)?'invalid-input':''}}"
-        [placeholder]="str_placeholder" (keyup)="fnOnKeyUp()">
+        [placeholder]="bln_translate?(str_placeholder|translate):str_placeholder" 
+        (keyup)="fnOnKeyUp()" (change)="fnOnFileSelected($event)"
+        [accept]="textInput_field._accept" [multiple]="textInput_field._multipleFiles">
     </ng-container>
     <ng-container *ngIf="str_labelType=='append'">
       <div class="input-group mb-3">
         <div class="input-group-prepend">
-          <span class="input-group-text">{{str_label}}</span>
+          <span class="input-group-text">
+            <ng-container *ngIf="bln_translate">
+              {{this.textInput_field.label?(str_label|translate):"Label"}}
+            </ng-container>
+            <ng-container *ngIf="!bln_translate">
+              {{this.textInput_field.label?str_label:"Label"}}
+            </ng-container>
+          </span>
         </div>
         <input [formControl]="formControl_control" [type]="textInput_field.type"
-        class="form-control {{(formControl_control.touched && formControl_control.errors)?'invalid-input':''}}"
-        [placeholder]="str_placeholder" (keyup)="fnOnKeyUp()">
+          class="form-control {{(formControl_control.touched && formControl_control.errors)?'invalid-input':''}}"
+          [placeholder]="bln_translate?(str_placeholder|translate):str_placeholder" (keyup)="fnOnKeyUp($event)" (change)="fnOnFileSelected($event)"
+          [accept]="textInput_field._accept" [multiple]="textInput_field._multipleFiles">
       </div>
     </ng-container>
     <app-errors *ngIf="formControl_control.errors && formControl_control.touched"

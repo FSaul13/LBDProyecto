@@ -1,0 +1,63 @@
+<div class="card">
+  <header-question [(files)]="files" (deleteQuestion)="fnDeleteQuestion()" (infoQuestion)="fnShowInfoQuestion()" [disabled]="disabled"></header-question>
+  <ng-container *ngIf="bln_showInfo">
+    <div style="margin: 10px;">
+        <h3>{{fnGetTranslate(titleModal)|async}}</h3>
+        <p>{{fnGetTranslate(descModal)|async}}</p>
+        <a href="javascript:void(0)" (click)="fnShowInfoQuestion()"><i class="fas fa-arrow-circle-left fa-2x"></i></a>
+    </div>
+
+  </ng-container>
+  <ng-container *ngIf="!bln_showInfo">
+    <ng-container *ngFor="let obj of files | keyvalue">
+      <div style="position: relative;">
+        <img [src]="obj.key" class="card-img-top">
+        <a href="javascript:void(0)" (click)="fnPopImage(obj.key)" style="position: absolute;top: 8px;right: 16px;">
+          <i class="fas fa-trash fa-2x"></i>
+        </a>
+      </div>
+    </ng-container>
+
+    <div class="card-body">
+      <p *ngIf="bln_show" [attr.contenteditable]="disabled?false:'plaintext-only'" class="card-text" [(innerHtml)]="str_questionPlaceholder"
+        (keyup)="fnEditQuestion($event)" onclick="document.execCommand('selectAll',false,null)"></p>
+
+      <fieldset>
+        <div class="form-check form-check-inline" *ngFor="let option of options;let i = index">
+          <input class="form-check-input" type="radio" [name]="'og-'+id" value="option1" (change)="fnSelectOption(i)" [checked]="option.correct" [disabled]="disabled">
+          <label [attr.contenteditable]="disabled?false:'plaintext-only'" [innerHtml]="option.option" (keyup)="fnEditQuestionOption($event,option)"
+            style="min-width: 50px;" onclick="document.execCommand('selectAll',false,null)"
+            [id]="'option-id'+id+'-index'+i" ></label>
+
+          <a style="margin-left: 5px;"><i class="fas fa-font"></i></a>
+          <a href="javascript:void(0)" *ngIf="!option.editable" (click)="fnSetEditable(true,option)"><i
+              class="far fa-square"></i></a>
+          <a href="javascript:void(0)" *ngIf="option.editable" (click)="fnSetEditable(false,option)"><i
+              class="fas fa-check-square"></i></a>
+          <a href="javascript:void(0)" (click)="fnPopOption(i)" style="margin-left: 5px;" *ngIf="!disabled"><i
+              class="fas fa-times-circle"></i></a>
+        </div>
+      </fieldset>
+      <a href="javascript:void(0)" (click)="fnAddOption()" *ngIf="!disabled">{{fnGetTranslate(addOption)|async}}</a>
+      <ng-container *ngIf="invalidOptions">
+        <br>
+        <small *ngIf="invalidOptions" style="color:red">{{fnGetTranslate(errorOptionConfig)|async}}</small>
+        <br>
+      </ng-container>
+      <ng-container *ngIf="invalidQuestionText">
+        <small style="color:red">{{fnGetTranslate(errorQuestion)|async}}</small>
+        <br>
+      </ng-container>
+      <ng-container *ngIf="invalidOptionText">
+        <small *ngIf="invalidOptionText" style="color:red">{{fnGetTranslate(errorOption)|async}}</small>
+        <br>
+      </ng-container>
+
+
+
+
+
+    </div>
+  </ng-container>
+
+</div>

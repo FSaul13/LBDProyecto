@@ -3,9 +3,17 @@
 </small>
 
 <small class="text-danger" *ngIf="errors.email">
-    {{str_email}}
+  {{str_email}}
 </small>
 
 <small class="text-danger" *ngIf="errors.fieldsMatch">
-    {{errors.fieldsMatch}}
+  {{errors.fieldsMatch}}
+</small>
+
+<small class="text-danger" *ngIf="errors.tableColumns">
+  {{errors.tableColumns}}
+</small>
+
+<small class="text-danger" *ngIf="errors.bigDate">
+  {{errors.bigDate}}
 </small>

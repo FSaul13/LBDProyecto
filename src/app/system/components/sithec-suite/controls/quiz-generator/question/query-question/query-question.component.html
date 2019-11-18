@@ -1,0 +1,58 @@
+<div class="card">
+  <header-question [(files)]="files" (deleteQuestion)="fnDeleteQuestion()" (infoQuestion)="fnShowInfoQuestion()" [disabled]="disabled">
+  </header-question>
+  <ng-container *ngIf="bln_showInfo">
+    <div style="margin: 10px;">
+      <h3>{{fnGetTranslate(titleModal)|async}}</h3>
+      <p>{{fnGetTranslate(descModal)|async}}</p>
+      <a href="javascript:void(0)" (click)="fnShowInfoQuestion()"><i class="fas fa-arrow-circle-left fa-2x"></i></a>
+    </div>
+
+  </ng-container>
+  <ng-container *ngIf="!bln_showInfo">
+    <ng-container *ngFor="let obj of files | keyvalue">
+      <div style="position: relative;">
+        <img [src]="obj.key" class="card-img-top">
+        <a href="javascript:void(0)" (click)="fnPopImage(obj.key)" style="position: absolute;top: 8px;right: 16px;">
+          <i class="fas fa-trash fa-2x"></i>
+        </a>
+      </div>
+    </ng-container>
+
+    <div class="card-body">
+      <p *ngIf="bln_show" [attr.contenteditable]="disabled?false:'plaintext-only'" class="card-text" [(innerHtml)]="str_queryPlaceholder"
+        (keyup)="fnEditQuery($event)" onclick="document.execCommand('selectAll',false,null)"></p>
+      <p *ngIf="bln_show" [attr.contenteditable]="disabled?false:'plaintext-only'" class="card-text" [(innerHtml)]="str_questionPlaceholder"
+        (keyup)="fnEditQuestion($event)" onclick="document.execCommand('selectAll',false,null)"></p>
+
+      <div class="col-auto">
+        <label class="sr-only" for="inlineFormInputGroup">Username</label>
+        <div class="input-group mb-2">
+          <div class="input-group-prepend">
+            <button class="btn btn-secondary" type="button" (click)="fnTryQuery()" [disabled]="disabled">{{fnGetTranslate(queryButton)|async}}</button>
+          </div>
+          <select class="form-control">
+            <option *ngFor="let option of queryOptions" [value]="option._id">{{option._value}}</option>
+          </select>
+        </div>
+      </div>
+      <br>
+      <ng-container *ngIf="invalidQuestionText">
+        <small style="color:red">{{fnGetTranslate(errorQuestion)|async}}</small>
+        <br>
+      </ng-container>
+      <ng-container *ngIf="invalidQuery">
+        <small style="color:red">{{fnGetTranslate(errorQuery)|async}}</small>
+        <br>
+      </ng-container>
+      <ng-container *ngIf="!bln_recoverOptions">
+        <small style="color:red">{{fnGetTranslate(errorInvalidQuery)|async}}</small>
+        <br>
+      </ng-container>
+
+
+
+    </div>
+  </ng-container>
+
+</div>

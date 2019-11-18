@@ -1,0 +1,65 @@
+<div class="row" style="padding:5px">
+  <div class="col-md-12">
+      <label for="">{{bln_translate?(textInput_field.label|translate):textInput_field.label}}</label>
+  </div>
+    
+  <div class="{{str_colXL}} {{str_colLG}} {{str_colMD}} {{str_colSM}} {{str_colXS}}" *ngFor="let filter of filters;let i = index">
+    <ng-container *ngIf="filter.type == 'text'">
+      <input type="text" class="form-control input-filter" [(ngModel)]="filter.filterValue"
+        [placeholder]="bln_translate?(filter.label|translate):filter.label">
+    </ng-container>
+    <ng-container *ngIf="filter.type == 'select'">
+      <select class="form-control input-filter" [(ngModel)]="filter.filterValue">
+        <option *ngIf="filter.allOption" value="showAllOptions" >Todos</option>
+        <option *ngFor="let option of (filter.data|async)" [value]="option[filter.key]">{{option[filter.value]}}
+        </option>
+      </select>
+    </ng-container>
+  </div>
+</div>
+
+<div class="table-responsive">
+  
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>
+          <input type="checkbox" (click)="fnSelectAllRows($event,true)" *ngIf="!bln_hideCheckHeader" 
+            [(ngModel)]="headerCheck" [disabled]="bln_disabledTableControls">
+        </th>
+        <th *ngFor="let header of anyArray_columns">{{bln_translate?(header.title|translate):header.title}}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let tableRow of tableData| FilterSearchPipe : filters | paginate: { id: textInput_field.id,
+      itemsPerPage: num_items,
+      currentPage: actual_page}">
+        <td>
+          <input type="checkbox" [(checked)]="any_checked[tableRow.idTableRowId]"
+            (click)="fnSelectRow($event,tableRow.idTableRowId,true)" [disabled]="bln_disabledTableControls">
+        </td>
+        <td *ngFor="let header of anyArray_columns">
+          <ng-container *ngIf="!header.type || header.type =='static'">
+              {{tableRow[header.name]}}
+          </ng-container>
+          <ng-container *ngIf="header.type =='number' || header.type =='text'">
+            <ng-container *ngIf="!header.operation">
+                <input [type]="header.type" class="form-control" [(ngModel)]="tableRow[header.name]" [readonly]="header.readonly" 
+                  [disabled]="bln_disabledTableControls"
+                  (change)="fnTableInputValueChange({id:header.name,value:tableRow[header.name],row:tableRow.idTableRowId})"
+                  (keyup)="fnTableInputValueChange({id:header.name,value:tableRow[header.name],row:tableRow.idTableRowId})">
+            </ng-container>
+            <ng-container *ngIf="header.operation">
+                <input [type]="header.type" class="form-control" [(ngModel)]="tableRow[header.name]" 
+                  [disabled]="bln_disabledTableControls" [readonly]="true">
+            </ng-container>
+          </ng-container>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <app-errors *ngIf="formcontrol_controller.errors && formcontrol_controller.touched"
+      [formErrors_errors]="textInput_field.errors" [errors]="formcontrol_controller.errors"></app-errors>
+  <pagination-controls  [id]="textInput_field.id" [previousLabel]="bln_translate?(str_previous|translate):str_previous"
+    [nextLabel]="bln_translate?(str_next|translate):str_next" (pageChange)="actual_page = $event"></pagination-controls>
+</div>

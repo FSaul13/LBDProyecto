@@ -1,0 +1,25 @@
+<form [formGroup]="formGroup_form">
+  <div class="form-group">
+    <ng-container *ngIf="str_labelType=='title'">
+      <label for="">{{str_label}}</label>
+      <tag-input [(ngModel)]='items' [editable]='true' style="width: 100%" [ngModelOptions]="{standalone: true}"
+        (onAdd)="fnrefreshControl($event)" (onRemove)="fnrefreshControl($event)" (onTagEdited)="fnrefreshControl($event)"
+        [placeholder]="settings.placeholderTag" [secondaryPlaceholder]="settings.placeholder">
+      </tag-input>
+    </ng-container>
+    <ng-container *ngIf="str_labelType=='append'">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">{{str_label}}</span>
+        </div>
+        <tag-input [(ngModel)]='items' [editable]='true' style="width: 100%" [ngModelOptions]="{standalone: true}"
+        (onAdd)="fnrefreshControl($event)" (onRemove)="fnrefreshControl($event)" (onTagEdited)="fnrefreshControl($event)"
+        [placeholder]="settings.placeholderTag" [secondaryPlaceholder]="settings.placeholder"></tag-input>
+      </div>
+    </ng-container>
+    
+    <app-errors *ngIf="formControl_control.errors && formControl_control.touched"
+      [formErrors_errors]="textInput_field.errors" [errors]="formControl_control.errors"></app-errors>
+    
+  </div>
+</form>

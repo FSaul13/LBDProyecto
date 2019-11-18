@@ -1,0 +1,130 @@
+<div style="display: flex;">
+  <div style="display: flex;flex-grow: 1;">
+    <h3>
+      {{
+          any_traslate?
+            (fnGetTraslate(str_tableTitle)|async):
+            str_tableTitle
+        }}
+    </h3>
+  </div>
+  <div style="display: flex;flex-grow: 1;flex-direction: row-reverse;" *ngIf="initFilters">
+    <button class="btn btn-primary" [disabled]="!bln_enableInitFiltersButton" (click)="fnInitFiltersClick()">
+      <i class="fas fa-search"></i>
+    </button>
+  </div>
+</div>
+<div class="row" *ngIf="initFilters">
+  <div style="margin-top: 5px;" class="col-md-6" *ngFor="let filter of initFilters">
+    <label>
+      {{
+        any_traslate?
+          (fnGetTraslate(filter._label)|async):
+          filter._label
+      }}
+    </label>
+    <input [type]="filter._inputType" class="form-control" (keyup)="fnInitFilterUpdate($event,filter._id)"
+      (change)="fnInitFilterUpdate($event,filter._id)">
+  </div>
+</div>
+<table class="{{str_tableClass}}">
+  <thead>
+
+    <tr style="background-color:#d2d4d6;">
+      <th *ngFor="let column of settings?._columns">
+        {{
+          any_traslate?
+            (fnGetTraslate(column._columnTitle)|async):
+            column._columnTitle
+        }}
+      </th>
+      <th>
+        <ng-container *ngIf="bln_hasFilters">
+          <a *ngIf="!bln_showFilters" class="table-button" (click)="fnShowHideFilters()" href="javascript:void(0)"><i
+              class="fas fa-search-plus fa-2x"></i></a>
+          <a *ngIf="bln_showFilters" class="table-button" (click)="fnShowHideFilters()" href="javascript:void(0)"><i
+              class="fas fa-search-minus fa-2x"></i></a>
+        </ng-container>
+      </th>
+    </tr>
+    <tr *ngIf="bln_showFilters">
+      <!--| TableSearchPipe : searchText-->
+      <th *ngFor="let column of settings?._columns">
+        <input type="text" [placeholder]="(column._filterPlaceholder)?
+            (any_traslate?
+              ((this.fnGetTraslate(column._filterPlaceholder)|async)):
+              ((this.fnGetTraslate(column._filterPlaceholder)|async)))
+              :('')
+              " class="form-control" *ngIf="column._filter" [(ngModel)]="any_filtersData[column._columnName]">
+      </th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody style="background-color: white;">
+    <tr *ngIf="bln_showSpinner">
+      <td [attr.colspan]="num_columns" style="text-align:center;">
+        <i class="fa fa-circle-o-notch fa-spin fa-2x"></i>
+      </td>
+    </tr>
+    <ng-container *ngIf="!bln_showSpinner">
+      <ng-container *ngFor="let row of (obs_rows|async) | ColumnTextSearchPipe : any_filtersData; let i = index">
+        <tr>
+          <td *ngFor="let column of settings?._columns">
+
+            <ng-container *ngIf="!column._type || column._type=='static'">
+              {{row[column._columnName]}}
+            </ng-container>
+            <ng-container *ngIf="column._type=='text' || column._type=='number'">
+              <input [type]="(column._type)?(column._type):'text'" class="form-control"
+                [(ngModel)]="row[column._columnName]" [readonly]="column._readOnly">
+            </ng-container>
+            <ng-container *ngIf="column._type=='select'">
+              <select class="form-control" [(ngModel)]="row[column._columnName]" [disabled]="column._readOnly">
+                <option *ngFor="let option of (any_selectOptions[column._columnName]|async)"
+                  [value]="option[column._key]">
+                  {{option[column._value]}}
+                </option>
+              </select>
+            </ng-container>
+            <ng-container *ngIf="column._type=='radio'">
+              <div class="radio" *ngFor="let option of (any_radioOptions[column._columnName]|async)">
+                <label><input type="radio" [name]="column._columnName+'-'+i" [(ngModel)]="row[column._columnName]"
+                    [value]="option[column._key]">
+                  {{option[column._value]}}
+                </label>
+              </div>
+            </ng-container>
+          </td>
+          <td>
+            <a class="table-button" *ngIf="settings?._settings && num_openCollapse == i" href="javascript:void(0)"
+              (click)="fnOpenCollapseTable(i,row)"><i class="fas fa-caret-square-up fa-2x"></i></a>
+            <a class="table-button" *ngIf="settings?._settings && num_openCollapse != i" href="javascript:void(0)"
+              (click)="fnOpenCollapseTable(i,row)"><i class="fas fa-caret-square-down fa-2x"></i></a>
+            <a href="javascript:void(0)" *ngFor="let button of buttons" class="table-button"
+              (click)="fnButtonClick(button,row)">
+              <i class="fas {{button._icon}} fa-2x"></i>
+            </a>
+          </td>
+        </tr>
+        <ng-container *ngIf="settings?._settings">
+          <tr *ngIf="num_openCollapse == i">
+            <td [attr.colspan]="num_columns">
+              <sithec-collapse-table [settings]="settings?._settings" [father]="tableInfo"
+                (onClickButton)="fnEmitTableButtonEvent($event)" (onOpenTableChange)="fnEmitTableChangeEvent($event)"
+                (onClickInitFilters)="fnEmitInitFilters($event)" [disabled]="(num_openCollapse != i)">
+              </sithec-collapse-table>
+              <!--
+                  <hr style="border-top: 2px solid rgb(0, 0, 0);">
+                  -->
+            </td>
+
+          </tr>
+
+        </ng-container>
+
+      </ng-container>
+    </ng-container>
+
+
+  </tbody>
+</table>

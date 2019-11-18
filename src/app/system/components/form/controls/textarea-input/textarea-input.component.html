@@ -1,19 +1,33 @@
 <form [formGroup]="formGroup_form">
   <div class="form-group">
     <ng-container *ngIf="str_labelType=='title'">
-      <label for="">{{str_label}}</label>
-      <textarea [formControl]="formControl_control" 
+      <label for=""> 
+          <ng-container *ngIf="bln_translate">
+              {{this.textInput_field.label?(str_label|translate):"Label"}}
+          </ng-container>
+          <ng-container *ngIf="!bln_translate">
+              {{this.textInput_field.label?str_label:"Label"}}
+          </ng-container>
+      </label>
+      <textarea [formControl]="formControl_control"
         class="form-control {{(formControl_control.touched && formControl_control.errors)?'invalid-input':''}}"
-        [placeholder]="str_placeholder" (keyup)="fnOnKeyUp()"></textarea>
+        [placeholder]="bln_translate?(str_placeholder|translate):str_placeholder" (keyup)="fnOnKeyUp($event)"></textarea>
     </ng-container>
     <ng-container *ngIf="str_labelType=='append'">
       <div class="input-group mb-3">
         <div class="input-group-prepend">
-          <span class="input-group-text">{{str_label}}</span>
+          <span class="input-group-text">
+              <ng-container *ngIf="bln_translate">
+                  {{this.textInput_field.label?(str_label|translate):"Label"}}
+              </ng-container>
+              <ng-container *ngIf="!bln_translate">
+                  {{this.textInput_field.label?str_label:"Label"}}
+              </ng-container>
+          </span>
         </div>
-        <textarea [formControl]="formControl_control" 
-        class="form-control {{(formControl_control.touched && formControl_control.errors)?'invalid-input':''}}"
-        [placeholder]="str_placeholder" (keyup)="fnOnKeyUp()"></textarea>
+        <textarea [formControl]="formControl_control"
+          class="form-control {{(formControl_control.touched && formControl_control.errors)?'invalid-input':''}}"
+          [placeholder]="bln_translate?(str_placeholder|translate):str_placeholder" (keyup)="fnOnKeyUp($event)"></textarea>
       </div>
     </ng-container>
     <app-errors *ngIf="formControl_control.errors && formControl_control.touched"

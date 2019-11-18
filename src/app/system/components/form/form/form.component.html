@@ -1,33 +1,99 @@
 <div style="padding:10px">
   <div style="display: flex;" [ngStyle]="{'justify-content': str_titleAlign}">
-    <h2>{{str_formTitle}}</h2>
+    <h2>
+
+      <ng-container *ngIf="bln_translate">
+        {{(any_settings?.title?.title)?(this.any_settings.title.title|translate):""}}
+      </ng-container>
+      <ng-container *ngIf="!bln_translate">
+        {{(any_settings?.title?.title)?this.any_settings.title.title:""}}
+      </ng-container>
+    </h2>
   </div>
-  
+
   <form [formGroup]="formGroup_form">
     <div class="row">
-      <ng-container *ngFor="let str_controlName of arrayStr_controls">
-        <div class="{{str_XScolumn}} {{str_SMcolumn}} {{str_MDcolumn}} {{str_LGcolumn}} {{str_XLcolumn}}"
-          *ngIf="!fields[str_controlName].hide">
-          <app-text-input *ngIf="fields[str_controlName].type=='text' || fields[str_controlName].type=='password'"
-            [textInput_field]="fields[str_controlName]" [formGroup_form]="formGroup_form"
-            [formControl_control]="formGroup_form.controls[str_controlName]" [str_labelType]="str_labelType">
-          </app-text-input>
-          <app-select-input *ngIf="fields[str_controlName].type=='select'" [textInput_field]="fields[str_controlName]"
-            [formGroup_form]="formGroup_form" [formControl_control]="formGroup_form.controls[str_controlName]"
-            [str_labelType]="str_labelType">
-          </app-select-input>
-          <app-textarea-input *ngIf="fields[str_controlName].type=='textarea'" [textInput_field]="fields[str_controlName]"
-            [formGroup_form]="formGroup_form" [formControl_control]="formGroup_form.controls[str_controlName]"
-            [str_labelType]="str_labelType"></app-textarea-input>
-        </div>
+      <ng-container *ngFor="let group of any_settings?._groups">
+        <h5 *ngIf="bln_translate && group._title">{{(group?._title)?(group._title|translate):""}}</h5>
+        <h5 *ngIf="!bln_translate && group._title">{{(group?._title)?(group._title):""}}</h5>
+
+        <ng-container *ngFor="let control of group._controls">
+
+          <ng-container *ngIf="fields[control._control].type=='table'">
+
+            <div class="col-md-12">
+              <app-table-input [_tableData]="fields[control._control].options" #tableForm
+                [any_filters]="fields[control._control].tableFilters" [bln_translate]="bln_translate"
+                [bln_disabledTableControls]="bln_disabledControls"
+                [anyArray_columns]="fields[control._control].tableColumns" [textInput_field]="fields[control._control]"
+                (eventEmitter_checkbox)="fnChangeCheckBox($event)"
+                [formcontrol_controller]="formGroup_form.controls[control._control]">
+              </app-table-input>
+            </div>
+          </ng-container>
+          <ng-container *ngIf="fields[control._control].type!='table'">
+            <div class="{{str_XScolumn}} {{str_SMcolumn}} {{str_MDcolumn}} {{str_LGcolumn}} {{str_XLcolumn}}"
+              *ngIf="!fields[control._control].hide">
+
+              <app-color-picker *ngIf="fields[control._control].type=='color'" [formGroup_form]="formGroup_form"
+                [formControl_control]="formGroup_form.controls[control._control]"
+                [textInput_field]="fields[control._control]" [str_labelType]="str_labelType"
+                [bln_translate]="bln_translate"></app-color-picker>
+
+              <app-text-input [bln_translate]="bln_translate" (eventEmiter_keyUp)="fnEmmiterKeyUp($event)"
+                (eventEmiter_file)="fnEmmiterFile($event)" *ngIf="fields[control._control].type=='text' || fields[control._control].type=='password' || fields[control._control].type=='number'
+                || fields[control._control].type=='file' || fields[control._control].type=='date'"
+                [textInput_field]="fields[control._control]" [formGroup_form]="formGroup_form"
+                [formControl_control]="formGroup_form.controls[control._control]" [str_labelType]="str_labelType">
+              </app-text-input>
+
+              <!--
+              <app-date-input [bln_translate]="bln_translate" (eventEmiter_keyUp)="fnEmmiterKeyUp($event)"
+                (eventEmiter_file)="fnEmmiterFile($event)" *ngIf="fields[control._control].type=='date' 
+                    || fields[control._control].type=='file'" [textInput_field]="fields[control._control]"
+                [formGroup_form]="formGroup_form" [formControl_control]="formGroup_form.controls[control._control]"
+                [str_labelType]="str_labelType">
+              </app-date-input>
+-->
+              <app-select-input *ngIf="fields[control._control].type=='select'"
+                [bln_disableSelect]="bln_disabledControls" [textInput_field]="fields[control._control]"
+                [bln_translate]="bln_translate" [formGroup_form]="formGroup_form"
+                [formControl_control]="formGroup_form.controls[control._control]" [str_labelType]="str_labelType"
+                (eventEmmiter_change)="fnOnChangeSelect($event)">
+              </app-select-input>
+
+              <app-textarea-input *ngIf="fields[control._control].type=='textarea'" [bln_translate]="bln_translate"
+                (eventEmiter_keyUp)="fnEmmiterKeyUp($event)" [textInput_field]="fields[control._control]"
+                [formGroup_form]="formGroup_form" [formControl_control]="formGroup_form.controls[control._control]"
+                [str_labelType]="str_labelType">
+              </app-textarea-input>
+
+              <app-tag-input *ngIf="fields[control._control].type=='tag'"
+                [formControl_control]="formGroup_form.controls[control._control]" [formGroup_form]="formGroup_form"
+                [str_labelType]="str_labelType" [settings]="fields[control._control]"></app-tag-input>
+            </div>
+          </ng-container>
+
+        </ng-container>
       </ng-container>
+
     </div>
     <div class="row">
       <div class="{{str_XScolumn}} {{str_SMcolumn}} {{str_MDcolumn}} {{str_LGcolumn}} {{str_XLcolumn}}">
-        <button type="button" class="btn btn-primary" (click)="fnSendFormData()" [innerHtml]="str_saveButton"
-          *ngIf="bln_forceValid" [disabled]="formGroup_form.invalid"></button>
-        <button type="button" class="btn btn-primary" (click)="fnSendFormData()" [innerHtml]="str_saveButton"
-          *ngIf="!bln_forceValid"></button>
+        <button type="button" class="btn btn-primary" (click)="fnSendFormData()" *ngIf="bln_forceValid"
+          [disabled]="formGroup_form.invalid">
+          <ng-container *ngIf="icon_button">
+            <i class="{{icon_button}}"></i>&nbsp;
+          </ng-container>
+          {{bln_translate?(str_saveButton|translate):str_saveButton}}
+        </button>
+
+        <button type="button" class="btn btn-primary" (click)="fnSendFormData()" *ngIf="!bln_forceValid">
+          <ng-container *ngIf="icon_button">
+            <i class="{{icon_button}}"></i>&nbsp;
+          </ng-container>
+          {{bln_translate?(str_saveButton|translate):str_saveButton}}
+        </button>
       </div>
     </div>
   </form>

@@ -1,0 +1,17 @@
+<div>
+    <form [formGroup]="S2FormGroup" (ngSubmit)="fnSubmit()">
+        <ng-container *ngFor="let group of groups">
+            <s2-form-group [group]="group" [S2FormGroup]="S2FormGroup" [translate]="translate" [sending]="sending"
+                (onKeyup)="fnKeyup($event)" (onChange)="fnChange($event)"></s2-form-group>
+        </ng-container>
+        <ng-container *ngIf="button">
+            <button *ngIf="!sending" style="margin-left: 15px;" type="submit" class="btn btn-primary" [disabled]="(button._validToSend && S2FormGroup.invalid)">
+                {{fnGetButtonText()|async}}
+            </button>
+            <button *ngIf="sending" style="margin-left: 15px;" type="button" disabled class="btn btn-primary">
+                <i class="fas fa-spinner fa-spin"></i>
+            </button>
+        </ng-container>
+
+    </form>
+</div>

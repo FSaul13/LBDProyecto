@@ -1,0 +1,28 @@
+<div style="padding-left: 15px;">
+  <h3>{{fnGetGroupTitle()|async}}</h3>
+  <div class="row">
+    <ng-container *ngFor="let item of group?._items">
+      <div class="col-xs-{{fnGetColumnSize(item,'_xs')}} col-sm-{{fnGetColumnSize(item,'_sm')}} col-md-{{fnGetColumnSize(item,'_md')}}
+      col-lg-{{fnGetColumnSize(item,'_lg')}} col-xl-{{fnGetColumnSize(item,'_xl')}}" *ngIf="!item?._config?._hide">
+        <s2-form-input *ngIf="item?._config?._type == 'text' || item?._config?._type == 'password' || item?._config?._type == 'data' || item?._config?._type == 'number'
+          || item?._config?._type == 'date'" [S2FormControl]="S2FormGroup.get(item?._control)"
+          [type]="item?._config?._type" [S2FormGroup]="S2FormGroup" [placeholder]="item?._config?._input?._placeholder"
+          [label]="item?._config?._input?._label" [id]="item?._config?._id" [translate]="translate" [sending]="sending"
+          (onChange)="fnChange($event)" (onKeyup)="fnKeyup($event)">
+        </s2-form-input>
+
+        <s2-form-select *ngIf="item?._config?._type == 'select'" [S2FormControl]="S2FormGroup.get(item?._control)"
+          [S2FormGroup]="S2FormGroup" [label]="item?._config?._select?._label" [id]="item?._config?._id"
+          [translate]="translate" [options]="item?._config?._select?._options"
+          [valueKey]="item?._config?._select?._valueKey" [optionKey]="item?._config?._select?._optionKey"
+          [sending]="sending" (onChange)="fnChange($event)">
+        </s2-form-select>
+
+        <s2-form-group *ngIf="item?._config?._type == 'group'" [group]="item?._config?._group" [sending]="sending"
+          [S2FormGroup]="S2FormGroup" [translate]="translate" (onChange)="fnChange($event)" (onKeyup)="fnKeyup($event)">
+        </s2-form-group>
+
+      </div>
+    </ng-container>
+  </div>
+</div>

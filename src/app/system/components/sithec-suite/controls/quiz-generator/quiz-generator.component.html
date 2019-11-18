@@ -1,0 +1,180 @@
+<div class="container">
+  <div class="card">
+    <div class="card-body">
+      <!--
+      <sithec-suite *ngIf="form" [settings]="form" [tool]="'form-generator'" (onKeyup)="fnKeyup($event)"
+        (onChange)="fnChange($event)"></sithec-suite>
+      -->
+      <s2-form-generator *ngIf="form" [S2FormGroup]="form._formGroup" [groups]="form._groups"
+        [translate]="form._translate" [button]="form._saveButton" (onKeyup)="fnKeyup($event)"
+        (onChange)="fnChange($event)" [sending]="bln_spinner"></s2-form-generator>
+      <!--
+      <div class="row">
+        <div class="col-md-12">
+          <input type="text" class="form-control" [(ngModel)]='title' (keyup)="fnCheckQuizValidations()"
+            [disabled]="bln_spinner">
+        </div>
+        <div class="col-md-12" style="margin-top: 5px;">
+          <input type="date" class="form-control" [(ngModel)]='date' [disabled]="bln_spinner">
+        </div>
+      </div>
+      -->
+      <br>
+      <div dndDropzone dndEffectAllowed="copyMove" (dndDrop)="onDrop($event, questions)" class="dndList">
+        <div class="item-list" dndPlaceholderRef class="dndPlaceholder"></div>
+        <div class="item-list" *ngFor="let question of questions; let i = index" [dndDraggable]="question"
+          [dndEffectAllowed]="'move'" (dndStart)="onDragStart($event)"
+          (dndCopied)="onDragged(question, questions, 'copy')" (dndLinked)="onDragged(question, questions, 'link')"
+          (dndMoved)="onDragged(question, questions, 'move')" (dndCanceled)="onDragged(question, questions, 'none')"
+          (dndEnd)="onDragEnd($event)">
+          <open-question *ngIf="question.type == 'open'" [id]="question.id" (delete)="fnDeleteQuestion($event)"
+            [(question)]="questions[i]" [translate]="settings._translate" [placeholder]="settings._questionPlanceholder"
+            (isValid)="fnIsValid($event,question.id)" [errorQuestion]="settings._questionNotFoundError"
+            [titleModal]="settings._modalInfoTitle" [descModal]="settings._openModalDescription"
+            [dragged]="question.dragged" [disabled]="bln_spinner"></open-question>
+          <options-question *ngIf="question.type == 'options'" [id]="question.id" (delete)="fnDeleteQuestion($event)"
+            [(question)]="questions[i]" [translate]="settings._translate" [placeholder]="settings._questionPlanceholder"
+            [addOption]="settings._addOption" (isValid)="fnIsValid($event,question.id)"
+            [errorQuestion]="settings._questionNotFoundError" [errorOption]="settings._optionNotFoundError"
+            [errorOptionConfig]="settings._optionConfigError" [titleModal]="settings._modalInfoTitle"
+            [descModal]="settings._uniqueModalDescription" [dragged]="question.dragged" [disabled]="bln_spinner">
+          </options-question>
+          <options-multiple-question *ngIf="question.type == 'multiple'" [id]="question.id"
+            (delete)="fnDeleteQuestion($event)" [addOption]="settings._addOption" [(question)]="questions[i]"
+            [translate]="settings._translate" [placeholder]="settings._questionPlanceholder"
+            (isValid)="fnIsValid($event,question.id)" [errorQuestion]="settings._questionNotFoundError"
+            [errorOption]="settings._optionNotFoundError" [errorOptionConfig]="settings._optionMultipleConfigError"
+            [titleModal]="settings._modalInfoTitle" [descModal]="settings._multipleModalDescription"
+            [dragged]="question.dragged" [disabled]="bln_spinner">
+          </options-multiple-question>
+          <query-question *ngIf="question.type == 'query'" [id]="question.id" (delete)="fnDeleteQuestion($event)"
+            [(question)]="questions[i]" [translate]="settings._translate" [placeholder]="settings._questionPlanceholder"
+            (isValid)="fnIsValid($event,question.id)" [errorQuestion]="settings._questionNotFoundError"
+            [errorQuery]="settings._queryError" [titleModal]="settings._modalInfoTitle"
+            [descModal]="settings._queryModalDescription" [api]="settings._tryqueryapi"
+            [queryButton]="settings._tryQueryButton" [errorInvalidQuery]="settings._tryQueryError"
+            [dragged]="question.dragged" [disabled]="bln_spinner"></query-question>
+          <sithec-suite-select-question *ngIf="question.type == 'select'" [id]="question.id"
+            (delete)="fnDeleteQuestion($event)" [(question)]="questions[i]" [translate]="settings._translate"
+            [placeholder]="settings._questionPlanceholder" [addOption]="settings._addOption"
+            (isValid)="fnIsValid($event,question.id)" [errorQuestion]="settings._questionNotFoundError"
+            [errorOption]="settings._optionNotFoundError" [errorOptionConfig]="settings._optionConfigError"
+            [titleModal]="settings._modalInfoTitle" [descModal]="settings._selectModalDescription"
+            [dragged]="question.dragged" [disabled]="bln_spinner">
+          </sithec-suite-select-question>
+          <sithec-suite-rank-question *ngIf="question.type == 'rank'" [id]="question.id"
+            (delete)="fnDeleteQuestion($event)" [(question)]="questions[i]" [translate]="settings._translate"
+            [placeholder]="settings._questionPlanceholder" [addOption]="settings._addOption"
+            (isValid)="fnIsValid($event,question.id)" [errorQuestion]="settings._questionNotFoundError"
+            [errorOption]="settings._optionNotFoundError" [errorOptionConfig]="settings._optionConfigError"
+            [titleModal]="settings._modalInfoTitle" [descModal]="settings._rankModalDescription"
+            [dragged]="question.dragged" [disabled]="bln_spinner">
+          </sithec-suite-rank-question>
+          <sithec-suite-raiting-question *ngIf="question.type == 'raiting'" [id]="question.id"
+            (delete)="fnDeleteQuestion($event)" [(question)]="questions[i]" [translate]="settings._translate"
+            [placeholder]="settings._questionPlanceholder" (isValid)="fnIsValid($event,question.id)"
+            [errorQuestion]="settings._questionNotFoundError" [titleModal]="settings._modalInfoTitle"
+            [descModal]="settings._raitingModalDescription" [dragged]="question.dragged" [disabled]="bln_spinner">
+          </sithec-suite-raiting-question>
+        </div>
+      </div>
+
+
+      <div style="display: flex;flex-wrap: wrap;justify-content: center;">
+        <div class="row" style="width: 100%;">
+          <div class="col-md-6">
+            <div class="card bg-light">
+              <div class="card-header">
+                <a href="javascript:void(0)" (click)="fnAddOpenQuestion()"><i class="fas fa-plus-square"></i></a>
+                {{fnGetTranslate(this.settings._openQuestionTitle)|async}}
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">
+                  {{fnGetTranslate(this.settings._openQuestionDescription)|async}}
+                </h5>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card bg-light">
+              <div class="card-header">
+                <a href="javascript:void(0)" (click)="fnAddOptionsQuestion()"><i class="fas fa-plus-square"></i></a>
+                {{fnGetTranslate(this.settings._optionsUniqueQuestionTitle)|async}}
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">{{fnGetTranslate(this.settings._optionsUniqueQuestionDescription)|async}}</h5>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card bg-light">
+              <div class="card-header">
+                <a href="javascript:void(0)" (click)="fnAddOptionsMultipleQuestion()"><i
+                    class="fas fa-plus-square"></i></a>
+                {{fnGetTranslate(this.settings._optionsMultipleQuestionTitle)|async}}
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">{{fnGetTranslate(this.settings._optionsMultipleQuestionDescription)|async}}</h5>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card bg-light">
+              <div class="card-header">
+                <a href="javascript:void(0)" (click)="fnAddQueryQuestion()"><i class="fas fa-plus-square"></i></a>
+                {{fnGetTranslate(this.settings._queryQuestionTitle)|async}}
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">{{fnGetTranslate(this.settings._queryQuestionDescription)|async}}</h5>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card bg-light">
+              <div class="card-header">
+                <a href="javascript:void(0)" (click)="fnAddSelectQuestion()"><i class="fas fa-plus-square"></i></a>
+                {{fnGetTranslate(this.settings._selectQuestionTitle)|async}}
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">{{fnGetTranslate(this.settings._selectQuestionDescription)|async}}</h5>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card bg-light">
+              <div class="card-header">
+                <a href="javascript:void(0)" (click)="fnAddRankQuestion()"><i class="fas fa-plus-square"></i></a>
+                {{fnGetTranslate(this.settings._rankQuestionTitle)|async}}
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">{{fnGetTranslate(this.settings._rankQuestionDescription)|async}}</h5>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card bg-light">
+              <div class="card-header">
+                <a href="javascript:void(0)" (click)="fnAddRaitingQuestion()"><i class="fas fa-plus-square"></i></a>
+                {{fnGetTranslate(this.settings._raitingQuestionTitle)|async}}
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">{{fnGetTranslate(this.settings._raitingQuestionDescription)|async}}</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <button class="btn btn-primary" [disabled]="!bln_validQuiz" (click)="fnSaveQuiz()" *ngIf="!bln_spinner">
+              {{fnGetTranslate(this.settings._buttonSave)|async}}
+            </button>
+            <button class="btn btn-primary" [disabled]="true" *ngIf="bln_spinner">
+              <i class="fas fa-spinner fa-spin"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

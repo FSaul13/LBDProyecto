@@ -1,0 +1,9 @@
+<form [formGroup]="S2FormGroup">
+  <div class="form-group">
+    <label [for]="id">{{fnGetInputLabel()|async}} {{sending}}</label>
+    <select *ngIf="!sending" [id]="id" class="form-control" [formControl]="S2FormControl" (change)="fnChange($event)">
+      <option *ngFor="let option of _selectOptions|async" [value]="option[valueKey]">{{option[optionKey]}}</option>
+    </select>
+    <input type="text" class="form-control" disabled [value]="fnGetValue()" *ngIf="sending">
+  </div>
+</form>

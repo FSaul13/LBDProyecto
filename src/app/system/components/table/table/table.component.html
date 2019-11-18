@@ -1,39 +1,59 @@
-<div style="padding: 10px">
-<div class="table-responsive">
-  <input type="text" class="form-control search-bar" [placeholder]="str_search" 
-  [(ngModel)]="searchText" *ngIf="!bln_loadOnChangePage">
-  <table class="table">
-    <thead>
-      <tr>
-        <th scope="col" style="cursor: pointer" *ngFor="let any_column of arrayAny_columns" (click)="fnSortByColumn(any_column.name)">{{any_column.title}}</th>
-        <th *ngIf="bln_showActionColumn">Acciones</th>
-      </tr>
-    </thead>
-    <tbody>
-      <ng-container *ngFor="let obsAny_data of (arrayObs_sortTable|async) | paginate: { itemsPerPage: num_itemsPerPage, currentPage: num_actualPage }| TableSearchPipe : searchText;let i = index">
-        <tr *ngIf="!obsAny_data.hideRowData">
-          <td *ngFor="let any_column of arrayAny_columns">
-            {{obsAny_data[any_column.name]}}
-          </td>
-          <td *ngIf="bln_showActionColumn">
-            <i class="{{str_editIcon}} table-button" (mouseover)="bln_hoverEdit[i]=true" (mouseleave)="bln_hoverEdit[i]=false"
-              [ngStyle]="{color: bln_hoverEdit[i]==true  ? str_buttonsHoverColor : str_buttonsColor}" 
-              *ngIf="bln_showEdit" (click)="fnEditRow(obsAny_data)"></i>
-            <i class="{{str_deleteIcon}} table-button" (mouseover)="bln_hoverDelete[i]=true"
-              (mouseleave)="bln_hoverDelete[i]=false" *ngIf="bln_showDelete" (click)="fnDeleteRow(obsAny_data)"
-              [ngStyle]="{color: bln_hoverDelete[i]==true  ? str_buttonsHoverColor : str_buttonsColor}"></i>
-            <ng-container *ngIf="bln_showExtras">
-              <i *ngFor="let extraButton_button of arrayExtraButtons_buttons;let j = index" class="{{extraButton_button.icon}} table-button"
-              (mouseover)="any_hoverExtraButtons[i][j]=true" (mouseleave)="any_hoverExtraButtons[i][j]=false" 
-              (click)="fnOnExtraButtonClick(extraButton_button,obsAny_data)"
-              [ngStyle]="{color: any_hoverExtraButtons[i][j]==true  ? str_buttonsHoverColor : str_buttonsColor}"></i>
-            </ng-container>
+<div class="table-styles">
+  <div class="table-responsive">
+    <input type="text" class="form-control search-bar"
+      [placeholder]="(any_settings?.search?.placeholder)?any_settings.search.placeholder:'Buscar...'"
+      [(ngModel)]="searchText" *ngIf="!bln_loadOnChangePage">
+    <table class="table">
+      <thead [ngStyle]="{'background-color':str_headerColor}">
+        <tr>
+          <th scope="col" style="cursor: pointer" *ngFor="let any_column of arrayAny_columns"
+            (click)="fnSortByColumn(any_column.name)">
+            <ng-container *ngIf="!translate">{{any_column.title}} {{translate}}</ng-container>
+            <ng-container *ngIf="translate">{{fnGetTranslate(any_column.title)|async}}</ng-container>
+          </th>
+          <th *ngIf="bln_showActionColumn">
+            <ng-container *ngIf="!translate">{{any_settings._actionsTitle?this.any_settings._actionsTitle:"Acciones"}}</ng-container>
+            <ng-container *ngIf="translate">{{fnGetTranslate(any_settings._actionsTitle)|async}}</ng-container>
+            
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngIf="str_idTable">
+          <td *ngIf="(_any_spinnerObs|async)[str_idTable]">
+            <i class="fas fa-spinner fa-spin"></i>
           </td>
         </tr>
-      </ng-container>
-    </tbody>
-  </table>
-  <pagination-controls (pageChange)="fnChangePage($event)"
-  [previousLabel]="str_previousLabel" [nextLabel]="str_nextLabel"></pagination-controls>
-</div>
+        <ng-container
+          *ngFor="let obsAny_data of arrayAny_rows | TableSearchPipe : searchText | paginate: { itemsPerPage: num_itemsPerPage, currentPage: num_actualPage,id: str_idTable?str_idTable:'default' };let i = index">
+          <tr *ngIf="!obsAny_data.hideRowData">
+            <td *ngFor="let any_column of arrayAny_columns">
+              {{obsAny_data[any_column.name]}}
+            </td>
+            <td *ngIf="bln_showActionColumn">
+              <i style="color:black" class="{{str_editIcon}} table-button" (mouseover)="bln_hoverEdit[i]=true"
+                (mouseleave)="bln_hoverEdit[i]=false"
+                [ngStyle]="{color: bln_hoverEdit[i]==true  ? str_buttonsHoverColor : str_buttonsColor}"
+                *ngIf="bln_showEdit" (click)="fnEditRow(obsAny_data)"></i>
+              <i class="{{str_deleteIcon}} table-button" (mouseover)="bln_hoverDelete[i]=true"
+                (mouseleave)="bln_hoverDelete[i]=false" *ngIf="bln_showDelete" (click)="fnDeleteRow(obsAny_data)"
+                [ngStyle]="{color: bln_hoverDelete[i]==true  ? str_buttonsHoverColor : str_buttonsColor}"></i>
+              <ng-container *ngIf="bln_showExtras">
+                <i *ngFor="let extraButton_button of arrayExtraButtons_buttons;let j = index"
+                  class="{{extraButton_button.icon}} table-button" (mouseover)="any_hoverExtraButtons[i][j]=true"
+                  (mouseleave)="any_hoverExtraButtons[i][j]=false"
+                  (click)="fnOnExtraButtonClick(extraButton_button,obsAny_data)"
+                  [ngStyle]="{color: any_hoverExtraButtons[i][j]==true  ? str_buttonsHoverColor : str_buttonsColor}"></i>
+              </ng-container>
+            </td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+    <pagination-controls (pageChange)="fnChangePage($event)" 
+      [previousLabel]="translate?(fnGetTranslate(str_previousLabel)|async):str_previousLabel"
+      [nextLabel]="translate?(fnGetTranslate(str_nextLabel)|async):str_nextLabel"
+      [id]="str_idTable?str_idTable:'default'" >
+    </pagination-controls>
+  </div>
 </div>
