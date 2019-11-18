@@ -24,22 +24,22 @@ export class UserTypesControlComponent implements OnInit {
   any_deleteEvent: any;
   str_deleteUserType: string;
 
-  headerSettings_header:HeaderSettings = {
+  headerSettings_header: HeaderSettings = {
     extraButtons: true,
     alignExtraButtons: "end",
     buttons: [
-      { icon:"fas fa-plus", id: 'new' } as HeaderExtraButton
+      { icon: "fas fa-plus", id: 'new' } as HeaderExtraButton
     ]
   } as HeaderSettings
 
-  obs_userTypes:Observable<TypeUser[]>;
+  obs_userTypes: Observable<TypeUser[]>;
 
-  arrayAny_columns:any[] = [
-    {name:"_nombre", title:"Nombre"},
-    {name:"_descripcion", title:"Descripción"},
+  arrayAny_columns: any[] = [
+    { name: "_nombre", title: "Nombre" },
+    { name: "_descripcion", title: "Descripción" },
   ]
-  
-  tableSettings_settings:TableSettings = {
+
+  tableSettings_settings: TableSettings = {
     buttons: {
       delete: true,
       edit: true,
@@ -55,17 +55,21 @@ export class UserTypesControlComponent implements OnInit {
       itemsPerPage: 10
     } as TablePagination,
     search: {
-      placeholder: "Buscar tipos de usuario..."
+      placeholder: "Buscar tipos de usuario...",
+      searchColumns: ["_nombre", "_descripcion"]
     } as TableSearch
+
+
   } as TableSettings
 
   constructor(
     private userTypesService_apis: UserTypesService,
-    private router:Router,
+    private router: Router,
     private toastr: ToastrService,
     private modalService: NgbModal
-  ) { 
+  ) {
     this.obs_userTypes = userTypesService_apis._userTypesArray_recoverUserTypes;
+    console.log(this.obs_userTypes)
   }
 
   ngOnInit() {
@@ -84,19 +88,19 @@ export class UserTypesControlComponent implements OnInit {
       })
   }
 
-  fnOnDelete(event){
+  fnOnDelete(event) {
     this.any_deleteEvent = event;
     this.str_deleteUserType = (event.data._nombre ? event.data._nombre : "") + " " + (event.data._apellidos ? event.data._apellidos : "");
     this.fnOpenModal(this.model_delete, "md")
   }
 
-  fnOnEdit(event){
-    let userType_edit:TypeUser = event.data;
-    this.router.navigate(["system/admin/user-types/edit",userType_edit._idTipoUsuario]);
+  fnOnEdit(event) {
+    let userType_edit: TypeUser = event.data;
+    this.router.navigate(["system/admin/user-types/edit", userType_edit._idTipoUsuario]);
   }
 
-  fnClickExtraButton(event){
-    if(event == "new"){
+  fnClickExtraButton(event) {
+    if (event == "new") {
       this.router.navigate(["system/admin/user-types/new"]);
     }
   }
@@ -106,14 +110,14 @@ export class UserTypesControlComponent implements OnInit {
     this.modalService.open(content, { size: size });
   }
 
-  bln_loadDelete:boolean;
-  str_loadDeleteButton:string = '<i class="fas fa-spinner fa-spin"></i> Eliminando';
-  str_errorDeleteButton:string = '<i class="fas fa-times-circle"></i> Error';
-  str_successDeleteButton:string = '<i class="fas fa-check-circle"></i> Eliminado'
-  str_sendDeleteButton:string = 'Eliminar';
-  str_deleteButton:string = this.str_sendDeleteButton;
+  bln_loadDelete: boolean;
+  str_loadDeleteButton: string = '<i class="fas fa-spinner fa-spin"></i> Eliminando';
+  str_errorDeleteButton: string = '<i class="fas fa-times-circle"></i> Error';
+  str_successDeleteButton: string = '<i class="fas fa-check-circle"></i> Eliminado'
+  str_sendDeleteButton: string = 'Eliminar';
+  str_deleteButton: string = this.str_sendDeleteButton;
   fnConfirmDelete(modal: any): void {
-    if(this.bln_loadDelete){
+    if (this.bln_loadDelete) {
       return;
     }
     this.str_deleteButton = this.str_loadDeleteButton;

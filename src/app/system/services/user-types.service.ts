@@ -31,9 +31,9 @@ export class UserTypesService {
   fnGetUserTypes(): Promise<any> {
     return new Promise((resolve, reject) => {
       this.apiCallService_restfull.fnGetPromise([], APIS_ENUM.GET_USER_TYPE)
-        .then((res: TypeUserList) => {
-          console.log(res)
-          this.$userTypesArray_recoverUserTypes.next(res._tiposUsuarios);
+        .then((res) => {
+          //console.log(res.data)
+          this.$userTypesArray_recoverUserTypes.next(res);
           resolve();
         })
         .catch(rej => {
@@ -93,19 +93,19 @@ export class UserTypesService {
     });
   }
 
-  fnPostDeleteUserType(user_delete:TypeUser):Promise<any>{
-    return new Promise((resolve,reject)=>{
-      this.apiCallService_restfull.fnPostPromise(user_delete,APIS_ENUM.POST_DELETE_USER_TYPE)
-      .then((res:Response)=>{
-        if(res._success){
-          resolve(res._message)
-        }else{
-          reject(res._message)
-        }
-      })
-      .catch(rej=>{
-        reject("Error de conexion con el servidor")
-      })
+  fnPostDeleteUserType(user_delete: TypeUser): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.apiCallService_restfull.fnPostPromise(user_delete, APIS_ENUM.POST_DELETE_USER_TYPE)
+        .then((res: Response) => {
+          if (res._success) {
+            resolve(res._message)
+          } else {
+            reject(res._message)
+          }
+        })
+        .catch(rej => {
+          reject("Error de conexion con el servidor")
+        })
     });
   }
 }

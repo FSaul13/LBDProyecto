@@ -9,10 +9,11 @@ export class ApiCallService {
   str_ip: string = environment.files;
 
   constructor(private http: HttpClient) {
-
+    console.log(this.http)
   }
 
   fnGetHttpClient(): HttpClient {
+
     return this.http;
   }
 
@@ -47,19 +48,28 @@ export class ApiCallService {
   }
 
   fnGetPromise(array_params: Array<any>, str_api: string): Promise<any> {
+
     return new Promise((resolve, reject) => {
       let apiHelper: ApiHelper = new ApiHelper();
       let any_validCall = apiHelper.fnSetParams(array_params, str_api);
-      //console.log(any_validCall)
+      console.log(str_api)
+      console.log(any_validCall)
       if (any_validCall._success) {
-        this.http.get(this.str_ip + any_validCall._message).toPromise()
+        //this.http.get(this.str_ip + any_validCall._message).toPromise()
+        this.http.get("http://localhost:80/prueba.php",
+          { responseType: 'json' }).toPromise()
           .then((res: any) => {
+            console.log(res)
+            console.log(res._tickets);
+
             resolve(res)
           })
           .catch(rej => {
+            console.log(rej)
             reject(rej)
           });
       } else {
+        console.log("llegue")
         reject()
       }
 
@@ -67,7 +77,7 @@ export class ApiCallService {
   }
 
   fnGetWithParams(arrayParams: any, str_api): Promise<any> {
-    
+
     return new Promise((resolve, reject) => {
       let headers = new HttpHeaders();
       headers.append('Content-Type', 'application/json');

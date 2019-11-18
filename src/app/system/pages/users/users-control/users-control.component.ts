@@ -92,7 +92,7 @@ export class UsersControlComponent implements OnInit {
     } as TablePagination,
     search: {
       placeholder: "Buscar por nombre y apellidos...",
-      searchColumns: ["_nombre", "_apellidos"]
+      searchColumns: ["_nombre", "_apellidos","_correo"]
     } as TableSearch
   } as TableSettings;
 

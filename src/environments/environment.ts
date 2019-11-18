@@ -5,6 +5,8 @@
 
 export const environment = {
   production: false,
-  ip : "http://192.168.0.104:4010/",
-  files : "http://192.168.0.104:4010",
+  //ip : "http://192.168.0.104:4010/",
+  //files : "http://192.168.0.104:4010",
+  ip: "http://localhost:80/prueba.php",
+  files: "http://localhost:80/prueba.php"
 };

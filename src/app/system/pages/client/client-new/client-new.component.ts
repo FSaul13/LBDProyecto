@@ -28,7 +28,9 @@ export class ClientNewComponent implements OnInit {
    }
 
    fnSubmitNewClient(){
-     let PutnewClient : Client = this.formgroup_newClient.getRawValue();
+     let PutnewClient : Client = this.formgroup_newClient.getRawValue().forEach(str_nameControl =>{
+      PutnewClient[str_nameControl]= (PutnewClient[str_nameControl] as string).trim();
+     });
      this.client_service_apis.fnPostNewClient(PutnewClient)
      .then((message) => {
        this.feedback.success(message)

@@ -67,8 +67,10 @@ export class ClientEditComponent implements OnInit {
   }
 
   fnSubmitEditClient(): void {
-    let Edit_Client_Value : Client = this.formgroup_EditClient.getRawValue();
-    this.clientService_apis.fnEditClient(Edit_Client_Value)
+    let EditClientValue : Client = this.formgroup_EditClient.getRawValue().forEach(str_formName => {
+      EditClientValue[str_formName] = (EditClientValue[str_formName] as string).trim();
+    });
+    this.clientService_apis.fnEditClient(EditClientValue)
     .then((message) => {
       this.feedback.success(message);
     })
