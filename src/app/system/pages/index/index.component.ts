@@ -32,7 +32,7 @@ export class IndexComponent implements OnInit, OnDestroy {
     public LikesOptionsSeries: Array<number> = [1, 3, 5, 1, 4, 2];
     public likes: number = this.LikesOptionsSeries.reduce((a, b) => a + b, 0);
 
-    public interval:any = {};
+    public interval: any = {};
 
     constructor(private activatedRoute: ActivatedRoute, private sidebarService: SidebarService, private cdr: ChangeDetectorRef, private toastr: ToastrService) {
         /*
@@ -57,8 +57,8 @@ export class IndexComponent implements OnInit, OnDestroy {
         */
     }
 
-    ngOnDestroy(){
-        if (this.interval){
+    ngOnDestroy() {
+        if (this.interval) {
             clearInterval(this.interval);
         }
     }
@@ -70,12 +70,12 @@ export class IndexComponent implements OnInit, OnDestroy {
         });
     }
 
-    chartIntervals(){
+    chartIntervals() {
         let that = this;
-        this.interval = setInterval(function(){
+        this.interval = setInterval(function () {
             that.earningOptionsSeries.shift();
             let rand = Math.floor(Math.random() * 11);
-            if (!rand){
+            if (!rand) {
                 rand = 1;
             }
             that.earningOptionsSeries.push(rand);
@@ -110,7 +110,7 @@ export class IndexComponent implements OnInit, OnDestroy {
             that.likes += rand;
             that.LikesOptions = that.loadLineAreaChartOptions(that.LikesOptionsSeries, "#4f81bc", "#95b3d7");
             that.cdr.markForCheck();
-        },3000);
+        }, 3000);
 
     }
 

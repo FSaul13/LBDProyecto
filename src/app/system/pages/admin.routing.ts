@@ -2,19 +2,19 @@ import { Routes, RouterModule } from '@angular/router';
 import { AdminComponent } from './admin/admin.component';
 import { IndexComponent } from './index/index.component';
 
-const routes: Routes = [   
+const routes: Routes = [
     {
         path: '',
         component: AdminComponent,
         children: [
-            { path: '', redirectTo:'dashboard'},
-            {
+            { path: '', redirectTo: 'users' },
+            /*{
                 path: 'dashboard',
                 children: [
                     { path: '', redirectTo: 'index', pathMatch: 'full' },
                     { path: 'index', component: IndexComponent, data: { title: ':: Lucid Angular :: Dashboard :: Analytical ::' } }
                 ]
-            },
+            },*/
             {
                 path: "users",
                 loadChildren: "../pages/users/users.module#UsersModule"
@@ -33,7 +33,7 @@ const routes: Routes = [
             }
         ]
     },
-    
+
 ];
 
 export const routing = RouterModule.forChild(routes);

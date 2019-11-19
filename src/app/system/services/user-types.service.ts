@@ -44,7 +44,7 @@ export class UserTypesService {
 
   fnPostNewUserType(userType_new: TypeUser): Promise<any> {
     return new Promise((resolve, reject) => {
-      this.apiCallService_restfull.fnPostPromise(userType_new, APIS_ENUM.POST_NEW_USER_TYPE)
+      this.apiCallService_restfull.fnPostPromise(userType_new, APIS_ENUM.POST_PRUEBA)
         .then((res: Response) => {
           if (res._message) {
             resolve(res._message);

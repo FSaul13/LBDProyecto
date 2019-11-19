@@ -27,5 +27,6 @@ export enum APIS_ENUM {
     GET_STATES = '/api/paises/?/estados',
     GET_COUNTRY = '/api/paises',
 
-    GET_PRUEBA = '/prueba.php'
+    GET_PRUEBA = '/prueba.php',
+    POST_PRUEBA = '/pruebaPost.php'
 }
