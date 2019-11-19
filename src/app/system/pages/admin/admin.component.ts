@@ -53,23 +53,23 @@ export class AdminComponent implements AfterViewInit, OnInit {
 			this.smallScreenMenu = showMenuClass;
 		});
 
-		this.sub_loggedSession = this.sessionService_loggedSession._loginResponse_session.subscribe(res => {
-			if (res) {
-				console.log("Informacion recuperada")
-			} else {
-				if (SessionService.bln_recoverLogged) {
-					if (SessionService.bln_notLoggedAccess) {
-						this.toastr.warning("Debes iniciar sesión para ingresar a esta pagina", "Inicia sesión");
-					} else {
-						SessionService.bln_notLoggedAccess = true;
-					}
-
-					this.router.navigate(["system/authentication/page-login"])
+		/*this.sub_loggedSession = this.sessionService_loggedSession._loginResponse_session.subscribe(res => {
+				if (res) {
+					console.log("Informacion recuperada")
 				} else {
-					console.log("Espera a recuperar informacion");
+					if (SessionService.bln_recoverLogged) {
+						if (SessionService.bln_notLoggedAccess) {
+							this.toastr.warning("Debes iniciar sesión para ingresar a esta pagina", "Inicia sesión");
+						} else {
+							SessionService.bln_notLoggedAccess = true;
+						}
+	
+						this.router.navigate(["system/authentication/page-login"])
+					} else {
+						console.log("Espera a recuperar informacion");
+					}
 				}
-			}
-		})
+			})*/
 	}
 
 	ngOnInit() {
