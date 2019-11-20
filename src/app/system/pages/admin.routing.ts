@@ -7,14 +7,14 @@ const routes: Routes = [
         path: '',
         component: AdminComponent,
         children: [
-            { path: '', redirectTo: 'users' },
-            /*{
+            { path: '', redirectTo: 'index' },
+            {
                 path: 'dashboard',
                 children: [
                     { path: '', redirectTo: 'index', pathMatch: 'full' },
                     { path: 'index', component: IndexComponent, data: { title: ':: Lucid Angular :: Dashboard :: Analytical ::' } }
                 ]
-            },*/
+            },
             {
                 path: "users",
                 loadChildren: "../pages/users/users.module#UsersModule"

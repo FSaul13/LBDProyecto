@@ -28,5 +28,26 @@ export enum APIS_ENUM {
     GET_COUNTRY = '/api/paises',
 
     GET_PRUEBA = '/prueba.php',
-    POST_PRUEBA = '/pruebaPost.php'
+    POST_PRUEBA = '/pruebaPost.php',
+
+
+    //Proyecto
+    GET_ANIMAL = '/api/sites',
+    POST_NEW_ANIMAL = '/api/sites/nuevo',
+    GET_ANIMAL_BY_ID = '/api/sites/idSite/?',
+    POST_EDIT_ANIMAL = '/api/sites/editar',
+    POST_DELETE_ANIMAL = '/api/sites/eliminar',
+    GET_DELETE_ANIMAL = '/api/sites/eliminados',
+    POST_ACTIVATE_ANIMAL = '/api/sites/activar',
+
+    //ALIMENT
+    GET_ALIMENT = '/api/sites',
+    POST_NEW_ALIMENT = '/api/sites/nuevo',
+    GET_ALIMENT_BY_ID = '/api/sites/idSite/?',
+    POST_EDIT_ALIMENT = '/api/sites/editar',
+    POST_DELETE_ALIMENT = '/api/sites/eliminar',
+    GET_DELETE_ALIMENT = '/api/sites/eliminados',
+    POST_ACTIVATE_ALIMENT = '/api/sites/activar',
+
+
 }
