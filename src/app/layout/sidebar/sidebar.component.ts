@@ -18,15 +18,15 @@ export class SidebarComponent implements OnInit {
 	@Input() currentActiveSubMenu;
 	@Output() changeNavTabEvent = new EventEmitter();
 	@Output() activeInactiveMenuEvent = new EventEmitter();
-	public themeClass: string = "theme-cyan";
+	public themeClass: string = "theme-blue";
 
-	sub_session:Subscription;
+	sub_session: Subscription;
 
 	constructor(
 		private themeService: ThemeService,
-		private authenticationService_apis:AuthenticacionService,
-		private sessionService_loggedSession:SessionService
-		) {
+		private authenticationService_apis: AuthenticacionService,
+		private sessionService_loggedSession: SessionService
+	) {
 		this.themeService.themeClassChange.subscribe(themeClass => {
 			this.themeClass = themeClass;
 		});
@@ -36,16 +36,16 @@ export class SidebarComponent implements OnInit {
 		this.fnSubscribeToSession();
 	}
 
-	ngOnDestroy(){
-		if(this.sub_session){
+	ngOnDestroy() {
+		if (this.sub_session) {
 			this.sub_session.unsubscribe();
 		}
 	}
 
-	str_usuario:string="";
-	fnSubscribeToSession():void{
-		this.sub_session = this.sessionService_loggedSession._loginResponse_session.subscribe(res=>{
-			if(res){
+	str_usuario: string = "";
+	fnSubscribeToSession(): void {
+		this.sub_session = this.sessionService_loggedSession._loginResponse_session.subscribe(res => {
+			if (res) {
 				this.str_usuario = res._Usuario._nombre + " " + res._Usuario._apellidos;
 			}
 		})
@@ -59,17 +59,17 @@ export class SidebarComponent implements OnInit {
 		this.activeInactiveMenuEvent.emit({ 'item': menuItem });
 	}
 
-	changeTheme(theme:string){
+	changeTheme(theme: string) {
 		this.themeService.themeChange(theme);
 	}
 
-	fnLogout():void{
+	fnLogout(): void {
 		this.authenticationService_apis.fnLogout()
-		.then(()=>{
-			console.log("Salir")
-		})
-		.catch(()=>{
-			console.log("Error")
-		})
+			.then(() => {
+				console.log("Salir")
+			})
+			.catch(() => {
+				console.log("Error")
+			})
 	}
 }

@@ -14,6 +14,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HTTPInterceptorService } from '../services/http.interceptor';
 import { UsersService } from '../services/users.service';
 import { UserTypesService } from '../services/user-types.service';
+import { TratamientoService } from '../services/tratamiento.service';
 
 
 @NgModule({
@@ -31,12 +32,13 @@ import { UserTypesService } from '../services/user-types.service';
 	declarations: [
 		AdminComponent,
 		IndexComponent,
-		
+
 	],
 	providers: [
 		UsersService,
 		UserTypesService,
-		{ provide: HTTP_INTERCEPTORS, useClass: HTTPInterceptorService, multi: true}
+		TratamientoService,
+		{ provide: HTTP_INTERCEPTORS, useClass: HTTPInterceptorService, multi: true }
 	]
 })
 export class AdminModule { }

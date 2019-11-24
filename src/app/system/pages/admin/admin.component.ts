@@ -25,20 +25,20 @@ export class AdminComponent implements AfterViewInit, OnInit {
 	public navTab: string = "menu";
 	public currentActiveMenu = "light";
 	public currentActiveSubMenu;
-	public themeClass: string = "theme-cyan";
+	public themeClass: string = "theme-blue";
 	public smallScreenMenu = "";
 	//offcanvas-active
 
-	sub_loggedSession:Subscription;
+	sub_loggedSession: Subscription;
 
 	constructor(
-		private sidebarService: SidebarService, 
-		private router: Router, 
-		private activatedRoute: ActivatedRoute, 
-		private themeService: ThemeService, 
+		private sidebarService: SidebarService,
+		private router: Router,
+		private activatedRoute: ActivatedRoute,
+		private themeService: ThemeService,
 		private titleService: Title,
 		private toastr: ToastrService,
-		private sessionService_loggedSession:SessionService
+		private sessionService_loggedSession: SessionService
 	) {
 		this.activatedRoute.url.subscribe(url => {
 			this.isStopLoading = false;
@@ -53,23 +53,23 @@ export class AdminComponent implements AfterViewInit, OnInit {
 			this.smallScreenMenu = showMenuClass;
 		});
 
-		this.sub_loggedSession = this.sessionService_loggedSession._loginResponse_session.subscribe(res=>{
-			if(res){
-				console.log("Informacion recuperada")
-			}else{
-				if(SessionService.bln_recoverLogged){
-					if(SessionService.bln_notLoggedAccess){
-						this.toastr.warning("Debes iniciar sesión para ingresar a esta pagina","Inicia sesión");
-					}else{
-						SessionService.bln_notLoggedAccess = true;
+		/*this.sub_loggedSession = this.sessionService_loggedSession._loginResponse_session.subscribe(res => {
+				if (res) {
+					console.log("Informacion recuperada")
+				} else {
+					if (SessionService.bln_recoverLogged) {
+						if (SessionService.bln_notLoggedAccess) {
+							this.toastr.warning("Debes iniciar sesión para ingresar a esta pagina", "Inicia sesión");
+						} else {
+							SessionService.bln_notLoggedAccess = true;
+						}
+	
+						this.router.navigate(["system/authentication/page-login"])
+					} else {
+						console.log("Espera a recuperar informacion");
 					}
-					
-					this.router.navigate(["system/authentication/page-login"])
-				}else{
-					console.log("Espera a recuperar informacion");
 				}
-			}
-		})
+			})*/
 	}
 
 	ngOnInit() {
@@ -87,8 +87,8 @@ export class AdminComponent implements AfterViewInit, OnInit {
 			.subscribe((event) => this.titleService.setTitle(event['title']));
 	}
 
-	ngOnDestroy(){
-		if(this.sub_loggedSession){
+	ngOnDestroy() {
+		if (this.sub_loggedSession) {
 			this.sub_loggedSession.unsubscribe();
 		}
 	}

@@ -1,27 +1,23 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { Client } from '../models/client';
+
 import { ApiCallService } from './api-call.service';
-import { APIS_ENUM } from '../enums/APIS.enum';
-import { Response } from '../models/response';
-import { ClientList } from '../models/list/clientList';
 
 
 @Injectable()
 export class ClientService {
 
-  private $clientArray_recoveryClients: BehaviorSubject<Client[]> = new BehaviorSubject<Client[]>([]);
+  /*private $clientArray_recoveryClients: BehaviorSubject<Client[]> = new BehaviorSubject<Client[]>([]);
   _clientArray_recoveryClient: Observable<Client[]> = this.$clientArray_recoveryClients.asObservable();
 
   private $client_recoveryClient: BehaviorSubject<Client> = new BehaviorSubject<Client>({} as Client);
   _client_recoverUserType: Observable<Client> = this.$client_recoveryClient.asObservable();
 
-
+*/
   constructor(private apicall_restfull: ApiCallService) {
-    
+
   }
 
-  fnGetClient(): Promise<any> {
+  /*fnGetClient(): Promise<any> {
     return new Promise((resolve, reject) => {
       this.apicall_restfull.fnGetPromise([], APIS_ENUM.GET_CLIENTS)
         .then((res: ClientList) =>{
@@ -86,5 +82,5 @@ export class ClientService {
         })
     })
   }
-
+*/
 }

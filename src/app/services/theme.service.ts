@@ -7,7 +7,7 @@ import { of, Subject } from 'rxjs';
 })
 export class ThemeService {
 
-	public themeClass: string = "theme-cyan";
+	public themeClass: string = "theme-blue";
 	public smallScreenMenu = "";
 
 	themeClassChange: Subject<string> = new Subject<string>();
@@ -22,22 +22,22 @@ export class ThemeService {
 		});
 	}
 
-	themeChange(theme:string) {
+	themeChange(theme: string) {
 		this.themeClassChange.next(theme);
 	}
 
 	showHideMenu() {
-		if (!this.smallScreenMenu){
+		if (!this.smallScreenMenu) {
 			this.smallScreenMenuShow.next("offcanvas-active");
 		} else {
 			this.smallScreenMenuShow.next("");
 		}
-		
+
 	}
 
 	hideMenu() {
 		this.smallScreenMenuShow.next("");
 	}
 
-	
+
 }

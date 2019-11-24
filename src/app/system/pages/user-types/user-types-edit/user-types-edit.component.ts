@@ -19,21 +19,21 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class UserTypesEditComponent implements OnInit {
 
-  headerSettings_header:HeaderSettings = {
+  headerSettings_header: HeaderSettings = {
     backButton: true
   } as HeaderSettings
 
   formGroup_userType: FormGroup;
-  num_idUserType:number;
+  num_idUserType: number;
 
-  sub_userType:Subscription;
+  sub_userType: Subscription;
 
   formSettings_settings: FormSettings = {
     title: {
       title: "Editar tipo usuario"
     } as FormTitle,
     fields: {
-      _idTipoUsuario:{
+      _idTipoUsuario: {
         hide: true
       } as FormInput,
       _nombre: {
@@ -68,25 +68,26 @@ export class UserTypesEditComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.num_idUserType = params["id_userType"];
+      console.log(params)
+      this.num_idUserType = params["_idTipoUsuario"];
       this.fnLoadViewData();
     });
   }
 
-  ngOnDestroy(){
-    if(this.sub_userType){
+  ngOnDestroy() {
+    if (this.sub_userType) {
       this.sub_userType.unsubscribe();
     }
   }
 
-  fnLoadViewData():void{
+  fnLoadViewData(): void {
     this.fnSubscribeToUserType();
     this.fnGetUserType();
   }
 
-  fnSubscribeToUserType():void{
-    this.sub_userType = this.userTypesService_apis._userType_recoverUserType.subscribe(res=>{
-      if(res._idTipoUsuario){
+  fnSubscribeToUserType(): void {
+    this.sub_userType = this.userTypesService_apis._userType_recoverUserType.subscribe(res => {
+      if (res._idTipoUsuario) {
         this.formGroup_userType.setValue({
           _idTipoUsuario: res._idTipoUsuario,
           _nombre: res._nombre,
@@ -96,17 +97,17 @@ export class UserTypesEditComponent implements OnInit {
     });
   }
 
-  fnGetUserType():void{
+  fnGetUserType(): void {
     this.userTypesService_apis.fnGetUserTypeById(this.num_idUserType)
-    .then(()=>{})
-    .catch(error=>{
-      this.toastr.error(error)
-    })
+      .then(() => { })
+      .catch(error => {
+        this.toastr.error(error)
+      })
   }
 
   fnInitForm(): void {
     this.formGroup_userType = new FormGroup({
-      _idTipoUsuario: new FormControl(null,[Validators.required]),
+      _id: new FormControl(null, [Validators.required]),
       _nombre: new FormControl(null, [Validators.required]),
       _descripcion: new FormControl(null, [Validators.required]),
     });
@@ -115,11 +116,11 @@ export class UserTypesEditComponent implements OnInit {
   fnSendData(event) {
     let userType_new: TypeUser = event.data;
     this.userTypesService_apis.fnPostEditUserType(userType_new)
-      .then(success => { 
+      .then(success => {
         this.toastr.success(success)
         event.fnSuccess();
       })
-      .catch(error => { 
+      .catch(error => {
         this.toastr.error(error);
         event.fnError();
       })

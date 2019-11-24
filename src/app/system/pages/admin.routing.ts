@@ -2,12 +2,12 @@ import { Routes, RouterModule } from '@angular/router';
 import { AdminComponent } from './admin/admin.component';
 import { IndexComponent } from './index/index.component';
 
-const routes: Routes = [   
+const routes: Routes = [
     {
         path: '',
         component: AdminComponent,
         children: [
-            { path: '', redirectTo:'dashboard'},
+            { path: '', redirectTo: 'dashboard' },
             {
                 path: 'dashboard',
                 children: [
@@ -24,16 +24,37 @@ const routes: Routes = [
                 loadChildren: "../pages/user-types/user-types.module#UserTypesModule"
             },
             {
-                path: "territories",
-                loadChildren: "../pages/territories/territories.module#TerritoriesModule"
+                path: "aliment",
+                loadChildren: "../pages/aliment/aliment.module#AlimentModule"
             },
             {
-                path: "client",
-                loadChildren: "../pages/client/client.module#ClientModule"
-            }
+                path: "animal",
+                loadChildren: "../pages/animal/animal.module#AnimalModule"
+            },
+            {
+                path: "medicamento",
+                loadChildren: "../pages/medicamento/medicamento.module#MedicamentoModule"
+            },
+            {
+                path: "enfermedad",
+                loadChildren: "../pages/enfermedad/enfermedad.module#EnfermedadModule"
+            },
+            {
+                path: "animal-alimento",
+                loadChildren: "../pages/animal-alimento/animal-alimento.module#AnimalAlimentoModule"
+            },
+            {
+                path: "tratamiento",
+                loadChildren: "../pages/tratamiento/tratamiento.module#TratamientoModule"
+            },
+            {
+                path: "sintoma",
+                loadChildren: "../pages/sintoma/sintoma.module#SintomaModule"
+            },
+
         ]
     },
-    
+
 ];
 
 export const routing = RouterModule.forChild(routes);

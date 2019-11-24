@@ -29,8 +29,11 @@ export class UserTypesService {
   }
 
   fnGetUserTypes(): Promise<any> {
+    let parametros: any = {
+      _accion: "obtenerTodos"
+    }
     return new Promise((resolve, reject) => {
-      this.apiCallService_restfull.fnGetPromise([], APIS_ENUM.GET_PRUEBA)
+      this.apiCallService_restfull.fnPostPromise(parametros, APIS_ENUM.GET_PRUEBA)
         .then((res) => {
           //console.log(res.data)
           this.$userTypesArray_recoverUserTypes.next(res);
@@ -43,12 +46,18 @@ export class UserTypesService {
   }
 
   fnPostNewUserType(userType_new: TypeUser): Promise<any> {
+    let parametros: any = {
+      _accion: "nuevo",
+      _valor: userType_new
+    }
     return new Promise((resolve, reject) => {
-      this.apiCallService_restfull.fnPostPromise(userType_new, APIS_ENUM.POST_NEW_USER_TYPE)
+      this.apiCallService_restfull.fnPostPromise(parametros, APIS_ENUM.POST_PRUEBA)
         .then((res: Response) => {
-          if (res._message) {
+          if (res._success) {
+            console.log(res)
             resolve(res._message);
           } else {
+            console.log(res)
             reject(res._message);
           }
         })
@@ -59,10 +68,14 @@ export class UserTypesService {
   }
 
   fnPostEditUserType(userType_new: TypeUser): Promise<any> {
+    let parametros: any = {
+      _accion: "editar",
+      _valor: userType_new
+    }
     return new Promise((resolve, reject) => {
-      this.apiCallService_restfull.fnPostPromise(userType_new, APIS_ENUM.POST_EDIT_USER_TYPE)
+      this.apiCallService_restfull.fnPostPromise(parametros, APIS_ENUM.POST_EDIT_USER_TYPE)
         .then((res: Response) => {
-          if (res._message) {
+          if (res._success) {
             resolve(res._message);
           } else {
             reject(res._message);
@@ -75,8 +88,13 @@ export class UserTypesService {
   }
 
   fnGetUserTypeById(num_idUserType: number): Promise<any> {
+    console.log("valor" + num_idUserType)
+    let parametros: any = {
+      _accion: "obtenerId",
+      _valor: num_idUserType
+    }
     return new Promise((resolve, reject) => {
-      this.apiCallService_restfull.fnGetPromise([num_idUserType], APIS_ENUM.GET_USER_TYPE_BY_ID)
+      this.apiCallService_restfull.fnPostPromise(parametros, APIS_ENUM.GET_USER_TYPE_BY_ID)
         .then((res: TypeUser) => {
           if (res._idTipoUsuario == 0) {
             this.$userType_recoverUserType.next({} as TypeUser)
@@ -94,8 +112,12 @@ export class UserTypesService {
   }
 
   fnPostDeleteUserType(user_delete: TypeUser): Promise<any> {
+    let parametros: any = {
+      _accion: "eliminar",
+      _valor: user_delete
+    }
     return new Promise((resolve, reject) => {
-      this.apiCallService_restfull.fnPostPromise(user_delete, APIS_ENUM.POST_DELETE_USER_TYPE)
+      this.apiCallService_restfull.fnPostPromise(parametros, APIS_ENUM.POST_DELETE_USER_TYPE)
         .then((res: Response) => {
           if (res._success) {
             resolve(res._message)

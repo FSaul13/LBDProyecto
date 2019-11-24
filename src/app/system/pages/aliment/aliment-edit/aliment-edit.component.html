@@ -1,0 +1,16 @@
+<br>
+<app-action-header [settings]="headerSettings_header">
+</app-action-header>
+
+
+<ng-container *ngIf="bln_loadForm">
+  <div class="fa-2x" style="display: flex;justify-content:center;align-items:center">
+    <i class="fas fa-spinner fa-spin"></i>
+  </div>
+</ng-container>
+<div *ngIf="!bln_loadForm" style="display: flex;justify-content:center">
+  <div style="max-width: 600px">
+    <app-form [formGroup_form]="FormGroupEditAliment" [any_settings]="forSettings_config"
+      (eventEmmiter_onSendData)="fnEditData($event)"></app-form>
+  </div>
+</div>

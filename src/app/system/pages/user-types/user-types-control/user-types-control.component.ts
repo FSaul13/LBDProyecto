@@ -95,8 +95,9 @@ export class UserTypesControlComponent implements OnInit {
   }
 
   fnOnEdit(event) {
-    let userType_edit: TypeUser = event.data;
-    this.router.navigate(["system/admin/user-types/edit", userType_edit._idTipoUsuario]);
+    let userType_edit: any = event.data;
+    console.log(event.data)
+    this.router.navigate(["system/admin/user-types/edit", userType_edit._id]);
   }
 
   fnClickExtraButton(event) {
