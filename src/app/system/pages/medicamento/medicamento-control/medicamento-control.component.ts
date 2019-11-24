@@ -43,8 +43,7 @@ export class MedicamentoControlComponent implements OnInit {
 
 
   arrayAny_columns: any[] = [
-    { name: "_nombre", title: "Nombre" },
-    { name: "_descripcion", title: "Descripcion" }
+    { name: "_nombre_comun", title: "Nombre Comun" },
   ]
 
   settingsButtons_all: TableButtons = {
@@ -66,7 +65,7 @@ export class MedicamentoControlComponent implements OnInit {
     } as TablePagination,
     search: {
       placeholder: "",
-      searchColumns: ["_nombre", "_descripcion"]
+      searchColumns: ["_nombre_comun"]
     } as TableSearch,
     _actionsTitle: "",
     _id: 'Medicamento-table',
@@ -133,7 +132,7 @@ export class MedicamentoControlComponent implements OnInit {
 
   fnOnEdit(event) {
 
-    this.router.navigate(["/system/admin/Medicamento/edit", event.data._idMedicamento])
+    this.router.navigate(["/system/admin/medicamento/edit", event.data._id_medicamento])
   }
 
   fnOpenModal(content, size) {

@@ -32,7 +32,7 @@ export class SintomaEditComponent implements OnInit {
       title: 'Editar Sintoma'
     } as FormTitle,
     fields: {
-      _id_Sintoma: {
+      _id_sintoma: {
         hide: true
       } as FormInput,
       _descripcion: {
@@ -74,7 +74,8 @@ export class SintomaEditComponent implements OnInit {
     this.fnInitformGroup();
     this.fnSubscribetoSintoma();
     this.route.params.subscribe(params => {
-      this.fnGetProductCode(params.idSintoma);
+      console.log(params)
+      this.fnGetProductCode(params._idSintoma);
     });
   }
 
@@ -90,9 +91,9 @@ export class SintomaEditComponent implements OnInit {
   fnSubscribetoSintoma(): void {
 
     this.sub_SintomaSubscription = this.SintomaService_apis._Sintoma_recoveryproductCode.subscribe(res => {
-      if (res._idSintoma) {
+      if (res._id_sintoma) {
         this.FormGroupEditSintoma.setValue({
-          _id_Sintoma: res._idSintoma,
+          _id_sintoma: res._id_sintoma,
           _descripcion: res._descripcion,
           _imagen_muestra: res._imagen_muestra
         });
@@ -108,7 +109,7 @@ export class SintomaEditComponent implements OnInit {
 
   fnInitformGroup() {
     this.FormGroupEditSintoma = new FormGroup({
-      _id_Sintoma: new FormControl(null, Validators.required),
+      _id_sintoma: new FormControl(null, Validators.required),
       _descripcion: new FormControl(null, Validators.required),
       _imagen_muestra: new FormControl(null)
     })

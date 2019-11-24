@@ -19,8 +19,11 @@ export class SintomaService {
   ) { }
 
   fnGetSintoma(): Promise<any> {
+    let parametros: any = {
+      _accion: "obtenerSintoma"
+    }
     return new Promise((resolve, reject) => {
-      this.api_call_Restfull.fnGetPromise([], APIS_ENUM.GET_SINTOMA)
+      this.api_call_Restfull.fnPostPromise(parametros, APIS_ENUM.GET_SINTOMA)
         .then((res) => {
           this.$Sintoma_Array_recoverySintoma.next(res);
           resolve()
@@ -34,8 +37,12 @@ export class SintomaService {
 
 
   fnGetSintomaById(idSintoma: number): Promise<any> {
+    let parametros: any = {
+      _accion: "obtenerId",
+      _valor: idSintoma
+    }
     return new Promise((resolve, reject) => {
-      this.api_call_Restfull.fnGetPromise([idSintoma], APIS_ENUM.GET_SINTOMA_BY_ID)
+      this.api_call_Restfull.fnPostPromise(parametros, APIS_ENUM.GET_SINTOMA_BY_ID)
         .then((res: any) => {
           this.$Sintoma_recoverySintoma.next(res);
 
@@ -50,8 +57,12 @@ export class SintomaService {
   }
 
   fnPostNewSintoma(newSintoma: any): Promise<any> {
+    let parametros: any = {
+      _accion: "nuevo",
+      _valor: newSintoma
+    }
     return new Promise((resolve, reject) => {
-      this.api_call_Restfull.fnPostPromise(newSintoma, APIS_ENUM.POST_NEW_SINTOMA)
+      this.api_call_Restfull.fnPostPromise(parametros, APIS_ENUM.POST_NEW_SINTOMA)
         .then((res: Response) => {
           if (res._success) {
             resolve(res._message);
@@ -67,8 +78,12 @@ export class SintomaService {
   }
 
   fnEditSintoma(editSintoma: any): Promise<any> {
+    let parametros: any = {
+      _accion: "editar",
+      _valor: editSintoma
+    }
     return new Promise((resolve, reject) => {
-      this.api_call_Restfull.fnPostPromise(editSintoma, APIS_ENUM.POST_EDIT_SINTOMA)
+      this.api_call_Restfull.fnPostPromise(parametros, APIS_ENUM.POST_EDIT_SINTOMA)
         .then((res: Response) => {
           if (res._success) {
             resolve(res._message);
@@ -84,9 +99,12 @@ export class SintomaService {
   }
 
   fnPostDeleteSintoma(deleteSintoma: any): Promise<any> {
-
+    let parametros: any = {
+      _accion: "eliminar",
+      _valor: deleteSintoma
+    }
     return new Promise((resolve, reject) => {
-      this.api_call_Restfull.fnPostPromise(deleteSintoma, APIS_ENUM.POST_DELETE_SINTOMA)
+      this.api_call_Restfull.fnPostPromise(parametros, APIS_ENUM.POST_DELETE_SINTOMA)
         .then((res: Response) => {
           if (res._success) {
             resolve(res._message);

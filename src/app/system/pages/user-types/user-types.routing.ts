@@ -10,7 +10,7 @@ export const UsersTypesRouting: Routes = [
         component: UserTypesComponent,
         children: [
             { path: '', redirectTo: 'control', pathMatch: 'full' },
-            {  
+            {
                 path: "control",
                 component: UserTypesControlComponent,
                 data: {
@@ -28,24 +28,24 @@ export const UsersTypesRouting: Routes = [
                     title: "Agregar tipo usuario",
                     urls: [
                         { title: 'Home', url: '/system/home' },
-                        { title: 'Control de tipos de usuario' ,url: '/system/user-types/control'},
-                        { title: 'Alta'}
+                        { title: 'Control de tipos de usuario', url: '/system/user-types/control' },
+                        { title: 'Alta' }
                     ]
                 }
             },
             {
-                path: "edit/:id_userType",
+                path: "edit/:_idTipoUsuario",
                 component: UserTypesEditComponent,
                 data: {
                     title: "Editar usuario",
                     urls: [
                         { title: 'Home', url: '/system/home' },
-                        { title: 'Control de tipos de usuario' ,url: '/system/user-types/control'},
-                        { title: 'Editar'}
+                        { title: 'Control de tipos de usuario', url: '/system/user-types/control' },
+                        { title: 'Editar' }
                     ]
                 }
             }
         ]
     },
-    
+
 ];

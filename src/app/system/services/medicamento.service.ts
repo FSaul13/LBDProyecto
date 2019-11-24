@@ -19,8 +19,11 @@ export class MedicamentoService {
   ) { }
 
   fnGetMedicamento(): Promise<any> {
+    let parametros: any = {
+      _accion: "obtenerMedicamento"
+    }
     return new Promise((resolve, reject) => {
-      this.api_call_Restfull.fnGetPromise([], APIS_ENUM.GET_MEDICAMENTO)
+      this.api_call_Restfull.fnPostPromise(parametros, APIS_ENUM.GET_MEDICAMENTO)
         .then((res) => {
           this.$Medicamento_Array_recoveryMedicamento.next(res);
           resolve()
@@ -34,8 +37,12 @@ export class MedicamentoService {
 
 
   fnGetMedicamentoById(idMedicamento: number): Promise<any> {
+    let parametros: any = {
+      _accion: "obtenerId",
+      _valor: idMedicamento
+    }
     return new Promise((resolve, reject) => {
-      this.api_call_Restfull.fnGetPromise([idMedicamento], APIS_ENUM.GET_MEDICAMENTO_BY_ID)
+      this.api_call_Restfull.fnPostPromise(parametros, APIS_ENUM.GET_MEDICAMENTO_BY_ID)
         .then((res: any) => {
           this.$Medicamento_recoveryMedicamento.next(res);
 
@@ -50,8 +57,12 @@ export class MedicamentoService {
   }
 
   fnPostNewMedicamento(newMedicamento: any): Promise<any> {
+    let parametros: any = {
+      _accion: "nuevo",
+      _valor: newMedicamento
+    }
     return new Promise((resolve, reject) => {
-      this.api_call_Restfull.fnPostPromise(newMedicamento, APIS_ENUM.POST_NEW_MEDICAMENTO)
+      this.api_call_Restfull.fnPostPromise(parametros, APIS_ENUM.POST_NEW_MEDICAMENTO)
         .then((res: Response) => {
           if (res._success) {
             resolve(res._message);
@@ -67,8 +78,12 @@ export class MedicamentoService {
   }
 
   fnEditMedicamento(editMedicamento: any): Promise<any> {
+    let parametros: any = {
+      _accion: "editar",
+      _valor: editMedicamento
+    }
     return new Promise((resolve, reject) => {
-      this.api_call_Restfull.fnPostPromise(editMedicamento, APIS_ENUM.POST_EDIT_MEDICAMENTO)
+      this.api_call_Restfull.fnPostPromise(parametros, APIS_ENUM.POST_EDIT_MEDICAMENTO)
         .then((res: Response) => {
           if (res._success) {
             resolve(res._message);
@@ -84,9 +99,12 @@ export class MedicamentoService {
   }
 
   fnPostDeleteMedicamento(deleteMedicamento: any): Promise<any> {
-
+    let parametros: any = {
+      _accion: "eliminar",
+      _valor: deleteMedicamento
+    }
     return new Promise((resolve, reject) => {
-      this.api_call_Restfull.fnPostPromise(deleteMedicamento, APIS_ENUM.POST_DELETE_MEDICAMENTO)
+      this.api_call_Restfull.fnPostPromise(parametros, APIS_ENUM.POST_DELETE_MEDICAMENTO)
         .then((res: Response) => {
           if (res._success) {
             resolve(res._message);

@@ -61,6 +61,41 @@
                                     <span>Animales</span>
                                 </a>
                             </li>
+                            <li routerLink="/system/admin/enfermedad/control" routerLinkActive="active"
+                                [routerLinkActiveOptions]="{exact: true}">
+                                <a (click)="activeInactiveMenu('enfermedades')">
+                                    <i class="icon-home"></i>
+                                    <span>Enfermedades</span>
+                                </a>
+                            </li>
+                            <li routerLink="/system/admin/medicamento/control" routerLinkActive="active"
+                                [routerLinkActiveOptions]="{exact: true}">
+                                <a (click)="activeInactiveMenu('medicamento')">
+                                    <i class="icon-home"></i>
+                                    <span>Medicamentos</span>
+                                </a>
+                            </li>
+                            <li routerLink="/system/admin/animal-alimento/control" routerLinkActive="active"
+                                [routerLinkActiveOptions]="{exact: true}">
+                                <a (click)="activeInactiveMenu('animal-alimento')">
+                                    <i class="icon-home"></i>
+                                    <span>Alimento-Animal</span>
+                                </a>
+                            </li>
+                            <li routerLink="/system/admin/tratamiento/control" routerLinkActive="active"
+                                [routerLinkActiveOptions]="{exact: true}">
+                                <a (click)="activeInactiveMenu('tratamiento')">
+                                    <i class="icon-home"></i>
+                                    <span>tratamiento</span>
+                                </a>
+                            </li>
+                            <li routerLink="/system/admin/sintoma/control" routerLinkActive="active"
+                                [routerLinkActiveOptions]="{exact: true}">
+                                <a (click)="activeInactiveMenu('sintoma')">
+                                    <i class="icon-home"></i>
+                                    <span>Sintoma</span>
+                                </a>
+                            </li>
                         </ul>
                     </nav>
                 </div>

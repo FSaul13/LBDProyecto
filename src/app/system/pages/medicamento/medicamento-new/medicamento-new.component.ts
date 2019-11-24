@@ -60,12 +60,12 @@ export class MedicamentoNewComponent implements OnInit {
         label: 'Precio',
         type: 'number'
       } as FormInput,
-      /* _imagen_muestra : {
-         label: 'Laboratorio',
-         trim: true,
-         type: 'text'
-       }as FormInput
- */
+      _imagen_muestra: {
+        label: 'Laboratorio',
+        trim: true,
+        type: 'text'
+      } as FormInput
+
 
     },
     columns: {
@@ -105,6 +105,7 @@ export class MedicamentoNewComponent implements OnInit {
       _efectos_secundarios: new FormControl(null, Validators.required),
       _laboratorio: new FormControl(null, Validators.required),
       _precio: new FormControl(null, Validators.required),
+      _imagen_muestra: new FormControl(null)
 
     });
   }

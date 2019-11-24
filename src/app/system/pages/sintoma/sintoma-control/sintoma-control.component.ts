@@ -130,7 +130,7 @@ export class SintomaControlComponent implements OnInit {
 
   fnOnEdit(event) {
 
-    this.router.navigate(["/system/admin/sintoma/edit", event.data._idSintoma])
+    this.router.navigate(["/system/admin/sintoma/edit", event.data._id_sintoma])
   }
 
   fnOpenModal(content, size) {

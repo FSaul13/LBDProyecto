@@ -19,9 +19,13 @@ export class AnimalService {
   ) { }
 
   fnGetAnimal(): Promise<any> {
+    let parametros: any = {
+      _accion: "obtenerAnimales"
+    }
     return new Promise((resolve, reject) => {
-      this.api_call_Restfull.fnGetPromise([], APIS_ENUM.GET_ANIMAL)
+      this.api_call_Restfull.fnPostPromise(parametros, APIS_ENUM.GET_ANIMAL)
         .then((res) => {
+          console.log(res);
           this.$Animal_Array_recoveryAnimal.next(res);
           resolve()
         })
@@ -34,8 +38,12 @@ export class AnimalService {
 
 
   fnGetAnimalById(idAnimal: number): Promise<any> {
+    let parametros: any = {
+      _accion: "obtenerId",
+      _valor: idAnimal
+    }
     return new Promise((resolve, reject) => {
-      this.api_call_Restfull.fnGetPromise([idAnimal], APIS_ENUM.GET_ANIMAL_BY_ID)
+      this.api_call_Restfull.fnPostPromise(parametros, APIS_ENUM.GET_ANIMAL_BY_ID)
         .then((res) => {
           this.$Animal_recoveryAnimal.next(res);
 
@@ -50,9 +58,14 @@ export class AnimalService {
   }
 
   fnPostNewAnimal(newAnimal: any): Promise<any> {
+    let parametros: any = {
+      _accion: "nuevo",
+      _valor: newAnimal
+    }
     return new Promise((resolve, reject) => {
-      this.api_call_Restfull.fnPostPromise(newAnimal, APIS_ENUM.POST_NEW_ANIMAL)
+      this.api_call_Restfull.fnPostPromise(parametros, APIS_ENUM.POST_NEW_ANIMAL)
         .then((res: Response) => {
+          console.log(res);
           if (res._success) {
             resolve(res._message);
           }
@@ -67,9 +80,14 @@ export class AnimalService {
   }
 
   fnEditAnimal(editAnimal: any): Promise<any> {
+    let parametros: any = {
+      _accion: "editar",
+      _valor: editAnimal
+    }
     return new Promise((resolve, reject) => {
-      this.api_call_Restfull.fnPostPromise(editAnimal, APIS_ENUM.POST_EDIT_ANIMAL)
+      this.api_call_Restfull.fnPostPromise(parametros, APIS_ENUM.POST_EDIT_ANIMAL)
         .then((res: Response) => {
+          console.log(res);
           if (res._success) {
             resolve(res._message);
           }
@@ -84,10 +102,14 @@ export class AnimalService {
   }
 
   fnPostDeleteAnimal(deleteAnimal: any): Promise<any> {
-
+    let parametros: any = {
+      _accion: "eliminar",
+      _valor: deleteAnimal
+    }
     return new Promise((resolve, reject) => {
-      this.api_call_Restfull.fnPostPromise(deleteAnimal, APIS_ENUM.POST_DELETE_ANIMAL)
+      this.api_call_Restfull.fnPostPromise(parametros, APIS_ENUM.POST_DELETE_ANIMAL)
         .then((res: Response) => {
+          console.log(res);
           if (res._success) {
             resolve(res._message);
           }
@@ -105,6 +127,7 @@ export class AnimalService {
   fnGetDeleteAnimal(): Promise<any> {
     this.fnResetAnimal();
     return new Promise((resolve, reject) => {
+
       this.api_call_Restfull.fnGetPromise([], APIS_ENUM.GET_DELETE_ANIMAL)
         .then((res) => {
           this.$Animal_Array_recoveryAnimal.next(res)
@@ -119,7 +142,9 @@ export class AnimalService {
 
   fnPostActivateAnimal(activateAnimal: any): Promise<any> {
     return new Promise((resolve, reject) => {
+
       this.api_call_Restfull.fnPostPromise(activateAnimal, APIS_ENUM.POST_ACTIVATE_ANIMAL)
+
         .then((res: Response) => {
           if (res._success) {
             resolve(res._message);

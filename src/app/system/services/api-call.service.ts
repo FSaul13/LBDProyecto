@@ -17,6 +17,7 @@ export class ApiCallService {
     return this.http;
   }
 
+
   fnPostPromise(any_body: any, str_api: string): Promise<any> {
     console.log(any_body)
     return new Promise((resolve, reject) => {
@@ -27,6 +28,7 @@ export class ApiCallService {
           resolve(res)
         })
         .catch(rej => {
+          console.log(rej)
           reject(rej)
         });
     });
@@ -56,9 +58,11 @@ export class ApiCallService {
 
     return new Promise((resolve, reject) => {
       let apiHelper: ApiHelper = new ApiHelper();
+      console.log(array_params);
       let any_validCall = apiHelper.fnSetParams(array_params, str_api);
       console.log(this.str_ip)
-      console.log(any_validCall._message)
+      console.log(any_validCall)
+
       if (any_validCall._success) {
         this.http.get(this.str_ip + any_validCall._message,
           { responseType: 'json' }).toPromise()
@@ -66,7 +70,6 @@ export class ApiCallService {
           // { responseType: 'json' }).toPromise()
           .then((res: any) => {
             console.log(res)
-            console.log(res._tickets);
             resolve(res)
           })
           .catch(rej => {

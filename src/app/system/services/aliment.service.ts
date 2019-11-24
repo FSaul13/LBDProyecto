@@ -19,8 +19,11 @@ export class AlimentService {
   ) { }
 
   fnGetAliment(): Promise<any> {
+    let parametros: any = {
+      _accion: "obtenerAlimentos"
+    }
     return new Promise((resolve, reject) => {
-      this.api_call_Restfull.fnGetPromise([], APIS_ENUM.GET_ALIMENT)
+      this.api_call_Restfull.fnPostPromise(parametros, APIS_ENUM.GET_ALIMENT)
         .then((res) => {
           this.$Aliment_Array_recoveryAliment.next(res);
           resolve()
@@ -34,8 +37,12 @@ export class AlimentService {
 
 
   fnGetAlimentById(idAliment: number): Promise<any> {
+    let parametros: any = {
+      _accion: "obtenerId",
+      _valor: idAliment
+    }
     return new Promise((resolve, reject) => {
-      this.api_call_Restfull.fnGetPromise([idAliment], APIS_ENUM.GET_ALIMENT_BY_ID)
+      this.api_call_Restfull.fnPostPromise(parametros, APIS_ENUM.GET_ALIMENT_BY_ID)
         .then((res: any) => {
           this.$Aliment_recoveryAliment.next(res);
 
@@ -50,13 +57,19 @@ export class AlimentService {
   }
 
   fnPostNewAliment(newAliment: any): Promise<any> {
+    let parametros: any = {
+      _accion: "nuevo",
+      _valor: newAliment
+    }
     return new Promise((resolve, reject) => {
-      this.api_call_Restfull.fnPostPromise(newAliment, APIS_ENUM.POST_NEW_ALIMENT)
+      this.api_call_Restfull.fnPostPromise(parametros, APIS_ENUM.POST_NEW_ALIMENT)
         .then((res: Response) => {
           if (res._success) {
+            console.log(res)
             resolve(res._message);
           }
           else {
+            console.log(res)
             reject(res._message);
           }
         })
@@ -67,8 +80,12 @@ export class AlimentService {
   }
 
   fnEditAliment(editAliment: any): Promise<any> {
+    let parametros: any = {
+      _accion: "editar",
+      _valor: editAliment
+    }
     return new Promise((resolve, reject) => {
-      this.api_call_Restfull.fnPostPromise(editAliment, APIS_ENUM.POST_EDIT_ALIMENT)
+      this.api_call_Restfull.fnPostPromise(parametros, APIS_ENUM.POST_EDIT_ALIMENT)
         .then((res: Response) => {
           if (res._success) {
             resolve(res._message);
@@ -84,9 +101,12 @@ export class AlimentService {
   }
 
   fnPostDeleteAliment(deleteAliment: any): Promise<any> {
-
+    let parametros: any = {
+      _accion: "eliminar",
+      _valor: deleteAliment
+    }
     return new Promise((resolve, reject) => {
-      this.api_call_Restfull.fnPostPromise(deleteAliment, APIS_ENUM.POST_DELETE_ALIMENT)
+      this.api_call_Restfull.fnPostPromise(parametros, APIS_ENUM.POST_DELETE_ALIMENT)
         .then((res: Response) => {
           if (res._success) {
             resolve(res._message);

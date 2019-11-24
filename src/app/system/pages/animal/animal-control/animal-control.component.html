@@ -1,3 +1,30 @@
-<p>
-  animal-control works!
-</p>
+<br>
+<app-action-header [settings]="headerSettings_header" (eventEmmiter_extraButtonClick)="fnClickExtraButton($event)">
+</app-action-header>
+
+<!--<div *ngIf="valueChange==false">-->
+<div class="titulo">
+  <h2>Control Animal</h2>
+</div>
+
+<app-table [arrayAny_columns]="arrayAny_columns" [arrayObsAny_data]="obs_Animal" [any_settings]="tableSettings_settings"
+  (eventEmmiter_delete)="fnOnDelete($event)" (eventEmmiter_edit)="fnOnEdit($event)"></app-table>
+
+<ng-template #deleteModal let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title" style="text-align: center">¿Estas seguro de eliminar a "{{str_deleteAnimal}}"?
+    </h5>
+  </div>
+  <div class="modal-body">
+    <p>
+      ¿Estas seguro de eliminar a "{{str_deleteAnimal}}"?, el Animal sera eliminado permanentemente.
+    </p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-default" (click)="modal.close('Ok click')">Cancelar</button>
+    <button type="button" class="btn btn-danger" (click)="fnConfirmDelete(modal)"
+      [innerHtml]="str_deleteButton"></button>
+  </div>
+</ng-template>
+
+<!--</div>-->
