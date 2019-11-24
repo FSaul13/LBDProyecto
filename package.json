@@ -1,5 +1,5 @@
 {
-  "name": "lucid",
+  "name": "isc",
   "version": "1.2.3",
   "license": "ISC",
   "author": "WrrapTheme",
@@ -39,6 +39,9 @@
     "moment": "^2.24.0",
     "ng-fullcalendar": "1.7.1",
     "ng-multiselect-dropdown": "^0.2.3",
+    "ngx-chips": "^2.1.0",
+    "ngx-color": "^4.1.0",
+    "ngx-drag-drop": "^2.0.0",
     "ngx-echarts": "^4.1.0",
     "ngx-lightbox": "^1.2.0",
     "ngx-pagination": "^4.1.0",
@@ -77,5 +80,15 @@
     "ts-node": "~4.1.0",
     "tslint": "~5.9.1",
     "typescript": "3.2.4"
-  }
+  },
+  "main": "Gruntfile.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FSaul13/LBDProyecto.git"
+  },
+  "bugs": {
+    "url": "https://github.com/FSaul13/LBDProyecto/issues"
+  },
+  "homepage": "https://github.com/FSaul13/LBDProyecto#readme",
+  "description": ""
 }
