@@ -77,7 +77,7 @@ export class AlimentNewComponent implements OnInit {
         tableColumns: [{ title: 'Nombre', name: 'nombre' }],
         tableFilters: {
           filters: [
-            { type: "text", label: "Nombre", filterColum: "_nombre" } as FormTableFilters,
+            { type: "text", label: "Nombre", filterColum: "nombre" } as FormTableFilters,
           ] as FormTableFilters[]
         } as FormTableFiltersSettings,
         _pagination: {
@@ -138,7 +138,27 @@ export class AlimentNewComponent implements OnInit {
 
   fnOnSend(event) {
     console.log(event);
-    let newAliment = event.data;
+    let str1 = new String();
+
+    event.data._animal.forEach(element => {
+      console.log(element.id_animal);
+      str1 += element.id_animal;
+      str1 += ','
+    });
+    let str2 = str1.substring(0, str1.length - 1)
+
+    console.log(str2)
+    console.log("llego");
+    let newAliment = {
+      _presentacion: event.data._presentacion,
+      _indicaciones_uso: event.data._indicaciones_uso,
+      _contenido_alimenticio: event.data._contenido_alimenticio,
+      _precio: event.data._precio,
+      _imagen_alimento: event.data._imagen_alimento,
+      _nombre: event.data._nombre,
+      _animal: str2
+    }
+
     this.AlimentService_apis.fnPostNewAliment(newAliment)
       .then((res) => {
         this.toastr.success(res);
