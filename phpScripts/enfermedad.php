@@ -14,15 +14,15 @@
             }
         }
 
-        public function alta($nom,$grado_mortalidad,$virus,$causas){
-            $query = "INSERT INTO enfermedad (`nombre_comun`, `grado_mortalidad`, `virus_causante`, `causas_infeccion`) 
-             VALUES (
-                        '$nom','$grado_mortalidad','$virus','$causas'
-                    )";
+        public function alta($nom,$grado_mortalidad,$virus,$causas,$animales){
+            $query = 'CALL insertar_enfermedad(:nom, :grado, :virus, :causas, :animales)';
+            $stmt = $this->connect->prepare($query);
+            $stmt->bindParam(':nom', $nom, PDO::PARAM_STR);
+            $stmt->bindParam(':grado', $grado_mortalidad, PDO::PARAM_INT);
+            $stmt->bindParam(':virus', $virus, PDO::PARAM_STR);
+            $stmt->bindParam(':causas', $causas, PDO::PARAM_STR);
+            $stmt->bindParam(':animales', $animales, PDO::PARAM_STR);
 
-            //Se usa una var. auxiliar para ejecutar el script
-            $stm = $this->connect->prepare($query);
-            
             if($stm->execute()){
                 return true;
             } else{
@@ -31,15 +31,24 @@
         }
 
         
-        public function cambio($id,$nom,$grado_mortalidad,$virus,$causas){
+        public function cambio($id,$nom,$grado_mortalidad,$virus,$causas, $animales){
             $query = "UPDATE enfermedad 
                 SET `nombre_comun` = '$nom', `grado_mortalidad` = '$grado_mortalidad', `virus_causante` = '$virus', `causas_infeccion` = '$causas' 
                 WHERE `id_enfermedad` = $id";
 
             //Se usa una var. auxiliar para ejecutar el script
-            $stm = $this->connect->prepare($query);
+            $stmt = $this->connect->prepare($query);
             
             if($stm->execute()){
+                $query = "CALL relacion_animal_enfer(:id, :animales)";
+                $stmt->bindParam(':id', $id, PDO::PARAM_STR);
+                $stmt->bindParam(':animales', $animales, PDO::PARAM_STR);
+                
+                if($stmt->execute()){
+                    return true;
+                } else{
+                    return false;
+                }
                 return true;
             } else{
                 return false;
@@ -51,9 +60,9 @@
 			    WHERE id_enfermedad=$id";
 
             //Se usa una var. auxiliar para ejecutar el script
-            $stm = $this->connect->prepare($query);
+            $stmt = $this->connect->prepare($query);
             
-            if($stm->execute()){
+            if($stmt->execute()){
                 return true;
             } else{
                 return false;
@@ -64,10 +73,19 @@
         {
             $query = "SELECT * FROM enfermedad WHERE id_enfermedad = $id";
 
-            $stm = $this->connect->prepare($query);
+            $stmt = $this->connect->prepare($query);
 
-            if($stm->execute()){
-                return $stm->fetch();
+            if($stmt->execute()){
+                $x = $stmt->fetch();
+                $query = "SELECT id_animal, animal.nombre FROM animal, enfermedad, animal_enfermedad 
+                            WHERE id_enfermedad = '$id' AND id_enfermedad = id_enfermedad_fk AND id_animal_fk = id_animal";
+                $stmt = $this->connect->prepare($query);
+            if($stmt->execute()){
+                $x['animales'] = $stmt->fetchAll();
+                return $x;
+            } else {
+                return false;
+            }
             }else{
                 return false;
             }
@@ -77,11 +95,11 @@
         {
             $query = "SELECT * FROM enfermedad";
 
-            $stm = $this->connect->prepare($query);
+            $stmt = $this->connect->prepare($query);
 
-            if($stm->execute())
+            if($stmt->execute())
             {
-                return $stm->fetchAll();
+                return $stmt->fetchAll();
                
             } else{
                 return false;

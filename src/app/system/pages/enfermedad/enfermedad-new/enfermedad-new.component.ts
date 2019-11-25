@@ -125,7 +125,23 @@ export class EnfermedadNewComponent implements OnInit {
 
   fnOnSend(event) {
     console.log(event);
-    let newEnfermedad = event.data;
+    let str1 = new String();
+
+    event.data._animal.forEach(element => {
+      console.log(element.id_animal);
+      str1 += element.id_animal;
+      str1 += ','
+    });
+    let str2 = str1.substring(0, str1.length - 1)
+
+    let newEnfermedad = {
+      _nombre_comun: event.data._nombre_comun,
+      _grado_mortalidad: event.data._grado_mortalidad,
+      _virus_causante: event.data._virus_causante,
+      _causas_infeccion: event.data._causas_infeccion,
+      _animal: str2
+    };
+    
     this.EnfermedadService_apis.fnPostNewEnfermedad(newEnfermedad)
       .then((res) => {
         this.toastr.success(res);

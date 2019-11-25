@@ -11,10 +11,11 @@
     switch($json->_accion){
         case 'nuevo': 
             if($a->alta(
-                $json->_valor->_nombre, 
+                $json->_valor->_nombre_comun, 
                 $json->_valor->_grado_mortalidad, 
                 $json->_valor->_virus_causante,
-                $json->_valor->_causas_infeccion)){
+                $json->_valor->_causas_infeccion,
+                $json->_valor->_animal)){
                 echo json_encode(['_success' => true, '_message' => 'Creado con exito']);
             } else{
                 echo json_encode(['_message' => 'Error al crear']);
@@ -23,7 +24,7 @@
         case 'editar': 
             if($a->cambio(
                 $json->_valor->_id_enfermedad,
-                $json->_valor->_nombre, 
+                $json->_valor->_nombre_comun, 
                 $json->_valor->_grado_mortalidad, 
                 $json->_valor->_virus_causante,
                 $json->_valor->_causas_infeccion)){
@@ -43,10 +44,11 @@
             if($var = $a->getEnfermedad($json->_valor)){
                 echo json_encode(
                     [   '_id_enfermedad' => $var['id_enfermedad'],
-                        '_nombre' => $var['nombre'],
+                        '_nombre_comun' => $var['nombre_comun'],
                         '_grado_mortalidad' => $var['grado_mortalidad'],
                         '_virus_causante' => $var['virus_causante'],
-                        '_causas_infeccion' => $var['causas_infeccion']
+                        '_causas_infeccion' => $var['causas_infeccion'],
+                        '_animal' => $var['animales']
                     ]
                 );
             } else{
@@ -59,7 +61,7 @@
                 for($i = 0; $i < count($var); $i++)
                 {
                     $data[$i]['_id_enfermedad'] = $var[$i]['id_enfermedad'];
-                    $data[$i]['_nombre'] = $var[$i]['nombre'];
+                    $data[$i]['_nombre_comun'] = $var[$i]['nombre_comun'];
                     $data[$i]['_grado_mortalidad'] = $var[$i]['grado_mortalidad'];
                     $data[$i]['_virus_causante'] = $var[$i]['virus_causante'];
                     $data[$i]['_causas_infeccion'] = $var[$i]['causas_infeccion'];

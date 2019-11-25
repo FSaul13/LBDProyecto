@@ -50,13 +50,13 @@ export enum APIS_ENUM {
     POST_ACTIVATE_ALIMENT = '/abc_alimento.php',
 
     //ENFERMEDAD
-    GET_ENFERMEDAD = '/api/sites',
-    POST_NEW_ENFERMEDAD = '/api/sites/nuevo',
-    GET_ENFERMEDAD_BY_ID = '/api/sites/idSite/?',
-    POST_EDIT_ENFERMEDAD = '/api/sites/editar',
-    POST_DELETE_ENFERMEDAD = '/api/sites/eliminar',
-    GET_DELETE_ENFERMEDAD = '/api/sites/eliminados',
-    POST_ACTIVATE_ENFERMEDAD = '/api/sites/activar',
+    GET_ENFERMEDAD = '/abc_enfermedad.php',
+    POST_NEW_ENFERMEDAD = '/abc_enfermedad.php',
+    GET_ENFERMEDAD_BY_ID = '/abc_enfermedad.php',
+    POST_EDIT_ENFERMEDAD = '/abc_enfermedad.php',
+    POST_DELETE_ENFERMEDAD = '/abc_enfermedad.php',
+    GET_DELETE_ENFERMEDAD = '/abc_enfermedad.php',
+    POST_ACTIVATE_ENFERMEDAD = '/abc_enfermedad.php',
 
     //mEDICAMENTO
     //ENFERMEDAD
