@@ -77,7 +77,7 @@ export class AlimentNewComponent implements OnInit {
         tableColumns: [{ title: 'Nombre', name: 'nombre' }],
         tableFilters: {
           filters: [
-            { type: "text", label: "Nombre", filterColum: "_nombre" } as FormTableFilters,
+            { type: "text", label: "Nombre", filterColum: "nombre" } as FormTableFilters,
           ] as FormTableFilters[]
         } as FormTableFiltersSettings,
         _pagination: {

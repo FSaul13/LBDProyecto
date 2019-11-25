@@ -1,5 +1,5 @@
 {
-  "name": "lucid",
+  "name": "isc",
   "version": "1.2.3",
   "license": "ISC",
   "author": "WrrapTheme",
@@ -80,5 +80,15 @@
     "ts-node": "~4.1.0",
     "tslint": "~5.9.1",
     "typescript": "3.2.4"
-  }
+  },
+  "main": "Gruntfile.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FSaul13/LBDProyecto.git"
+  },
+  "bugs": {
+    "url": "https://github.com/FSaul13/LBDProyecto/issues"
+  },
+  "homepage": "https://github.com/FSaul13/LBDProyecto#readme",
+  "description": ""
 }

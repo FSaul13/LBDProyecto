@@ -13,31 +13,46 @@
                 echo $e->getMessage();
             }
         }
-       
-		public function alta($nom,$presentacion,$indicaciones,$contenido,$imagen, $precio){
-            $query = "INSERT INTO alimento (`nombre`, `presentacion`, `indicaciones_uso`, `contenido_alimenticio`, `imagen_alimento`, `precio`)
-                VALUES ('$nom', '$presentacion', '$indicaciones', '$contenido', '$imagen', '$precio'
-                    )";
 
-            //Se usa una var. auxiliar para ejecutar el script
-            $stm = $this->connect->prepare($query);
-            
-            if($stm->execute()){
+        public function alta($nom,$presentacion,$indicaciones,$contenido,$imagen, $precio, $animales){
+            $sql = 'CALL insertar_alimento(:nom, :presenta, :indica, :contenido, :imagen, :precio, :animales)';
+            $stmt = $this->connect->prepare($sql);
+            $stmt->bindParam(':nom', $nom, PDO::PARAM_STR);
+            $stmt->bindParam(':presenta', $presentacion, PDO::PARAM_STR);
+            $stmt->bindParam(':indica', $indicaciones, PDO::PARAM_STR);
+            $stmt->bindParam(':contenido', $contenido, PDO::PARAM_STR);
+            $stmt->bindParam(':imagen', $imagen, PDO::PARAM_STR);
+            $stmt->bindParam(':precio', $precio, PDO::PARAM_INT);
+            $stmt->bindParam(':animales', $animales, PDO::PARAM_STR);
+
+            if($stmt->execute()){
                 return true;
-            } else{
+            } else {
                 return false;
             }
+
         }
 
-        public function cambio($id, $nom,$presentacion,$indicaciones,$contenido,$imagen, $precio){
+        public function cambio($id, $nom,$presentacion,$indicaciones,$contenido,$imagen, $precio, $animales){
             $query = "UPDATE alimento SET nombre = '$nom', presentacion = '$presentacion', indicaciones_uso = '$indicaciones', contenido_alimenticio = '$contenido', imagen_alimento = '$imagen', precio = '$precio' 
             WHERE id_alimento = '$id'";
 
             //Se usa una var. auxiliar para ejecutar el script
-            $stm = $this->connect->prepare($query);
+            $stmt = $this->connect->prepare($query);
             
-            if($stm->execute()){
-                return true;
+            if($stmt->execute())
+            {
+                $query = "CALL relaciones_alimentos(:id, :animales)";
+                $stmt = $this->connect->prepare($query);
+                $stmt->bindParam('id', $id, PDO::PARAM_INT);
+                $stmt->bindParam('animales', $animales, PDO::PARAM_STR);
+
+                if($stmt->execute()){
+                    return true;
+                } else {    
+                    return false;
+                }
+                
             } else{
                 return false;
             }
