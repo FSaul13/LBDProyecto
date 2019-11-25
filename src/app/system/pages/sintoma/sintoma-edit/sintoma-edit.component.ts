@@ -10,6 +10,10 @@ import { FormButton } from 'app/system/components/form/models-form/form-button.m
 import { ActivatedRoute, Router } from '@angular/router';
 import { SintomaService } from 'app/system/services/sintoma.service';
 import { ToastrService } from 'ngx-toastr';
+import { EnfermedadService } from 'app/system/services/enfermedad.service';
+import { FormTableFilters } from 'app/system/components/form/models-form/form-table-filters.model';
+import { FormTableFiltersSettings } from 'app/system/components/form/models-form/form-table-filters-settings.model';
+import { FormTablePagination } from 'app/system/components/form/models-form/form-table-pagination.model';
 
 @Component({
   selector: 'app-sintoma-edit',
@@ -44,7 +48,26 @@ export class SintomaEditComponent implements OnInit {
         label: 'Imagen',
         trim: true,
         type: 'textarea'
-      } as FormInput
+      } as FormInput,
+      _enfermedad: {
+        id: "enfermedad",
+        type: "table",
+        label: 'Enfermedad',
+        options: this.enfermedadApi_service._EnfermedadArray_recoveryEnfermedad,
+        tableColumns: [{ title: 'Nombre', name: ' _nombre_comun' }, { title: 'Virus', name: '_virus_causante' }],
+        tableFilters: {
+          filters: [
+            { type: "text", label: "Nombre", filterColum: "_nombre_comun" } as FormTableFilters,
+            { type: "text", label: "virus", filterColum: "_virus_causante" } as FormTableFilters,
+          ] as FormTableFilters[]
+        } as FormTableFiltersSettings,
+        _pagination: {
+          _next: "Siguiente",
+          _previous: "Anterior",
+          _itemsPerPage: 5
+        } as FormTablePagination,
+        disbleHeaderCheck: true,
+      } as FormInput,
 
 
     },
@@ -67,7 +90,8 @@ export class SintomaEditComponent implements OnInit {
     private route: ActivatedRoute,
     private SintomaService_apis: SintomaService,
     private feedback: ToastrService,
-    private router: Router
+    private router: Router,
+    private enfermedadApi_service: EnfermedadService
   ) { }
 
   ngOnInit() {
@@ -75,7 +99,7 @@ export class SintomaEditComponent implements OnInit {
     this.fnSubscribetoSintoma();
     this.route.params.subscribe(params => {
       console.log(params)
-      this.fnGetProductCode(params._idSintoma);
+      this.fnGetSintoma(params._idSintoma);
     });
   }
 
@@ -95,7 +119,8 @@ export class SintomaEditComponent implements OnInit {
         this.FormGroupEditSintoma.setValue({
           _id_sintoma: res._id_sintoma,
           _descripcion: res._descripcion,
-          _imagen_muestra: res._imagen_muestra
+          _imagen_muestra: res._imagen_muestra,
+          _enfermedad: res._enfermedad
         });
       }
       else {
@@ -111,11 +136,19 @@ export class SintomaEditComponent implements OnInit {
     this.FormGroupEditSintoma = new FormGroup({
       _id_sintoma: new FormControl(null, Validators.required),
       _descripcion: new FormControl(null, Validators.required),
-      _imagen_muestra: new FormControl(null)
+      _imagen_muestra: new FormControl(null),
+      _enfermedad: new FormControl(null, Validators.required)
     })
   }
 
-  fnGetProductCode(idSintoma: number) {
+  fnGetEnfermedad() {
+    this.enfermedadApi_service.fnGetEnfermedad()
+      .then(() => { })
+      .catch(() => { })
+  }
+
+
+  fnGetSintoma(idSintoma: number) {
     this.bln_loadForm = true;
     this.SintomaService_apis.fnGetSintomaById(idSintoma)
       .then(() => {
@@ -130,8 +163,27 @@ export class SintomaEditComponent implements OnInit {
 
   fnEditData(event) {
     console.log(event)
-    let editSintoma = event.data;
-    this.SintomaService_apis.fnEditSintoma(editSintoma)
+    console.log(event);
+    let str1 = new String();
+
+    event.data._enfermedad.forEach(element => {
+      console.log(element.id_enfermedad);
+      str1 += element.id_enfermedad;
+      str1 += ','
+    });
+    let str2 = str1.substring(0, str1.length - 1)
+
+    console.log(str2)
+    console.log("llego");
+    let editSintoma = {
+      _descripcion: event.data._descripcion,
+      _imagen_muestra: event.data._imagen_muestra,
+      _enfermedad: str2
+
+    }
+    console.log(editSintoma)
+
+    /*this.SintomaService_apis.fnEditSintoma(editSintoma)
       .then((res) => {
         this.feedback.success(res);
         event.fnSuccess();
@@ -140,6 +192,6 @@ export class SintomaEditComponent implements OnInit {
       .catch((rej) => {
         this.feedback.error(rej);
         event.fnError();
-      })
+      })*/
   }
 }

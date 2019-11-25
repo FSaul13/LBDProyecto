@@ -44,8 +44,8 @@
             {
                 $query = "CALL relaciones_alimentos(:id, :animales)";
                 $stmt = $this->connect->prepare($query);
-                $stmt->bindParam('id', $id, PDO::PARAM_INT);
-                $stmt->bindParam('animales', $animales, PDO::PARAM_STR);
+                $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+                $stmt->bindParam(':animales', $animales, PDO::PARAM_STR);
 
                 if($stmt->execute()){
                     return true;

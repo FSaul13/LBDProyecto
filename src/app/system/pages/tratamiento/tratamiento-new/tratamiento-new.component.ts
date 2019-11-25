@@ -10,6 +10,10 @@ import { TratamientoService } from 'app/system/services/tratamiento.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { FormTableFilters } from 'app/system/components/form/models-form/form-table-filters.model';
+import { FormTableFiltersSettings } from 'app/system/components/form/models-form/form-table-filters-settings.model';
+import { FormTablePagination } from 'app/system/components/form/models-form/form-table-pagination.model';
+import { EnfermedadService } from 'app/system/services/enfermedad.service';
 
 @Component({
   selector: 'app-tratamiento-new',
@@ -40,6 +44,27 @@ export class TratamientoNewComponent implements OnInit {
         trim: true,
         type: 'textarea'
       } as FormInput,
+      _enfermedad: {
+        id: "enfermedad",
+        type: "table",
+        label: 'Enfermedad',
+        options: this.enfermedadApi_service._EnfermedadArray_recoveryEnfermedad,
+        tableColumns: [{ title: 'Nombre', name: ' _nombre_comun' }, { title: 'Virus', name: '_virus_causante' }],
+        tableFilters: {
+          filters: [
+            { type: "text", label: "Nombre", filterColum: "_nombre_comun" } as FormTableFilters,
+            { type: "text", label: "virus", filterColum: "_virus_causante" } as FormTableFilters,
+          ] as FormTableFilters[]
+        } as FormTableFiltersSettings,
+        _pagination: {
+          _next: "Siguiente",
+          _previous: "Anterior",
+          _itemsPerPage: 5
+        } as FormTablePagination,
+        disbleHeaderCheck: true,
+      } as FormInput,
+
+
 
 
 
@@ -67,32 +92,61 @@ export class TratamientoNewComponent implements OnInit {
     private router: Router,
     private toastr: ToastrService,
     private modalService: NgbModal,
+    private enfermedadApi_service: EnfermedadService
   ) { }
 
   ngOnInit() {
     this.fnInitForm();
+    this.fnGetEnfermedad();
   }
 
   fnInitForm() {
     this.formgroup_newTratamiento = new FormGroup({
       _indicaciones: new FormControl(null, Validators.required),
       _tipo_Tratamiento: new FormControl(null, Validators.required),
+      _enfermedad: new FormControl(null, Validators.required)
+
 
     });
   }
+  fnGetEnfermedad() {
+    this.enfermedadApi_service.fnGetEnfermedad()
+      .then(() => { })
+      .catch(() => { })
+  }
 
   fnOnSend(event) {
+
     console.log(event);
-    let newTratamiento = event.data;
-    this.TratamientoService_apis.fnPostNewTratamiento(newTratamiento)
-      .then((res) => {
-        this.toastr.success(res);
-        event.fnSuccess();
+    let str1 = new String();
 
-      })
-      .catch((rej) => {
-      });
+    event.data._enfermedad.forEach(element => {
+      console.log(element.id_enfermedad);
+      str1 += element.id_enfermedad;
+      str1 += ','
+    });
+    let str2 = str1.substring(0, str1.length - 1)
 
+    console.log(str2)
+    console.log("llego");
+    let newTratamiento = {
+
+      _indicaciones: event.data._indicaciones,
+      _tipo_Tratamiento: event.data._tipo_Tratamiento,
+      _enfermedad: str2
+
+    }
+    console.log(newTratamiento)
+    /*
+      this.TratamientoService_apis.fnPostNewTratamiento(newTratamiento)
+        .then((res) => {
+          this.toastr.success(res);
+          event.fnSuccess();
+  
+        })
+        .catch((rej) => {
+        });
+  */
   }
 
 

@@ -10,6 +10,10 @@ import { FormButton } from 'app/system/components/form/models-form/form-button.m
 import { ActivatedRoute, Router } from '@angular/router';
 import { TratamientoService } from 'app/system/services/tratamiento.service';
 import { ToastrService } from 'ngx-toastr';
+import { FormTableFilters } from 'app/system/components/form/models-form/form-table-filters.model';
+import { FormTableFiltersSettings } from 'app/system/components/form/models-form/form-table-filters-settings.model';
+import { FormTablePagination } from 'app/system/components/form/models-form/form-table-pagination.model';
+import { EnfermedadService } from 'app/system/services/enfermedad.service';
 
 @Component({
   selector: 'app-tratamiento-edit',
@@ -46,6 +50,26 @@ export class TratamientoEditComponent implements OnInit {
         trim: true,
         type: 'textarea'
       } as FormInput,
+      _enfermedad: {
+        id: "enfermedad",
+        type: "table",
+        label: 'Enfermedad',
+        options: this.enfermedadApi_service._EnfermedadArray_recoveryEnfermedad,
+        tableColumns: [{ title: 'Nombre', name: ' _nombre_comun' }, { title: 'Virus', name: '_virus_causante' }],
+        tableFilters: {
+          filters: [
+            { type: "text", label: "Nombre", filterColum: "_nombre_comun" } as FormTableFilters,
+            { type: "text", label: "virus", filterColum: "_virus_causante" } as FormTableFilters,
+          ] as FormTableFilters[]
+        } as FormTableFiltersSettings,
+        _pagination: {
+          _next: "Siguiente",
+          _previous: "Anterior",
+          _itemsPerPage: 5
+        } as FormTablePagination,
+        disbleHeaderCheck: true,
+      } as FormInput,
+
 
     },
     columns: {
@@ -67,17 +91,25 @@ export class TratamientoEditComponent implements OnInit {
     private route: ActivatedRoute,
     private TratamientoService_apis: TratamientoService,
     private feedback: ToastrService,
-    private router: Router
+    private router: Router,
+    private enfermedadApi_service: EnfermedadService
   ) { }
 
   ngOnInit() {
     this.fnInitformGroup();
+
     this.fnSubscribetoTratamiento();
+    this.fnGetEnfermedad();
     this.route.params.subscribe(params => {
       this.fnGetProductCode(params.idTratamiento);
     });
   }
 
+  fnGetEnfermedad() {
+    this.enfermedadApi_service.fnGetEnfermedad()
+      .then(() => { })
+      .catch(() => { })
+  }
 
   ngOnDestroy() {
     if (this.sub_TratamientoSubscription) {
@@ -95,6 +127,8 @@ export class TratamientoEditComponent implements OnInit {
           _id_tratamiento: res._id_Tratamiento,
           _indicaciones: res._indicaciones,
           _tipo_Tratamiento: res._tipo_Tratamiento,
+          _enfermedad: res._enfermedad
+
 
 
         });
@@ -113,6 +147,8 @@ export class TratamientoEditComponent implements OnInit {
       _id_tratamiento: new FormControl(null, Validators.required),
       _indicaciones: new FormControl(null, Validators.required),
       _tipo_Tratamiento: new FormControl(null, Validators.required),
+      _enfermedad: new FormControl(null, Validators.required)
+
     })
   }
 
