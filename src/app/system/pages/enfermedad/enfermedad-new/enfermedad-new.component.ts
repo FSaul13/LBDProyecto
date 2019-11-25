@@ -10,6 +10,10 @@ import { EnfermedadService } from 'app/system/services/enfermedad.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AnimalService } from 'app/system/services/animal.service';
+import { FormTableFilters } from 'app/system/components/form/models-form/form-table-filters.model';
+import { FormTableFiltersSettings } from 'app/system/components/form/models-form/form-table-filters-settings.model';
+import { FormTablePagination } from 'app/system/components/form/models-form/form-table-pagination.model';
 
 @Component({
   selector: 'app-enfermedad-new',
@@ -50,6 +54,24 @@ export class EnfermedadNewComponent implements OnInit {
         trim: true,
         type: 'textarea'
       } as FormInput,
+      _animal: {
+        id: "animal",
+        type: "table",
+        label: 'Animal',
+        options: this.animalService_api._AnimalArray_recoveryAnimal,
+        tableColumns: [{ title: 'Nombre', name: 'nombre' }],
+        tableFilters: {
+          filters: [
+            { type: "text", label: "Nombre", filterColum: "_nombre" } as FormTableFilters,
+          ] as FormTableFilters[]
+        } as FormTableFiltersSettings,
+        _pagination: {
+          _next: "Siguiente",
+          _previous: "Anterior",
+          _itemsPerPage: 5
+        } as FormTablePagination,
+        disbleHeaderCheck: true,
+      } as FormInput,
 
     },
     columns: {
@@ -75,11 +97,20 @@ export class EnfermedadNewComponent implements OnInit {
     private router: Router,
     private toastr: ToastrService,
     private modalService: NgbModal,
+    private animalService_api: AnimalService
   ) { }
 
   ngOnInit() {
     this.fnInitForm();
+    this.fnGetAnimal();
   }
+
+  fnGetAnimal() {
+    this.animalService_api.fnGetAnimal()
+      .then(() => { })
+      .catch(() => { })
+  }
+
 
   fnInitForm() {
     this.formgroup_newEnfermedad = new FormGroup({
@@ -87,6 +118,7 @@ export class EnfermedadNewComponent implements OnInit {
       _grado_mortalidad: new FormControl(null, Validators.required),
       _virus_causante: new FormControl(null, Validators.required),
       _causas_infeccion: new FormControl(null, Validators.required),
+      _animal: new FormControl(null)
 
     });
   }

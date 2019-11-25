@@ -16,7 +16,6 @@ import { UsersService } from '../services/users.service';
 import { UserTypesService } from '../services/user-types.service';
 import { TratamientoService } from '../services/tratamiento.service';
 
-
 @NgModule({
 	imports: [
 		CommonModule,
@@ -31,7 +30,7 @@ import { TratamientoService } from '../services/tratamiento.service';
 	],
 	declarations: [
 		AdminComponent,
-		IndexComponent,
+		IndexComponent
 
 	],
 	providers: [

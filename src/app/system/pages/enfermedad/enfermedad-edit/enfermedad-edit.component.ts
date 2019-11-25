@@ -11,6 +11,10 @@ import { constructor } from 'q';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EnfermedadService } from 'app/system/services/enfermedad.service';
 import { ToastrService } from 'ngx-toastr';
+import { FormTableFilters } from 'app/system/components/form/models-form/form-table-filters.model';
+import { FormTableFiltersSettings } from 'app/system/components/form/models-form/form-table-filters-settings.model';
+import { FormTablePagination } from 'app/system/components/form/models-form/form-table-pagination.model';
+import { AnimalService } from 'app/system/services/animal.service';
 
 @Component({
   selector: 'app-enfermedad-edit',
@@ -58,6 +62,24 @@ export class EnfermedadEditComponent implements OnInit {
         trim: true,
         type: 'textarea'
       } as FormInput,
+      _animal: {
+        id: "animal",
+        type: "table",
+        label: 'Animal',
+        options: this.animalService_api._AnimalArray_recoveryAnimal,
+        tableColumns: [{ title: 'Nombre', name: 'nombre' }],
+        tableFilters: {
+          filters: [
+            { type: "text", label: "Nombre", filterColum: "_nombre" } as FormTableFilters,
+          ] as FormTableFilters[]
+        } as FormTableFiltersSettings,
+        _pagination: {
+          _next: "Siguiente",
+          _previous: "Anterior",
+          _itemsPerPage: 5
+        } as FormTablePagination,
+        disbleHeaderCheck: true,
+      } as FormInput,
 
     },
     columns: {
@@ -79,16 +101,24 @@ export class EnfermedadEditComponent implements OnInit {
     private route: ActivatedRoute,
     private EnfermedadService_apis: EnfermedadService,
     private feedback: ToastrService,
-    private router: Router
+    private router: Router,
+    private animalService_api: AnimalService
   ) { }
 
   ngOnInit() {
     this.fnInitformGroup();
+    this.fnGetAnimal();
     this.fnSubscribetoEnfermedad();
     this.route.params.subscribe(params => {
       this.fnGetProductCode(params.idEnfermedad);
     });
   }
+  fnGetAnimal() {
+    this.animalService_api.fnGetAnimal()
+      .then(() => { })
+      .catch(() => { })
+  }
+
 
 
   ngOnDestroy() {
@@ -109,6 +139,7 @@ export class EnfermedadEditComponent implements OnInit {
           _grado_mortalidad: res._grado_mortalidad,
           _virus_causante: res._virus_causante,
           _causas_infeccion: res._causas_infeccion,
+          _animal: res._animal
 
 
         });
@@ -129,6 +160,8 @@ export class EnfermedadEditComponent implements OnInit {
       _grado_mortalidad: new FormControl(null, Validators.required),
       _virus_causante: new FormControl(null, Validators.required),
       _causas_infeccion: new FormControl(null, Validators.required),
+      _animal: new FormControl(null)
+
     });
   }
 

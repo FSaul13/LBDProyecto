@@ -28,6 +28,10 @@ const routes: Routes = [
                 loadChildren: "../pages/aliment/aliment.module#AlimentModule"
             },
             {
+                path: "detalle-tratamiento",
+                loadChildren: "../pages/detalle-tratamiento/detalle-tratamiento.module#DetalleTratamientoModule"
+            },
+            {
                 path: "animal",
                 loadChildren: "../pages/animal/animal.module#AnimalModule"
             },

@@ -10,6 +10,10 @@ import { FormButton } from 'app/system/components/form/models-form/form-button.m
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlimentService } from 'app/system/services/aliment.service';
 import { ToastrService } from 'ngx-toastr';
+import { FormTableFilters } from 'app/system/components/form/models-form/form-table-filters.model';
+import { FormTableFiltersSettings } from 'app/system/components/form/models-form/form-table-filters-settings.model';
+import { FormTablePagination } from 'app/system/components/form/models-form/form-table-pagination.model';
+import { AnimalService } from 'app/system/services/animal.service';
 
 @Component({
   selector: 'app-aliment-edit',
@@ -65,6 +69,24 @@ export class AlimentEditComponent implements OnInit {
         label: 'Precio',
         type: 'number'
       } as FormInput,
+      _animal: {
+        id: "animal",
+        type: "table",
+        label: 'Animal',
+        options: this.animalService_api._AnimalArray_recoveryAnimal,
+        tableColumns: [{ title: 'Nombre', name: 'nombre' }],
+        tableFilters: {
+          filters: [
+            { type: "text", label: "Nombre", filterColum: "_nombre" } as FormTableFilters,
+          ] as FormTableFilters[]
+        } as FormTableFiltersSettings,
+        _pagination: {
+          _next: "Siguiente",
+          _previous: "Anterior",
+          _itemsPerPage: 5
+        } as FormTablePagination,
+        disbleHeaderCheck: true,
+      } as FormInput,
     },
     columns: {
       xl: 12,
@@ -85,17 +107,26 @@ export class AlimentEditComponent implements OnInit {
     private route: ActivatedRoute,
     private AlimentService_apis: AlimentService,
     private feedback: ToastrService,
-    private router: Router
+    private router: Router,
+    private animalService_api: AnimalService
   ) { }
 
   ngOnInit() {
     this.fnInitformGroup();
+    this.fnGetAnimal()
     this.fnSubscribetoAliment();
     this.route.params.subscribe(params => {
       console.log(params)
       this.fnGetProductCode(params._idAlimento);
     });
   }
+
+  fnGetAnimal() {
+    this.animalService_api.fnGetAnimal()
+      .then(() => { })
+      .catch(() => { })
+  }
+
 
 
   ngOnDestroy() {
@@ -109,6 +140,7 @@ export class AlimentEditComponent implements OnInit {
   fnSubscribetoAliment(): void {
 
     this.sub_AlimentSubscription = this.AlimentService_apis._Aliment_recoveryproductCode.subscribe(res => {
+
       if (res._id_alimento) {
         this.FormGroupEditAliment.setValue({
           _id_alimento: res._id_alimento,
@@ -118,6 +150,7 @@ export class AlimentEditComponent implements OnInit {
           _precio: res._precio,
           _imagen_alimento: res._imagen_alimento,
           _nombre: res._nombre,
+          _animal: res._animal,
 
 
         });
@@ -139,7 +172,8 @@ export class AlimentEditComponent implements OnInit {
       _indicaciones_uso: new FormControl(null, Validators.required),
       _contenido_alimenticio: new FormControl(null, Validators.required),
       _precio: new FormControl(null, Validators.required),
-      _imagen_alimento: new FormControl(null)
+      _imagen_alimento: new FormControl(null),
+      _animal: new FormControl(null)
     })
   }
 

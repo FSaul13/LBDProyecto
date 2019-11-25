@@ -1,0 +1,11 @@
+<br>
+<app-action-header [settings]="headerSettings_header">
+</app-action-header>
+
+
+<div style="display: flex;justify-content:center">
+  <div style="max-width: 600px">
+    <app-form [formGroup_form]="formgroup_newDetalleTratamiento" [any_settings]="forSettings_config"
+      (eventEmmiter_onSendData)="fnOnSend($event)"></app-form>
+  </div>
+</div>
