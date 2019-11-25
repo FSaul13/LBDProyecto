@@ -80,7 +80,7 @@
 
             if($stmt->execute()){
                 $x = $stmt->fetch();
-                $query = "SELECT id_alimento, animal.nombre FROM animal, alimento, animal_alimento 
+                $query = "SELECT id_animal, animal.nombre FROM animal, alimento, animal_alimento 
                             WHERE id_alimento = '$id' AND id_alimento = id_alimento_fk AND id_animal_fk = id_animal";
                 $stmt = $this->connect->prepare($query);
                 if($stmt->execute()){
@@ -108,3 +108,4 @@
             }
         }
     }
+?>

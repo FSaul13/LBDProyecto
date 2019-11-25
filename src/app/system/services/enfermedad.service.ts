@@ -19,8 +19,12 @@ export class EnfermedadService {
   ) { }
 
   fnGetEnfermedad(): Promise<any> {
+    let parametros: any = {
+      _accion: "obtenerEnfermedades"
+    }
+
     return new Promise((resolve, reject) => {
-      this.api_call_Restfull.fnGetPromise([], APIS_ENUM.GET_ENFERMEDAD)
+      this.api_call_Restfull.fnPostPromise(parametros, APIS_ENUM.GET_ENFERMEDAD)
         .then((res) => {
           this.$Enfermedad_Array_recoveryEnfermedad.next(res);
           resolve()
@@ -34,8 +38,12 @@ export class EnfermedadService {
 
 
   fnGetEnfermedadById(idEnfermedad: number): Promise<any> {
+    let parametros: any = {
+      _accion: "obtenerId",
+      _valor: idEnfermedad
+    }
     return new Promise((resolve, reject) => {
-      this.api_call_Restfull.fnGetPromise([idEnfermedad], APIS_ENUM.GET_ENFERMEDAD_BY_ID)
+      this.api_call_Restfull.fnPostPromise(parametros, APIS_ENUM.GET_ENFERMEDAD_BY_ID)
         .then((res: any) => {
           this.$Enfermedad_recoveryEnfermedad.next(res);
 
@@ -50,8 +58,13 @@ export class EnfermedadService {
   }
 
   fnPostNewEnfermedad(newEnfermedad: any): Promise<any> {
+    let parametros: any = {
+      _accion: "nuevo",
+      _valor: newEnfermedad
+    }
+
     return new Promise((resolve, reject) => {
-      this.api_call_Restfull.fnPostPromise(newEnfermedad, APIS_ENUM.POST_NEW_ENFERMEDAD)
+      this.api_call_Restfull.fnPostPromise(parametros, APIS_ENUM.POST_NEW_ENFERMEDAD)
         .then((res: Response) => {
           if (res._success) {
             resolve(res._message);
@@ -67,8 +80,12 @@ export class EnfermedadService {
   }
 
   fnEditEnfermedad(editEnfermedad: any): Promise<any> {
+    let parametros: any = {
+      _accion: "editar",
+      _valor: editEnfermedad
+    }
     return new Promise((resolve, reject) => {
-      this.api_call_Restfull.fnPostPromise(editEnfermedad, APIS_ENUM.POST_EDIT_ENFERMEDAD)
+      this.api_call_Restfull.fnPostPromise(parametros, APIS_ENUM.POST_EDIT_ENFERMEDAD)
         .then((res: Response) => {
           if (res._success) {
             resolve(res._message);
@@ -84,9 +101,12 @@ export class EnfermedadService {
   }
 
   fnPostDeleteEnfermedad(deleteEnfermedad: any): Promise<any> {
-
+    let parametros: any = {
+      _accion: "eliminar",
+      _valor: deleteEnfermedad
+    }
     return new Promise((resolve, reject) => {
-      this.api_call_Restfull.fnPostPromise(deleteEnfermedad, APIS_ENUM.POST_DELETE_ENFERMEDAD)
+      this.api_call_Restfull.fnPostPromise(parametros, APIS_ENUM.POST_DELETE_ENFERMEDAD)
         .then((res: Response) => {
           if (res._success) {
             resolve(res._message);

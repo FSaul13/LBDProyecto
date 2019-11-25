@@ -42,8 +42,8 @@ export class EnfermedadControlComponent implements OnInit {
 
 
   arrayAny_columns: any[] = [
-    { name: "_nombre", title: "Nombre" },
-    { name: "_descripcion", title: "Descripcion" }
+    { name: "_nombre_comun", title: "Nombre" },
+    { name: "_grado_mortalidad", title: "Grado Mortalidad" }
   ]
 
   settingsButtons_all: TableButtons = {
@@ -65,7 +65,7 @@ export class EnfermedadControlComponent implements OnInit {
     } as TablePagination,
     search: {
       placeholder: "",
-      searchColumns: ["_nombre", "_descripcion"]
+      searchColumns: ["_nombre_comun", "_grado_mortalidad"]
     } as TableSearch,
     _actionsTitle: "",
     _id: 'Enfermedad-table',
