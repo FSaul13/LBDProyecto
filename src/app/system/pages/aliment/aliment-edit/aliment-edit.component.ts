@@ -191,8 +191,30 @@ export class AlimentEditComponent implements OnInit {
 
 
   fnEditData(event) {
-    console.log(event)
-    let editAliment = event.data;
+    console.log(event);
+    let str1 = new String();
+
+    event.data._animal.forEach(element => {
+      console.log(element.id_animal);
+      str1 += element.id_animal;
+      str1 += ','
+    });
+    let str2 = str1.substring(0, str1.length - 1)
+
+    console.log(str2)
+    console.log("llego");
+    let editAliment = {
+      _id_alimento: event.data._id_alimento,
+      _presentacion: event.data._presentacion,
+      _indicaciones_uso: event.data._indicaciones_uso,
+      _contenido_alimenticio: event.data._contenido_alimenticio,
+      _precio: event.data._precio,
+      _imagen_alimento: event.data._imagen_alimento,
+      _nombre: event.data._nombre,
+      _animal: str2
+
+    }
+
     this.AlimentService_apis.fnEditAliment(editAliment)
       .then((res) => {
         this.feedback.success(res);

@@ -25,7 +25,7 @@
             }
                 break;
         case 'editar': 
-            if($a->cambio(
+            if($var = $a->cambio(
                 $json->_valor->_id_alimento,
                 $json->_valor->_nombre, 
                 $json->_valor->_presentacion, 
@@ -33,7 +33,7 @@
                 $json->_valor->_contenido_alimenticio,
                 $json->_valor->_imagen_alimento,
                 $json->_valor->_precio)){
-                echo json_encode(['_success' => true, '_message' => 'Creado con exito']);
+                echo json_encode(['_success' => true, '_message' => 'Creado con exito']);                
             } else{
                 echo json_encode([ '_message' => 'Error al cambiar']);
             }
@@ -55,6 +55,7 @@
                         '_contenido_alimenticio' => $var['contenido_alimenticio'],
                         '_imagen_alimento' => $var['imagen_alimento'],
                         '_precio' => $var['precio'],
+                        '_animal' => $var['animales']
                     ]
                 );
             } else{

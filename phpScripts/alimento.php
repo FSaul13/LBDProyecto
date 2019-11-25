@@ -63,9 +63,9 @@
 			    WHERE id_alimento=$id";
 
             //Se usa una var. auxiliar para ejecutar el script
-            $stm = $this->connect->prepare($query);
+            $stmt = $this->connect->prepare($query);
             
-            if($stm->execute()){
+            if($stmt->execute()){
                 return true;
             } else{
                 return false;
@@ -76,10 +76,19 @@
         {
             $query = "SELECT * FROM alimento WHERE id_alimento = $id";
 
-            $stm = $this->connect->prepare($query);
+            $stmt = $this->connect->prepare($query);
 
-            if($stm->execute()){
-                return $stm->fetch();
+            if($stmt->execute()){
+                $x = $stmt->fetch();
+                $query = "SELECT id_alimento, animal.nombre FROM animal, alimento, animal_alimento 
+                            WHERE id_alimento = '$id' AND id_alimento = id_alimento_fk AND id_animal_fk = id_animal";
+                $stmt = $this->connect->prepare($query);
+                if($stmt->execute()){
+                    $x['animales'] = $stmt->fetchAll();
+                    return $x;
+                } else {
+                    return false;
+                }
             }else{
                 return false;
             }
