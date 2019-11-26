@@ -27,7 +27,9 @@
                 $json->_valor->_nombre_comun, 
                 $json->_valor->_grado_mortalidad, 
                 $json->_valor->_virus_causante,
-                $json->_valor->_causas_infeccion)){
+                $json->_valor->_causas_infeccion,
+                $json->_valor->_animal
+            )){
                 echo json_encode(['_success' => true, '_message' => 'Creado con exito']);
             } else{
                 echo json_encode([ '_message' => 'Error al cambiar']);
