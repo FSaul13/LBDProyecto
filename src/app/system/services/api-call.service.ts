@@ -20,6 +20,7 @@ export class ApiCallService {
 
   fnPostPromise(any_body: any, str_api: string): Promise<any> {
     console.log(any_body)
+    console.log(str_api);
     return new Promise((resolve, reject) => {
       this.http.post(this.str_ip + str_api, any_body,
         { responseType: 'json' }).toPromise()

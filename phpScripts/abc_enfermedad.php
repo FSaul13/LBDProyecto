@@ -55,7 +55,7 @@
                 echo json_encode(['_message' => 'Error al eliminar']);
             }
             break;
-        case 'obtenerEnfermedad':
+        case 'obtenerEnfermedades':
             if($var = $a->getEnfermedades()){
                 $data = array();
                 for($i = 0; $i < count($var); $i++)

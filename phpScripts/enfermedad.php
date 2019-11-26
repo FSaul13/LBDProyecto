@@ -23,7 +23,7 @@
             $stmt->bindParam(':causas', $causas, PDO::PARAM_STR);
             $stmt->bindParam(':animales', $animales, PDO::PARAM_STR);
 
-            if($stm->execute()){
+            if($stmt->execute()){
                 return true;
             } else{
                 return false;
@@ -39,7 +39,7 @@
             //Se usa una var. auxiliar para ejecutar el script
             $stmt = $this->connect->prepare($query);
             
-            if($stm->execute()){
+            if($stmt->execute()){
                 $query = "CALL relacion_animal_enfer(:id, :animales)";
                 $stmt->bindParam(':id', $id, PDO::PARAM_STR);
                 $stmt->bindParam(':animales', $animales, PDO::PARAM_STR);
