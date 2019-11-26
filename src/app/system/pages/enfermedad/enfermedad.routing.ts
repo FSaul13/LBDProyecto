@@ -38,7 +38,7 @@ export const EnfermedadRouting: Routes = [
                 }
             },
             {
-                path: "edit/:_idEnfermedad",
+                path: "edit/:_id_enfermedad",
                 component: EnfermedadEditComponent,
                 data: {
                     title: "Editar Enfermedad",

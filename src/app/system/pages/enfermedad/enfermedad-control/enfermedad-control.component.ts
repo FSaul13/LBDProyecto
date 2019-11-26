@@ -131,8 +131,8 @@ export class EnfermedadControlComponent implements OnInit {
   }
 
   fnOnEdit(event) {
-
-    this.router.navigate(["/system/admin/enfermedad/edit", event.data._idEnfermedad])
+    console.log(event.data)
+    this.router.navigate(["/system/admin/enfermedad/edit", event.data._id_enfermedad])
   }
 
   fnOpenModal(content, size) {

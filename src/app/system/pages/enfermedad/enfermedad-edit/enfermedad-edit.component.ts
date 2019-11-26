@@ -110,7 +110,7 @@ export class EnfermedadEditComponent implements OnInit {
     this.fnGetAnimal();
     this.fnSubscribetoEnfermedad();
     this.route.params.subscribe(params => {
-      this.fnGetProductCode(params.idEnfermedad);
+      this.fnGetProductCode(params._id_enfermedad);
     });
   }
   fnGetAnimal() {
@@ -155,7 +155,7 @@ export class EnfermedadEditComponent implements OnInit {
 
   fnInitformGroup() {
     this.FormGroupEditEnfermedad = new FormGroup({
-      _id_Enfermedad: new FormControl(null, Validators.required),
+      _id_enfermedad: new FormControl(null, Validators.required),
       _nombre_comun: new FormControl(null, Validators.required),
       _grado_mortalidad: new FormControl(null, Validators.required),
       _virus_causante: new FormControl(null, Validators.required),
@@ -179,13 +179,30 @@ export class EnfermedadEditComponent implements OnInit {
 
 
   fnEditData(event) {
-    console.log(event)
-    let editEnfermedad = event.data;
+    console.log(event);
+    let str1 = new String();
+
+    event.data._animal.forEach(element => {
+      console.log(element.id_animal);
+      str1 += element.id_animal;
+      str1 += ','
+    });
+    let str2 = str1.substring(0, str1.length - 1)
+
+    let editEnfermedad = {
+      _id_enfermedad: event.data._id_enfermedad,
+      _nombre_comun: event.data._nombre_comun,
+      _grado_mortalidad: event.data._grado_mortalidad,
+      _virus_causante: event.data._virus_causante,
+      _causas_infeccion: event.data._causas_infeccion,
+      _animal: str2
+    };
+    console.log(editEnfermedad)
     this.EnfermedadService_apis.fnEditEnfermedad(editEnfermedad)
       .then((res) => {
         this.feedback.success(res);
         event.fnSuccess();
-        this.router.navigate(["system/admin/Enfermedad/control"])
+        this.router.navigate(["system/admin/enfermedad/control"])
       })
       .catch((rej) => {
         this.feedback.error(rej);
