@@ -41,9 +41,10 @@ export class TratamientoControlComponent implements OnInit {
 
 
   arrayAny_columns: any[] = [
-    { name: "_nombre", title: "Nombre" },
-    { name: "_descripcion", title: "Descripcion" }
+    { name: "_indicaciones", title: "Indicaciones" },
+    { name: "_tipo_tratamiento", title: "Tipo Tratamiento" }
   ]
+
 
   settingsButtons_all: TableButtons = {
     delete: true,
@@ -131,7 +132,7 @@ export class TratamientoControlComponent implements OnInit {
 
   fnOnEdit(event) {
 
-    this.router.navigate(["/system/admin/tratamiento/edit", event.data._idTratamiento])
+    this.router.navigate(["/system/admin/tratamiento/edit", event.data._id_tratamiento])
   }
 
   fnOpenModal(content, size) {

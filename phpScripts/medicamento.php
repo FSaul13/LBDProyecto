@@ -16,13 +16,22 @@
         }
 
 		public function alta($nom,$activo,$tipo_medic,$efectos_sec,$laboratorio,$precio,$imagen){
-            $query = "INSERT INTO medicamento (`nombre_comun`, `activo`, `tipo_medicamento`, `efectos_secundarios`, `laboratorio`, `precio`, `imagen_muestra`) 
+            /*$query = "INSERT INTO medicamento (`nombre_comun`, `activo`, `tipo_medicamento`, `efectos_secundarios`, `laboratorio`, `precio`, `imagen_muestra`) 
              VALUES (
                         '$nom','$activo','$tipo_medic','$efectos_sec','$laboratorio','$precio','$imagen'
                     )";
-
-            //Se usa una var. auxiliar para ejecutar el script
-            $stm = $this->connect->prepare($query);
+        */
+            $sql = 'CALL insertar_medicamento(:nombre, :activo, :tipo,:efectos,:laboratorio,:precio,:imagen )';
+            $stm = $this->connect->prepare($sql);
+            $stm->bindParam(':nombre', $nom, PDO::PARAM_STR);
+            $stm->bindParam(':activo', $activo, PDO::PARAM_STR);
+            $stm->bindParam(':tipo', $tipo_medic, PDO::PARAM_STR);
+            $stm->bindParam(':efectos', $efectos_sec, PDO::PARAM_STR);
+            $stm->bindParam(':laboratorio', $laboratorio, PDO::PARAM_STR);
+            $stm->bindParam(':precio', $precio, PDO::PARAM_INT);
+            $stm->bindParam(':imagen', $imagen, PDO::PARAM_STR);
+                        
+            //Se usa una var. auxiliar para ejecutar el scripts
             
             if($stm->execute()){
                 return true;

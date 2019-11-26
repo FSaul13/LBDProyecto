@@ -96,6 +96,7 @@ export class SintomaEditComponent implements OnInit {
 
   ngOnInit() {
     this.fnInitformGroup();
+    this.fnGetEnfermedad();
     this.fnSubscribetoSintoma();
     this.route.params.subscribe(params => {
       console.log(params)
@@ -167,8 +168,8 @@ export class SintomaEditComponent implements OnInit {
     let str1 = new String();
 
     event.data._enfermedad.forEach(element => {
-      console.log(element.id_enfermedad);
-      str1 += element.id_enfermedad;
+      console.log(element._id_enfermedad);
+      str1 += element._id_enfermedad;
       str1 += ','
     });
     let str2 = str1.substring(0, str1.length - 1)
@@ -176,6 +177,7 @@ export class SintomaEditComponent implements OnInit {
     console.log(str2)
     console.log("llego");
     let editSintoma = {
+      _id_sintoma: event.data._id_sintoma,
       _descripcion: event.data._descripcion,
       _imagen_muestra: event.data._imagen_muestra,
       _enfermedad: str2
@@ -183,7 +185,7 @@ export class SintomaEditComponent implements OnInit {
     }
     console.log(editSintoma)
 
-    /*this.SintomaService_apis.fnEditSintoma(editSintoma)
+    this.SintomaService_apis.fnEditSintoma(editSintoma)
       .then((res) => {
         this.feedback.success(res);
         event.fnSuccess();
@@ -192,6 +194,6 @@ export class SintomaEditComponent implements OnInit {
       .catch((rej) => {
         this.feedback.error(rej);
         event.fnError();
-      })*/
+      })
   }
 }

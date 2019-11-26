@@ -45,7 +45,7 @@ export class TratamientoEditComponent implements OnInit {
           trim: true,
           type: 'textarea'
         } as FormInput,
-      _tipo_Tratamiento: {
+      _tipo_tratamiento: {
         label: 'Tipo Tratamiento',
         trim: true,
         type: 'textarea'
@@ -101,7 +101,7 @@ export class TratamientoEditComponent implements OnInit {
     this.fnSubscribetoTratamiento();
     this.fnGetEnfermedad();
     this.route.params.subscribe(params => {
-      this.fnGetProductCode(params.idTratamiento);
+      this.fnGetProductCode(params._idTratamiento);
     });
   }
 
@@ -122,11 +122,11 @@ export class TratamientoEditComponent implements OnInit {
   fnSubscribetoTratamiento(): void {
 
     this.sub_TratamientoSubscription = this.TratamientoService_apis._Tratamiento_recoveryproductCode.subscribe(res => {
-      if (res._idTratamiento) {
+      if (res._id_tratamiento) {
         this.FormGroupEditTratamiento.setValue({
-          _id_tratamiento: res._id_Tratamiento,
+          _id_tratamiento: res._id_tratamiento,
           _indicaciones: res._indicaciones,
-          _tipo_Tratamiento: res._tipo_Tratamiento,
+          _tipo_tratamiento: res._tipo_tratamiento,
           _enfermedad: res._enfermedad
 
 
@@ -146,7 +146,7 @@ export class TratamientoEditComponent implements OnInit {
     this.FormGroupEditTratamiento = new FormGroup({
       _id_tratamiento: new FormControl(null, Validators.required),
       _indicaciones: new FormControl(null, Validators.required),
-      _tipo_Tratamiento: new FormControl(null, Validators.required),
+      _tipo_tratamiento: new FormControl(null, Validators.required),
       _enfermedad: new FormControl(null, Validators.required)
 
     })
@@ -166,8 +166,28 @@ export class TratamientoEditComponent implements OnInit {
 
 
   fnEditData(event) {
-    console.log(event)
-    let editTratamiento = event.data;
+    console.log(event);
+    let str1 = new String();
+
+    event.data._enfermedad.forEach(element => {
+      console.log(element._id_enfermedad);
+      str1 += element._id_enfermedad;
+      str1 += ','
+    });
+    let str2 = str1.substring(0, str1.length - 1)
+
+    console.log(str2)
+    console.log("llego");
+    let editTratamiento = {
+      _id_tratamiento: event.data._id_tratamiento,
+      _indicaciones: event.data._indicaciones,
+      _tipo_tratamiento: event.data._tipo_tratamiento,
+      _enfermedad: str2
+
+    }
+    console.log(editTratamiento)
+
+
     this.TratamientoService_apis.fnEditTratamiento(editTratamiento)
       .then((res) => {
         this.feedback.success(res);

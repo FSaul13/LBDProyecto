@@ -81,13 +81,13 @@ export enum APIS_ENUM {
 
     //tratamiento
 
-    GET_TRATAMIENTO = '/api/sites',
-    POST_NEW_TRATAMIENTO = '/api/sites/nuevo',
-    GET_TRATAMIENTO_BY_ID = '/api/sites/idSite/?',
-    POST_EDIT_TRATAMIENTO = '/api/sites/editar',
-    POST_DELETE_TRATAMIENTO = '/api/sites/eliminar',
-    GET_DELETE_TRATAMIENTO = '/api/sites/eliminados',
-    POST_ACTIVATE_TRATAMIENTO = '/api/sites/activar',
+    GET_TRATAMIENTO = '/abc_tratamiento.php',
+    POST_NEW_TRATAMIENTO = '/abc_tratamiento.php',
+    GET_TRATAMIENTO_BY_ID = '/abc_tratamiento.php',
+    POST_EDIT_TRATAMIENTO = '/abc_tratamiento.php',
+    POST_DELETE_TRATAMIENTO = '/abc_tratamiento.php',
+    GET_DELETE_TRATAMIENTO = '/abc_tratamiento.php',
+    POST_ACTIVATE_TRATAMIENTO = '/abc_tratamiento.php',
 
     //sintoma
     GET_SINTOMA = '/abc_sintoma.php',

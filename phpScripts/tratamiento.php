@@ -2,7 +2,7 @@
 
 
 
-    class Sintoma
+    class Tratamiento
 
     {
 
@@ -20,12 +20,12 @@
             }
         }
 
-		public function alta($descripcion,$imagen,$enfermedad){
+		public function alta($indicaciones,$tipoTratamiento,$enfermedad){
 
-             $sql = 'CALL insertar_sintoma(:descripcion, :imagen, :enfermedad )';
+             $sql = 'CALL insertar_tratamiento(:indicaciones, :tipoTratamiento, :enfermedad )';
             $stmt = $this->connect->prepare($sql);
-            $stmt->bindParam(':descripcion', $descripcion, PDO::PARAM_STR);
-            $stmt->bindParam(':imagen', $imagen, PDO::PARAM_STR);
+            $stmt->bindParam(':indicaciones', $indicaciones, PDO::PARAM_STR);
+            $stmt->bindParam(':tipoTratamiento', $tipoTratamiento, PDO::PARAM_STR);
             $stmt->bindParam(':enfermedad', $enfermedad, PDO::PARAM_STR);
 
              if($stmt->execute()){
@@ -35,20 +35,20 @@
             }
         }
 
-        public function cambio($id,$descripcion,$imagen,$enfermedades){
-            $query = "UPDATE sintoma SET `descripcion`='$descripcion', `imagen_muestra`='$imagen'
-            WHERE id_sintoma = $id";
+        public function cambio($id,$indicaciones,$tipoTratamiento,$enfermedad){
+            $query = "UPDATE tratamiento SET `indicaciones`='$indicaciones',`tipo_tratamiento`='$tipoTratamiento'
+            WHERE id_tratamiento = $id";
 
             //Se usa una var. auxiliar para ejecutar el script
-            $stm = $this->connect->prepare($query);
+            $stmt = $this->connect->prepare($query);
             
-            if($stm->execute()){
-                 $query = "CALL  relacion_sintoma_enfer(:id, :enfermedades)";
-                $stmt = $this->connect->prepare($query);
-                $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-                $stmt->bindParam(':enfermedades', $enfermedades, PDO::PARAM_STR);
-
-                if($stmt->execute()){
+            if($stmt->execute()){
+                 $query = "CALL relacion_enferme_tratam(:id,:enfermedades)";
+                  $stm = $this->connect->prepare($query);
+                $stm->bindParam(':id', $id, PDO::PARAM_INT);
+                $stm->bindParam(':enfermedades', $enfermedad, PDO::PARAM_STR);
+                
+                if($stm->execute()){
                     return true;
                 } else {    
                     return false;
@@ -60,8 +60,8 @@
         }
 
         public function baja($id){
-            $query = "DELETE from sintoma
-			    WHERE id_sintoma=$id";
+            $query = "DELETE from tratamiento
+			    WHERE id_Tratamiento=$id";
 
             //Se usa una var. auxiliar para ejecutar el script
             $stm = $this->connect->prepare($query);
@@ -73,16 +73,16 @@
             }
         }
 
-        public function getSintoma($id)
+        public function getTratamiento($id)
         {
-            $query = "SELECT * FROM sintoma WHERE id_sintoma = $id";
+            $query = "SELECT * FROM tratamiento WHERE id_tratamiento = $id";
 
             $stm = $this->connect->prepare($query);
 
             if($stm->execute()){
                 $x = $stm->fetch();
-                $query = "SELECT id_enfermedad,enfermedad.nombre_comun FROM sintoma,detalle_enfermedad , enfermedad 
-                            WHERE id_sintoma = '$id' AND id_sintoma = id_sintoma_fk AND id_enfermedad_fk = id_enfermedad";
+                $query = "SELECT id_enfermedad,enfermedad.nombre_comun FROM tratamiento,enfermedad_tratamiento, enfermedad 
+                            WHERE id_tratamiento = '$id' AND id_tratamiento = id_tratamiento_fk AND id_enfermedad_fk = id_enfermedad";
                 $stm = $this->connect->prepare($query);
                 if($stm->execute()){
                     $x['enfermedad'] = $stm->fetchAll();
@@ -95,9 +95,9 @@
             }
         }
 
-        public function getSintomas()
+        public function getTratamientos()
         {
-            $query = "SELECT * FROM sintoma";
+            $query = "SELECT * FROM tratamiento";
 
             $stm = $this->connect->prepare($query);
 

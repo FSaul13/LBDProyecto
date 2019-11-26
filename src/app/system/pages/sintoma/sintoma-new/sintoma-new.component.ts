@@ -114,8 +114,8 @@ export class SintomaNewComponent implements OnInit {
     let str1 = new String();
 
     event.data._enfermedad.forEach(element => {
-      console.log(element.id_enfermedad);
-      str1 += element.id_enfermedad;
+      console.log(element._id_enfermedad);
+      str1 += element._id_enfermedad;
       str1 += ','
     });
     let str2 = str1.substring(0, str1.length - 1)
@@ -131,14 +131,14 @@ export class SintomaNewComponent implements OnInit {
     console.log(newSintoma)
 
 
-    /*this.SintomaService_apis.fnPostNewSintoma(newSintoma)
+    this.SintomaService_apis.fnPostNewSintoma(newSintoma)
       .then((res) => {
         this.toastr.success(res);
         event.fnSuccess();
 
       })
       .catch((rej) => {
-      });*/
+      });
 
   }
 
