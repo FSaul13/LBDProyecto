@@ -37,7 +37,7 @@ export class DetalleTratamientoNewComponent implements OnInit {
         label: 'Tratamiento',
         type: 'select',
         key: '_id_tratamiento',
-        value: '_nombre',
+        value: '_indicaciones',
         options: this.tratamientoApi_service._TratamientoArray_recoveryTratamiento,
       } as FormInput,
 

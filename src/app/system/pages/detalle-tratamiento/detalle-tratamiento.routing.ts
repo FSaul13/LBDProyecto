@@ -38,7 +38,7 @@ export const DetalleTratamientoRouting: Routes = [
                 }
             },
             {
-                path: "edit/:_idDetalleTratamiento",
+                path: "edit/:_id_tratamiento/:_id_medicamento",
                 component: DetalleTratamientoEditComponent,
                 data: {
                     title: "Editar DetalleTratamiento",

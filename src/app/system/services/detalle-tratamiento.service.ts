@@ -38,10 +38,14 @@ export class DetalleTratamientoService {
 
 
 
-  fnGetDetalleTratamientoById(idDetalleTratamiento: number): Promise<any> {
+  fnGetDetalleTratamientoById(id_tratamiento: number, id_medicamento: number): Promise<any> {
+    let valores: any = {
+      _id_tratamiento: id_tratamiento,
+      _id_medicamento: id_medicamento
+    }
     let parametros: any = {
       _accion: "obtenerId",
-      _valor: idDetalleTratamiento
+      _valor: valores
     }
     return new Promise((resolve, reject) => {
       this.api_call_Restfull.fnPostPromise(parametros, APIS_ENUM.GET_DETALLE_TRATAMIENTO)

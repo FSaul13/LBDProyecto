@@ -43,7 +43,8 @@ export class DetalleTratamientoControlComponent implements OnInit {
 
 
   arrayAny_columns: any[] = [
-    { name: "nombre", title: "Nombre" }
+    { name: "_id_tratamiento", title: "Tratamiento" },
+    { name: "_max_cant_med", title: "Mexima cantidad Medicamentos" }
   ]
 
   settingsButtons_all: TableButtons = {
@@ -131,9 +132,10 @@ export class DetalleTratamientoControlComponent implements OnInit {
   }
 
   fnOnEdit(event) {
-
-    this.router.navigate(["/system/admin/detalle-tratamiento/edit", event.data.id_DetalleTratamiento])
+    console.log(event);
+    this.router.navigate(["/system/admin/detalle-tratamiento/edit", event.data._id_tratamiento, event.data._id_medicamento])
   }
+
 
   fnOpenModal(content, size) {
     this.str_deleteButton = this.str_sendDeleteButton;
