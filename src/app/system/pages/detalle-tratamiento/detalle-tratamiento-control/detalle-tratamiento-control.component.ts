@@ -43,8 +43,10 @@ export class DetalleTratamientoControlComponent implements OnInit {
 
 
   arrayAny_columns: any[] = [
-    { name: "_id_tratamiento", title: "Tratamiento" },
-    { name: "_max_cant_med", title: "Mexima cantidad Medicamentos" }
+    { name: "Sintoma", title: "Sintoma" },
+    { name: "Tratamiento", title: "Tratamiento" },
+    { name: "_max_can_med", title: "Mexima cantidad Medicamentos" },
+    { name: "_min_cant_med", title: "Minima cantidad Medicamentos" }
   ]
 
   settingsButtons_all: TableButtons = {
@@ -66,7 +68,7 @@ export class DetalleTratamientoControlComponent implements OnInit {
     } as TablePagination,
     search: {
       placeholder: "",
-      searchColumns: ["nombre"]
+      searchColumns: ["Sintoma", "Tratamiento", "_min_can_med", "_max_cant_med"],
     } as TableSearch,
     _actionsTitle: "",
     _id: 'DetalleTratamiento-table',

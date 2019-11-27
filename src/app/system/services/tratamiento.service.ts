@@ -26,6 +26,7 @@ export class TratamientoService {
     return new Promise((resolve, reject) => {
       this.api_call_Restfull.fnPostPromise(parametros, APIS_ENUM.GET_TRATAMIENTO)
         .then((res) => {
+          console.log(res);
           this.$Tratamiento_Array_recoveryTratamiento.next(res);
           resolve()
         })
