@@ -1,0 +1,18 @@
+<h1>Enfermedad</h1>
+<div class="card-columns">
+  <div class="card animated fadeIn fast" style="width: 18rem;"
+    *ngFor="let enfermedad of obs_Enfermedad|async, let i = index">
+    <img class="card-img-top" src="" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">{{enfermedad._nombre_comun }}</h5>
+      <p class="card-text">{{enfermedad._grado_mortalidad}}.</p>
+
+      <button (click)="verHeroe(i)" type="button" class="btn btn-outline-primary btn-block">
+        Conocer mas
+      </button>
+      <!--  <a [routerLink]="['/heroe',i]"  class="btn btn-primary">Ver mas link</a>-->
+      <!-- es para envialere la poscicion con parametros-->
+    </div>
+  </div>
+
+</div>

@@ -1,6 +1,12 @@
 import { Routes, RouterModule } from '@angular/router';
 import { AdminComponent } from './admin/admin.component';
 import { IndexComponent } from './index/index.component';
+import { ConsultaAlimentosComponent } from './consulta-alimentos/consulta-alimentos/consulta-alimentos.component';
+import { ConsultaEnfermedadAnimalComponent } from './consulta-enfermedadAnimal/consulta-enfermedad-animal/consulta-enfermedad-animal.component';
+import { ConsultaMedicamentosTratamientoComponent } from './consulta-medicamentosTratamiento/consulta-medicamentos-tratamiento/consulta-medicamentos-tratamiento.component';
+import { ConsultaTratamientoEnfermedadComponent } from './consulta-tratamientoEnfermedad/consulta-tratamiento-enfermedad/consulta-tratamiento-enfermedad.component';
+import { ConsultaSintomasEnfermedadComponent } from './consulta-sintomasEnfermedad/consulta-sintomas-enfermedad/consulta-sintomas-enfermedad.component';
+import { ConsultaEnfermedadSintomaComponent } from './consulta-enfermedadSintoma/consulta-enfermedad-sintoma/consulta-enfermedad-sintoma.component';
 
 const routes: Routes = [
     {
@@ -55,6 +61,41 @@ const routes: Routes = [
                 path: "sintoma",
                 loadChildren: "../pages/sintoma/sintoma.module#SintomaModule"
             },
+            {
+                path: "consulta-alimentos",
+                component: ConsultaAlimentosComponent,
+                // loadChildren: "../pages/consulta-alimentos/consulta-alimentos.module#ConsultaAlimentosModule"
+            },
+            {
+                path: "consulta-enfermedadSintoma",
+                component: ConsultaEnfermedadSintomaComponent,
+
+            },
+
+            {
+                path: "consulta-enfermedad",
+                component: ConsultaEnfermedadAnimalComponent,
+                // loadChildren: "../pages/consulta-alimentos/consulta-alimentos.module#ConsultaAlimentosModule"
+            },
+
+            {
+                path: "consulta-medicamentos",
+                component: ConsultaMedicamentosTratamientoComponent,
+                // loadChildren: "../pages/consulta-alimentos/consulta-alimentos.module#ConsultaAlimentosModule"
+            },
+
+            {
+                path: "consulta-tratamientos",
+                component: ConsultaTratamientoEnfermedadComponent,
+                // loadChildren: "../pages/consulta-alimentos/consulta-alimentos.module#ConsultaAlimentosModule"
+            },
+
+            {
+                path: "consulta-sintomas",
+                component: ConsultaSintomasEnfermedadComponent,
+                // loadChildren: "../pages/consulta-alimentos/consulta-alimentos.module#ConsultaAlimentosModule"
+            },
+
 
         ]
     },

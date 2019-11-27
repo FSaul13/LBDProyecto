@@ -15,6 +15,12 @@ import { HTTPInterceptorService } from '../services/http.interceptor';
 import { UsersService } from '../services/users.service';
 import { UserTypesService } from '../services/user-types.service';
 import { TratamientoService } from '../services/tratamiento.service';
+import { ConsultaAlimentosComponent } from './consulta-alimentos/consulta-alimentos/consulta-alimentos.component';
+import { ConsultaSintomasEnfermedadComponent } from './consulta-sintomasEnfermedad/consulta-sintomas-enfermedad/consulta-sintomas-enfermedad.component';
+import { ConsultaTratamientoEnfermedadComponent } from './consulta-tratamientoEnfermedad/consulta-tratamiento-enfermedad/consulta-tratamiento-enfermedad.component';
+import { ConsultaEnfermedadSintomaComponent } from './consulta-enfermedadSintoma/consulta-enfermedad-sintoma/consulta-enfermedad-sintoma.component';
+import { ConsultaEnfermedadAnimalComponent } from './consulta-enfermedadAnimal/consulta-enfermedad-animal/consulta-enfermedad-animal.component';
+import { ConsultaMedicamentosTratamientoComponent } from './consulta-medicamentosTratamiento/consulta-medicamentos-tratamiento/consulta-medicamentos-tratamiento.component';
 
 @NgModule({
 	imports: [
@@ -26,11 +32,18 @@ import { TratamientoService } from '../services/tratamiento.service';
 		NgbModule,
 		FullCalendarModule,
 		RouterModule,
-		LayoutModule
+		LayoutModule,
+
 	],
 	declarations: [
 		AdminComponent,
-		IndexComponent
+		IndexComponent,
+		ConsultaAlimentosComponent,
+		ConsultaSintomasEnfermedadComponent,
+		ConsultaTratamientoEnfermedadComponent,
+		ConsultaEnfermedadSintomaComponent,
+		ConsultaEnfermedadAnimalComponent,
+		ConsultaMedicamentosTratamientoComponent
 
 	],
 	providers: [

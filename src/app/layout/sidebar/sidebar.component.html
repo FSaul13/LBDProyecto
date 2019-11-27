@@ -103,13 +103,58 @@
                                     <span>Sintoma</span>
                                 </a>
                             </li>
+
                         </ul>
                     </nav>
                 </div>
                 <div class="tab-pane" id="menu" [ngClass]="{'active':navTab == 'system' }">
                     <nav id="left-sidebar-nav" class="sidebar-nav">
                         <ul id="main-menu" class="metismenu">
-                            <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
+
+                            <li routerLink="/system/admin/consulta-alimentos" routerLinkActive="active"
+                                [routerLinkActiveOptions]="{exact: true}">
+                                <a (click)="activeInactiveMenu('sintoma')">
+                                    <i class="fas fa-search"></i>
+                                    <span>consulta-alimentos</span>
+                                </a>
+                            </li>
+
+                            <li routerLink="/system/admin/consulta-enfermedadSintoma" routerLinkActive="active"
+                                [routerLinkActiveOptions]="{exact: true}">
+                                <a (click)="activeInactiveMenu('sintoma')">
+                                    <i class="icon-search"></i>
+                                    <span>Enfermedad Sintoma</span>
+                                </a>
+                            </li>
+                            <li routerLink="/system/admin/consulta-enfermedad" routerLinkActive="active"
+                                [routerLinkActiveOptions]="{exact: true}">
+                                <a (click)="activeInactiveMenu('consulta-enfermedad')">
+                                    <i class="icon-home"></i>
+                                    <span>Consulta Enfermedad</span>
+                                </a>
+                            </li>
+                            <li routerLink="/system/admin/consulta-medicamentos" routerLinkActive="active"
+                                [routerLinkActiveOptions]="{exact: true}">
+                                <a (click)="activeInactiveMenu('consulta-medicamentos')">
+                                    <i class="icon-home"></i>
+                                    <span>Consulta Medicamentos</span>
+                                </a>
+                            </li>
+                            <li routerLink="/system/admin/consulta-tratamientos" routerLinkActive="active"
+                                [routerLinkActiveOptions]="{exact: true}">
+                                <a (click)="activeInactiveMenu('consulta-tratamientos')">
+                                    <i class="icon-home"></i>
+                                    <span>Consulta Tratamiento</span>
+                                </a>
+                            </li>
+                            <li routerLink="/system/admin/consulta-sintomas" routerLinkActive="active"
+                                [routerLinkActiveOptions]="{exact: true}">
+                                <a (click)="activeInactiveMenu('consulta-sintomas')">
+                                    <i class="icon-home"></i>
+                                    <span>Consulta Sintomas</span>
+                                </a>
+                            </li>
+                            <!--<li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
                                 [ngClass]="{'active':currentActiveMenu == 'dashboard'}">
                                 <a class="has-arrow" (click)="activeInactiveMenu('dashboard')"><i class="icon-home"></i>
                                     <span>Dashboard</span></a>
@@ -311,7 +356,7 @@
                                 </ul>
                             </li>
 
-
+-->
                         </ul>
 
                     </nav>
