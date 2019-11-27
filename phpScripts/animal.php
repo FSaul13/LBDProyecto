@@ -14,6 +14,22 @@
                 echo $e->getMessage();
             }
         }
+/*
+		public function alta($nom,$carac,$tipo_alimen,$tipo_animal,$imagen){
+            $query = "INSERT INTO animal(nombre, caracteristicas,tipo_alimentacion,tipo_animal,imagen_muestra) VALUES (
+                        '$nom','$carac','$tipo_alimen','$tipo_animal','$imagen'
+                    )";
+
+            //Se usa una var. auxiliar para ejecutar el script
+            $stm = $this->connect->prepare($query);
+            
+            if($stm->execute()){
+                return true;
+            } else{
+                return false;
+            }
+        }
+*/
 
         public function alta($nom,$carac,$tipo_alimen,$tipo_animal,$imagen){
             $sql = 'CALL insertar_animal(:nom, :carac, :tipo_ali, :tipo_ani, :imag)';
@@ -43,7 +59,7 @@
             } else{
                 return false;
             }
-        }   
+        }
 
         public function baja($id){
             $query = "DELETE from animal
@@ -88,4 +104,3 @@
         }
 
     }
-?>

@@ -31,7 +31,7 @@
         }
 
         
-        public function cambio($id,$nom,$grado_mortalidad,$virus,$causas, $animales){
+        public function cambio($id,$nom,$grado_mortalidad,$virus,$causas,$animales){
             $query = "UPDATE enfermedad 
                 SET `nombre_comun` = '$nom', `grado_mortalidad` = '$grado_mortalidad', `virus_causante` = '$virus', `causas_infeccion` = '$causas' 
                 WHERE `id_enfermedad` = $id";
@@ -40,8 +40,9 @@
             $stmt = $this->connect->prepare($query);
             
             if($stmt->execute()){
-                $query = "CALL relacion_animal_enfer(:id, :animales)";
-                $stmt->bindParam(':id', $id, PDO::PARAM_STR);
+                $query = "CALL relacion_animal_enfer(:id_enf,:animales)";
+                 $stmt = $this->connect->prepare($query);
+                $stmt->bindParam(':id_enf', $id, PDO::PARAM_STR);
                 $stmt->bindParam(':animales', $animales, PDO::PARAM_STR);
                 
                 if($stmt->execute()){

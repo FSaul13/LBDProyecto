@@ -30,7 +30,7 @@
                 $json->_valor->_causas_infeccion,
                 $json->_valor->_animal
             )){
-                echo json_encode(['_success' => true, '_message' => 'Creado con exito']);
+                echo json_encode(['_success' => true, '_message' => 'Editado con exito','id'=>$json->_valor->_animal]);
             } else{
                 echo json_encode([ '_message' => 'Error al cambiar']);
             }

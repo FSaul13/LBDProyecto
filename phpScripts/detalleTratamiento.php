@@ -57,9 +57,9 @@
             }
         }
 
-        public function baja($id){
-            $query = "DELETE from tratamiento
-			    WHERE id_Tratamiento=$id";
+        public function baja($id,$id2){
+            $query = "DELETE from detalle_tratamiento
+			    WHERE `id_tratamiento_fk`='$id' AND `id_medicamento_fk`='$id2'";
 
             //Se usa una var. auxiliar para ejecutar el script
             $stm = $this->connect->prepare($query);

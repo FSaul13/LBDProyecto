@@ -40,7 +40,7 @@
             }
                 break;
         case 'eliminar': 
-            if($a->baja($json->_valor)){
+            if($a->baja($json->_valor->_id_tratamiento,$json->_valor->_id_medicamento)){
                 echo json_encode(['_success' => true, '_message' => 'Eliminado con exito']);
             } else{
                 echo json_encode(['_message' => 'Error al eliminar']);

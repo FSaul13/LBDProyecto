@@ -32,41 +32,41 @@ export enum APIS_ENUM {
 
 
     //Proyecto
-    GET_ANIMAL = '/abc_animal.php',
-    POST_NEW_ANIMAL = '/abc_animal.php',
-    GET_ANIMAL_BY_ID = '/abc_animal.php',
-    POST_EDIT_ANIMAL = '/abc_animal.php',
-    POST_DELETE_ANIMAL = '/abc_animal.php',
-    GET_DELETE_ANIMAL = '/abc_animal.php',
-    POST_ACTIVATE_ANIMAL = '/abc_animal.php',
+    GET_ANIMAL = '/phpBaseDatos/abc_animal.php',
+    POST_NEW_ANIMAL = '/phpBaseDatos/abc_animal.php',
+    GET_ANIMAL_BY_ID = '/phpBaseDatos/abc_animal.php',
+    POST_EDIT_ANIMAL = '/phpBaseDatos/abc_animal.php',
+    POST_DELETE_ANIMAL = '/phpBaseDatos/abc_animal.php',
+    GET_DELETE_ANIMAL = '/phpBaseDatos/abc_animal.php',
+    POST_ACTIVATE_ANIMAL = '/phpBaseDatos/abc_animal.php',
 
     //ALIMENT
-    GET_ALIMENT = '/abc_alimento.php',
-    POST_NEW_ALIMENT = '/abc_alimento.php',
-    GET_ALIMENT_BY_ID = '/abc_alimento.php',
-    POST_EDIT_ALIMENT = '/abc_alimento.php',
-    POST_DELETE_ALIMENT = '/abc_alimento.php',
-    GET_DELETE_ALIMENT = '/abc_alimento.php',
-    POST_ACTIVATE_ALIMENT = '/abc_alimento.php',
+    GET_ALIMENT = '/phpBaseDatos/abc_alimento.php',
+    POST_NEW_ALIMENT = '/phpBaseDatos/abc_alimento.php',
+    GET_ALIMENT_BY_ID = '/phpBaseDatos/abc_alimento.php',
+    POST_EDIT_ALIMENT = '/phpBaseDatos/abc_alimento.php',
+    POST_DELETE_ALIMENT = '/phpBaseDatos/abc_alimento.php',
+    GET_DELETE_ALIMENT = '/phpBaseDatos/abc_alimento.php',
+    POST_ACTIVATE_ALIMENT = '/phpBaseDatos/abc_alimento.php',
 
     //ENFERMEDAD
-    GET_ENFERMEDAD = '/abc_enfermedad.php',
-    POST_NEW_ENFERMEDAD = '/abc_enfermedad.php',
-    GET_ENFERMEDAD_BY_ID = '/abc_enfermedad.php',
-    POST_EDIT_ENFERMEDAD = '/abc_enfermedad.php',
-    POST_DELETE_ENFERMEDAD = '/abc_enfermedad.php',
-    GET_DELETE_ENFERMEDAD = '/abc_enfermedad.php',
-    POST_ACTIVATE_ENFERMEDAD = '/abc_enfermedad.php',
+    GET_ENFERMEDAD = '/phpBaseDatos/abc_enfermedad.php',
+    POST_NEW_ENFERMEDAD = '/phpBaseDatos/abc_enfermedad.php',
+    GET_ENFERMEDAD_BY_ID = '/phpBaseDatos/abc_enfermedad.php',
+    POST_EDIT_ENFERMEDAD = '/phpBaseDatos/abc_enfermedad.php',
+    POST_DELETE_ENFERMEDAD = '/phpBaseDatos/abc_enfermedad.php',
+    GET_DELETE_ENFERMEDAD = '/phpBaseDatos/abc_enfermedad.php',
+    POST_ACTIVATE_ENFERMEDAD = '/phpBaseDatos/abc_enfermedad.php',
 
     //mEDICAMENTO
     //ENFERMEDAD
-    GET_MEDICAMENTO = '/abc_medicamento.php',
-    POST_NEW_MEDICAMENTO = '/abc_medicamento.php',
-    GET_MEDICAMENTO_BY_ID = '/abc_medicamento.php',
-    POST_EDIT_MEDICAMENTO = '/abc_medicamento.php',
-    POST_DELETE_MEDICAMENTO = '/abc_medicamento.php',
-    GET_DELETE_MEDICAMENTO = '/api/sites/eliminados',
-    POST_ACTIVATE_MEDICAMENTO = '/api/sites/activar',
+    GET_MEDICAMENTO = '/phpBaseDatos/abc_medicamento.php',
+    POST_NEW_MEDICAMENTO = '/phpBaseDatos/abc_medicamento.php',
+    GET_MEDICAMENTO_BY_ID = '/phpBaseDatos/abc_medicamento.php',
+    POST_EDIT_MEDICAMENTO = '/phpBaseDatos/abc_medicamento.php',
+    POST_DELETE_MEDICAMENTO = '/phpBaseDatos/abc_medicamento.php',
+    GET_DELETE_MEDICAMENTO = '/phpBaseDatos/api/sites/eliminados',
+    POST_ACTIVATE_MEDICAMENTO = '/phpBaseDatos/api/sites/activar',
 
 
     //animal alimento
@@ -81,24 +81,24 @@ export enum APIS_ENUM {
 
     //tratamiento
 
-    GET_TRATAMIENTO = '/abc_tratamiento.php',
-    POST_NEW_TRATAMIENTO = '/abc_tratamiento.php',
-    GET_TRATAMIENTO_BY_ID = '/abc_tratamiento.php',
-    POST_EDIT_TRATAMIENTO = '/abc_tratamiento.php',
-    POST_DELETE_TRATAMIENTO = '/abc_tratamiento.php',
-    GET_DELETE_TRATAMIENTO = '/abc_tratamiento.php',
+    GET_TRATAMIENTO = '/phpBaseDatos/abc_tratamiento.php',
+    POST_NEW_TRATAMIENTO = '/phpBaseDatos/abc_tratamiento.php',
+    GET_TRATAMIENTO_BY_ID = '/phpBaseDatos/abc_tratamiento.php',
+    POST_EDIT_TRATAMIENTO = '/phpBaseDatos/abc_tratamiento.php',
+    POST_DELETE_TRATAMIENTO = '/phpBaseDatos/abc_tratamiento.php',
+    GET_DELETE_TRATAMIENTO = '/phpBaseDatos/abc_tratamiento.php',
     POST_ACTIVATE_TRATAMIENTO = '/abc_tratamiento.php',
 
     //sintoma
-    GET_SINTOMA = '/abc_sintoma.php',
-    POST_NEW_SINTOMA = '/abc_sintoma.php',
-    GET_SINTOMA_BY_ID = '/abc_sintoma.php',
-    POST_EDIT_SINTOMA = '/abc_sintoma.php',
-    POST_DELETE_SINTOMA = '/abc_sintoma.php',
-    GET_DELETE_SINTOMA = '/abc_sintoma.php',
+    GET_SINTOMA = '/phpBaseDatos/abc_sintoma.php',
+    POST_NEW_SINTOMA = '/phpBaseDatos/abc_sintoma.php',
+    GET_SINTOMA_BY_ID = '/phpBaseDatos/abc_sintoma.php',
+    POST_EDIT_SINTOMA = '/phpBaseDatos/abc_sintoma.php',
+    POST_DELETE_SINTOMA = '/phpBaseDatos/abc_sintoma.php',
+    GET_DELETE_SINTOMA = '/phpBaseDatos/abc_sintoma.php',
     POST_ACTIVATE_SINTOMA = '/abc_sintoma.php',
 
 
-    GET_DETALLE_TRATAMIENTO = '/abc_detalleTratamiento.php'
+    GET_DETALLE_TRATAMIENTO = '/phpBaseDatos/abc_detalleTratamiento.php'
 
 }

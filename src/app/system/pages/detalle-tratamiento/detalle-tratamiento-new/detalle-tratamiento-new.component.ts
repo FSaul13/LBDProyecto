@@ -32,7 +32,7 @@ export class DetalleTratamientoNewComponent implements OnInit {
     } as FormTitle,
     fields: {
 
-      id_tratamiento_fk: {
+      _id_tratamiento_fk: {
         id: 'TratamientoSelect',
         label: 'Tratamiento',
         type: 'select',
@@ -41,7 +41,7 @@ export class DetalleTratamientoNewComponent implements OnInit {
         options: this.tratamientoApi_service._TratamientoArray_recoveryTratamiento,
       } as FormInput,
 
-      id_medicamento_fk: {
+      _id_medicamento_fk: {
         id: 'MedicamentoSelect',
         label: 'Medicamento',
         type: 'select',
@@ -118,8 +118,8 @@ export class DetalleTratamientoNewComponent implements OnInit {
 
   fnInitForm() {
     this.formgroup_newDetalleTratamiento = new FormGroup({
-      id_tratamiento_fk: new FormControl(null, Validators.required),
-      id_medicamento_fk: new FormControl(null, Validators.required),
+      _id_tratamiento_fk: new FormControl(null, Validators.required),
+      _id_medicamento_fk: new FormControl(null, Validators.required),
       _max_cant_med: new FormControl(null, Validators.required),
       _min_can_med: new FormControl(null, Validators.required),
       _periodo_dosificacion: new FormControl(null, Validators.required),

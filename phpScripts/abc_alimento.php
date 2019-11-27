@@ -32,7 +32,9 @@
                 $json->_valor->_indicaciones_uso,
                 $json->_valor->_contenido_alimenticio,
                 $json->_valor->_imagen_alimento,
-                $json->_valor->_precio)){
+                $json->_valor->_precio,
+                $json->_valor->_animal
+            )){
                 echo json_encode(['_success' => true, '_message' => 'Creado con exito']);                
             } else{
                 echo json_encode([ '_message' => 'Error al cambiar']);

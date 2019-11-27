@@ -1,7 +1,6 @@
 <?php
     $host = 'localhost';
-    //$dbname = 'basedatos';
-    $dbname = 'ldb';
+    $dbname = 'basedatos';
     $username = 'root';
     $password = '';
 ?>

@@ -107,6 +107,8 @@ export class DetalleTratamientoService {
   }
 
   fnPostDeleteDetalleTratamiento(deleteDetalleTratamiento: any): Promise<any> {
+    console.log(deleteDetalleTratamiento)
+
     let parametros: any = {
       _accion: "eliminar",
       _valor: deleteDetalleTratamiento
