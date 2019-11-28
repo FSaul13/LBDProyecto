@@ -99,6 +99,8 @@ export enum APIS_ENUM {
     POST_ACTIVATE_SINTOMA = '/abc_sintoma.php',
 
 
-    GET_DETALLE_TRATAMIENTO = '/phpBaseDatos/abc_detalleTratamiento.php'
+    GET_DETALLE_TRATAMIENTO = '/phpBaseDatos/abc_detalleTratamiento.php',
+
+    GET_Consulta = '/phpBaseDatos/abc_consultas.php'
 
 }

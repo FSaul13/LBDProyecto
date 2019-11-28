@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { EnfermedadService } from 'app/system/services/enfermedad.service';
 import { Observable } from 'rxjs';
+import { ConsultasService } from '../../../services/consultas.service';
 
 @Component({
   selector: 'app-consulta-alimentos',
@@ -8,24 +8,24 @@ import { Observable } from 'rxjs';
   styleUrls: ['./consulta-alimentos.component.css']
 })
 export class ConsultaAlimentosComponent implements OnInit {
-  obs_Enfermedad: Observable<any[]>
+  obs_Consulta: Observable<any[]>
 
   constructor(
-    private enfermedadApi_service: EnfermedadService
+    private consultaApi_service: ConsultasService
   ) {
 
-    this.obs_Enfermedad = this.enfermedadApi_service._EnfermedadArray_recoveryEnfermedad;
+    this.obs_Consulta = this.consultaApi_service._ConsultaArray_recoveryConsulta;
   }
 
   ngOnInit() {
-    this.fnGetEnfermedad();
+    this.fnGetConsulta();
   }
 
-  fnGetEnfermedad(): void {
-
-    this.enfermedadApi_service.fnGetEnfermedad()
+  fnGetConsulta(): void {
+    ///No ocupa nada
+    this.consultaApi_service.fnEnfermedadesPeligrosas()
       .then(() => {
-
+        console.log(this.obs_Consulta);
       })
       .catch(error => {
 
