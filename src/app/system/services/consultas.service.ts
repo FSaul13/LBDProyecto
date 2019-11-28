@@ -7,8 +7,8 @@ import { Response } from '../models/response';
 @Injectable({
   providedIn: 'root'
 })
-export class ConsultasService{
-    
+export class ConsultasService {
+
   private $Consulta_Array_recoveryConsulta: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
   _ConsultaArray_recoveryConsulta: Observable<any[]> = this.$Consulta_Array_recoveryConsulta.asObservable();
 
@@ -19,7 +19,7 @@ export class ConsultasService{
   ) { }
 
 
-  fnAlimentosPorAnimal(idConsulta : number): Promise<any> {
+  fnAlimentosPorAnimal(idConsulta: number): Promise<any> {
     let parametros: any = {
       _accion: 'alimentosPorAnimal',
       _valor: idConsulta
@@ -29,12 +29,12 @@ export class ConsultasService{
       this.api_call_Restfull.fnPostPromise(parametros, APIS_ENUM.GET_Consulta)
         .then((res) => {
           this.$Consulta_Array_recoveryConsulta.next(res);
-          
+
           resolve(res);
         })
         .catch((rej) => {
-            this.$Consulta_Array_recoveryConsulta.next({} as any);
-            reject();
+          this.$Consulta_Array_recoveryConsulta.next({} as any);
+          reject();
         })
     })
   }
@@ -71,13 +71,13 @@ export class ConsultasService{
     return new Promise((resolve, reject) => {
       this.api_call_Restfull.fnPostPromise(parametros, APIS_ENUM.GET_Consulta)
         .then((res: any) => {
-            this.$Consulta_Array_recoveryConsulta.next(res);
+          this.$Consulta_Array_recoveryConsulta.next(res);
 
-            resolve(res);
+          resolve(res);
         })
         .catch((rej) => {
-            this.$Consulta_Array_recoveryConsulta.next({} as any);
-            reject();
+          this.$Consulta_Array_recoveryConsulta.next({} as any);
+          reject();
         })
     })
   }
@@ -91,13 +91,13 @@ export class ConsultasService{
     return new Promise((resolve, reject) => {
       this.api_call_Restfull.fnPostPromise(parametros, APIS_ENUM.GET_Consulta)
         .then((res: any) => {
-            this.$Consulta_Array_recoveryConsulta.next(res);
+          this.$Consulta_Array_recoveryConsulta.next(res);
 
-            resolve(res);
+          resolve(res);
         })
         .catch((rej) => {
-            this.$Consulta_Array_recoveryConsulta.next({} as any);
-            reject();
+          this.$Consulta_Array_recoveryConsulta.next({} as any);
+          reject();
         })
     })
   }
@@ -111,13 +111,13 @@ export class ConsultasService{
     return new Promise((resolve, reject) => {
       this.api_call_Restfull.fnPostPromise(parametros, APIS_ENUM.GET_Consulta)
         .then((res: any) => {
-            this.$Consulta_Array_recoveryConsulta.next(res);
+          this.$Consulta_Array_recoveryConsulta.next(res);
 
-            resolve(res);
+          resolve(res);
         })
         .catch((rej) => {
-            this.$Consulta_Array_recoveryConsulta.next({} as any);
-            reject();
+          this.$Consulta_Array_recoveryConsulta.next({} as any);
+          reject();
         })
     })
   }
@@ -131,13 +131,13 @@ export class ConsultasService{
     return new Promise((resolve, reject) => {
       this.api_call_Restfull.fnPostPromise(parametros, APIS_ENUM.GET_Consulta)
         .then((res: any) => {
-            this.$Consulta_Array_recoveryConsulta.next(res);
+          this.$Consulta_Array_recoveryConsulta.next(res);
 
-            resolve(res);
+          resolve(res);
         })
         .catch((rej) => {
-            this.$Consulta_Array_recoveryConsulta.next({} as any);
-            reject();
+          this.$Consulta_Array_recoveryConsulta.next({} as any);
+          reject();
         })
     })
   }
@@ -150,17 +150,17 @@ export class ConsultasService{
     return new Promise((resolve, reject) => {
       this.api_call_Restfull.fnPostPromise(parametros, APIS_ENUM.GET_Consulta)
         .then((res: any) => {
-            this.$Consulta_Array_recoveryConsulta.next(res);
+          this.$Consulta_Array_recoveryConsulta.next(res);
 
-            resolve(res);
+          resolve(res);
         })
         .catch((rej) => {
-            this.$Consulta_Array_recoveryConsulta.next({} as any);
-            reject();
+          this.$Consulta_Array_recoveryConsulta.next({} as any);
+          reject();
         })
     })
   }
-  
+
   fnMedicamentosSegunTipo(criterioConsulta: string): Promise<any> {
     let parametros: any = {
       _accion: 'medicamentosSegunTipo',
@@ -170,13 +170,13 @@ export class ConsultasService{
     return new Promise((resolve, reject) => {
       this.api_call_Restfull.fnPostPromise(parametros, APIS_ENUM.GET_Consulta)
         .then((res: any) => {
-            this.$Consulta_Array_recoveryConsulta.next(res);
+          this.$Consulta_Array_recoveryConsulta.next(res);
 
-            resolve(res);
+          resolve(res);
         })
         .catch((rej) => {
-            this.$Consulta_Array_recoveryConsulta.next({} as any);
-            reject();
+          this.$Consulta_Array_recoveryConsulta.next({} as any);
+          reject();
         })
     })
   }

@@ -1,3 +1,23 @@
-<p>
-  consulta-tratamiento-enfermedad works!
-</p>
+<br>
+
+
+<h1>Tratamientos por enfermedad</h1>
+
+<br>
+
+<div class="form-group">
+
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text">Enfermedad </span>
+    </div>
+
+    <select name="idenfermedad" id="idEnfermedad" class="form-control" [(ngModel)]="num_idEnfermedad"
+      (change)='fnOnChangeEnfermedad()'>
+      <option *ngFor="let enfermedad of obs_Enfermedad|async" aria-label="Animal" aria-describedby="basic-addon1"
+        value="{{enfermedad._id_enfermedad}}">
+        {{enfermedad._nombre_comun}}</option>
+    </select>
+  </div>
+
+</div>

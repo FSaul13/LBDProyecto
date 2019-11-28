@@ -1,5 +1,26 @@
-<h1>Enfermedad</h1>
-<div class="card-columns">
+<br>
+
+
+<h1>Alimentos por Animal</h1>
+
+<br>
+
+<div class="form-group">
+
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text">Animal </span>
+    </div>
+
+    <select name="idAnimal" id="idAnimal" class="form-control" [(ngModel)]="num_idAnimal" (change)='fnOnChangeAnimal()'>
+      <option *ngFor="let animal of obs_Animal|async" aria-label="Animal" aria-describedby="basic-addon1"
+        value="{{animal.id_animal}}">
+        {{animal.nombre}}</option>
+    </select>
+  </div>
+
+</div>
+<!--<div class="card-columns">
   <div class="card animated fadeIn fast" style="width: 18rem;"
     *ngFor="let enfermedad of obs_Enfermedad|async, let i = index">
     <img class="card-img-top" src="" alt="Card image cap">
@@ -9,10 +30,10 @@
 
       <button (click)="verHeroe(i)" type="button" class="btn btn-outline-primary btn-block">
         Conocer mas
-      </button>
-      <!--  <a [routerLink]="['/heroe',i]"  class="btn btn-primary">Ver mas link</a>-->
-      <!-- es para envialere la poscicion con parametros-->
-    </div>
+      </button>-->
+<!--  <a [routerLink]="['/heroe',i]"  class="btn btn-primary">Ver mas link</a>-->
+<!-- es para envialere la poscicion con parametros-->
+<!--  </div>
   </div>
 
-</div>
+</div>-->

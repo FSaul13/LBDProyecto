@@ -7,6 +7,7 @@ import { ConsultaMedicamentosTratamientoComponent } from './consulta-medicamento
 import { ConsultaTratamientoEnfermedadComponent } from './consulta-tratamientoEnfermedad/consulta-tratamiento-enfermedad/consulta-tratamiento-enfermedad.component';
 import { ConsultaSintomasEnfermedadComponent } from './consulta-sintomasEnfermedad/consulta-sintomas-enfermedad/consulta-sintomas-enfermedad.component';
 import { ConsultaEnfermedadSintomaComponent } from './consulta-enfermedadSintoma/consulta-enfermedad-sintoma/consulta-enfermedad-sintoma.component';
+import { ConsultaEnfermedadPeligrosasComponent } from './consulta-enfermedadPeligrosas/consulta-enfermedad-peligrosas/consulta-enfermedad-peligrosas.component';
 
 const routes: Routes = [
     {
@@ -93,6 +94,11 @@ const routes: Routes = [
             {
                 path: "consulta-sintomas",
                 component: ConsultaSintomasEnfermedadComponent,
+                // loadChildren: "../pages/consulta-alimentos/consulta-alimentos.module#ConsultaAlimentosModule"
+            },
+            {
+                path: "enfermedades-peligrosas",
+                component: ConsultaEnfermedadPeligrosasComponent,
                 // loadChildren: "../pages/consulta-alimentos/consulta-alimentos.module#ConsultaAlimentosModule"
             },
 

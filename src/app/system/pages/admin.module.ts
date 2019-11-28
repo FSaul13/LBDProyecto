@@ -21,6 +21,8 @@ import { ConsultaTratamientoEnfermedadComponent } from './consulta-tratamientoEn
 import { ConsultaEnfermedadSintomaComponent } from './consulta-enfermedadSintoma/consulta-enfermedad-sintoma/consulta-enfermedad-sintoma.component';
 import { ConsultaEnfermedadAnimalComponent } from './consulta-enfermedadAnimal/consulta-enfermedad-animal/consulta-enfermedad-animal.component';
 import { ConsultaMedicamentosTratamientoComponent } from './consulta-medicamentosTratamiento/consulta-medicamentos-tratamiento/consulta-medicamentos-tratamiento.component';
+import { ConsultaEnfermedadPeligrosasComponent } from './consulta-enfermedadPeligrosas/consulta-enfermedad-peligrosas/consulta-enfermedad-peligrosas.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
 	imports: [
@@ -33,6 +35,7 @@ import { ConsultaMedicamentosTratamientoComponent } from './consulta-medicamento
 		FullCalendarModule,
 		RouterModule,
 		LayoutModule,
+		FormsModule
 
 	],
 	declarations: [
@@ -43,7 +46,8 @@ import { ConsultaMedicamentosTratamientoComponent } from './consulta-medicamento
 		ConsultaTratamientoEnfermedadComponent,
 		ConsultaEnfermedadSintomaComponent,
 		ConsultaEnfermedadAnimalComponent,
-		ConsultaMedicamentosTratamientoComponent
+		ConsultaMedicamentosTratamientoComponent,
+		ConsultaEnfermedadPeligrosasComponent
 
 	],
 	providers: [

@@ -1,3 +1,28 @@
 <p>
   consulta-medicamentos-tratamiento works!
 </p>
+
+
+<br>
+
+
+<h1>Medicamentos por tratamiento</h1>
+
+<br>
+
+<div class="form-group">
+
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text">Tratamiento </span>
+    </div>
+
+    <select name="idTratamiento" id="idTratamiento" class="form-control" [(ngModel)]="num_idTratamiento"
+      (change)='fnOnChangeTratamiento()'>
+      <option *ngFor="let Tratamiento of obs_Tratamiento|async" aria-label="Tratamiento" aria-describedby="basic-addon1"
+        value="{{Tratamiento._id_tratamiento}}">
+        {{Tratamiento._id_tratamiento}}- {{Tratamiento._tipo_tratamiento}}</option>
+    </select>
+  </div>
+
+</div>

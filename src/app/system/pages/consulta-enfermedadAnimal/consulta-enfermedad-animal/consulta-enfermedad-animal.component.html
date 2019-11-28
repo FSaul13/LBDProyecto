@@ -1,3 +1,22 @@
-<p>
-  consulta-enfermedad-animal works!
-</p>
+<br>
+
+
+<h1>Enfermedades por animal</h1>
+
+<br>
+
+<div class="form-group">
+
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text">Animal </span>
+    </div>
+
+    <select name="idAnimal" id="idAnimal" class="form-control" [(ngModel)]="num_idAnimal" (change)='fnOnChangeAnimal()'>
+      <option *ngFor="let animal of obs_Animal|async" aria-label="Animal" aria-describedby="basic-addon1"
+        value="{{animal.id_animal}}">
+        {{animal.nombre}}</option>
+    </select>
+  </div>
+
+</div>
