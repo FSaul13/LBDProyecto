@@ -97,7 +97,7 @@
 
         public function getDetallesTratamientos()
         {
-            $query = "SELECT * FROM `detalle_tratamiento`";
+            $query = "SELECT * FROM `todo_detalle_tratamiento`";
 
             $stm = $this->connect->prepare($query);
 

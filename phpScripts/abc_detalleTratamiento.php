@@ -77,6 +77,8 @@
                 		$data[$i]['_max_cant_med'] = $var[$i]['max_cant_med'];
                 		$data[$i]['_min_can_med'] = $var[$i]['min_cant_med'];
                 		$data[$i]['_periodo_dosificacion'] = $var[$i]['periodo_dosificacion'];
+                        $data[$i]['Sintoma'] = $var[$i]['Sintoma'];
+                        $data[$i]['Tratamiento'] = $var[$i]['Tratamiento'];
                    // $data[$i]['_indicaciones'] = $var[$i]['indicaciones'];
                   
                     //$data[$i]['_tipo_tratamiento'] = $var[$i]['tipo_tratamiento'];

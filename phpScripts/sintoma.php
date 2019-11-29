@@ -97,7 +97,7 @@
 
         public function getSintomas()
         {
-            $query = "SELECT * FROM sintoma";
+            $query = "SELECT * FROM todo_sintoma";
 
             $stm = $this->connect->prepare($query);
 

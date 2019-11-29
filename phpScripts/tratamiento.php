@@ -97,7 +97,7 @@
 
         public function getTratamientos()
         {
-            $query = "SELECT * FROM tratamiento";
+            $query = "SELECT * FROM todo_tratamiento";
 
             $stm = $this->connect->prepare($query);
 
@@ -106,7 +106,7 @@
                 return $stm->fetchAll();
                
             } else{
-                return false;
+                return $stm->errorInfo();
             }
         }
 

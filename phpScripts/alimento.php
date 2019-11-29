@@ -96,7 +96,7 @@
 
         public function getAlimentos()
         {
-            $query = "SELECT * FROM alimento";
+            $query = "SELECT * FROM todo_alimento";
 
             $stm = $this->connect->prepare($query);
 

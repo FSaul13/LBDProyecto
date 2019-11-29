@@ -83,7 +83,7 @@
 
         public function getMedicamentos()
         {
-            $query = "SELECT * FROM medicamento";
+            $query = "SELECT * FROM todo_medicamento";
 
             $stm = $this->connect->prepare($query);
 

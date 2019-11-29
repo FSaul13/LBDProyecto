@@ -90,7 +90,7 @@
 
         public function getAnimales()
         {
-            $query = "SELECT * FROM animal";
+            $query = "SELECT * FROM todo_animal";
 
             $stm = $this->connect->prepare($query);
 

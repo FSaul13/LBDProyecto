@@ -58,7 +58,7 @@
         case 'obtenerTratamiento':
             $var = $a->getTratamientos();
                 if($var== false){
-                     echo json_encode(['_message' => 'Error al cargar']);
+                     echo json_encode(['_message' => 'Error al cargar','_id'=> $var]);
                 }else{
                 	 $data = array();
                 for($i = 0; $i < count($var); $i++)

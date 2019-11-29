@@ -94,7 +94,7 @@
 
         public function getEnfermedades()
         {
-            $query = "SELECT * FROM enfermedad";
+            $query = "SELECT * FROM todo_enfermedad";
 
             $stmt = $this->connect->prepare($query);
 

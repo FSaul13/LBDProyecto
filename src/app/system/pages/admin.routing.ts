@@ -14,7 +14,7 @@ const routes: Routes = [
         path: '',
         component: AdminComponent,
         children: [
-            { path: '', redirectTo: 'dashboard' },
+            { path: '', redirectTo: 'users' },
             {
                 path: 'dashboard',
                 children: [
