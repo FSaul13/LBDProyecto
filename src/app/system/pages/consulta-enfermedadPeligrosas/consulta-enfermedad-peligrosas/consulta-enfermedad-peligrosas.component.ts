@@ -20,6 +20,9 @@ export class ConsultaEnfermedadPeligrosasComponent implements OnInit {
   ngOnInit() {
     this.fnGetConsulta();
   }
+  ngOnDestroy() {
+    this.consultaApi_service.fnResetConsultas()
+  }
 
   fnGetConsulta(): void {
     ///No ocupa nada

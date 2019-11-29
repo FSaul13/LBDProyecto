@@ -1,11 +1,4 @@
-<p>
-  consulta-medicamentos-tratamiento works!
-</p>
-
-
-<br>
-
-
+<br> <br>
 <h1>Medicamentos por tratamiento</h1>
 
 <br>
@@ -25,4 +18,34 @@
     </select>
   </div>
 
+</div>
+
+
+<div class="container">
+  <div class="card-columns">
+    <div class="card animated fadeIn fast" style="width: 18rem; background-color: #D5C2A2;"
+      *ngFor="let tratamiento of obs_Consulta|async, let i = index">
+      <img class="card-img-top"
+        src="https://www.kienyke.com/wp-content/uploads/2018/06/WhatsApp-Image-2018-06-29-at-2.53.43-PM.jpeg"
+        alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title">{{tratamiento._nombre_comun }}</h5>
+        <p class="card-text">Activo: {{tratamiento._activo}}.</p>
+        <p *ngIf="show" class="card-text">Tipo de Medicamento:
+          {{tratamiento._tipo_medicamento}}.</p>
+        <p *ngIf="show" class="card-text">Efectos Secundarios:
+          {{tratamiento._efectos_secundarios}}.</p>
+        <p *ngIf="show" class="card-text">Laboratorio:
+          {{tratamiento._laboratorio}}.</p>
+        <p *ngIf="show" class="card-text">Precio:
+          {{tratamiento._precio}}.</p>
+
+        <button (click)="show=!show" type="button" class="btn btn-outline-primary btn-block">
+          Conocer mas
+        </button>
+
+      </div>
+    </div>
+
+  </div>
 </div>

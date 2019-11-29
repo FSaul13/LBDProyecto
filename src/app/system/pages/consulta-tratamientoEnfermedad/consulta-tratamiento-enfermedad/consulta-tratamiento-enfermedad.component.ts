@@ -32,6 +32,9 @@ export class ConsultaTratamientoEnfermedadComponent implements OnInit {
       .then(() => { })
       .catch(() => { })
   }
+  ngOnDestroy() {
+    this.consultaApi_service.fnResetConsultas()
+  }
   fnOnChangeEnfermedad(): void {
     this.consultaApi_service.fnTratamientosPorEnfermedad(this.num_idEnfermedad)
       .then(() => {

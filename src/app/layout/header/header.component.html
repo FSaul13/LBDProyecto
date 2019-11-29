@@ -1,23 +1,25 @@
 <nav class="navbar navbar-fixed-top">
-    <div class="container-fluid">
+    <div class="container-fluid" style="justify-content: center;">
         <div class="navbar-btn">
             <button type="button" class="btn-toggle-offcanvas" (click)="toggleSideMenu()"><i
                     class="lnr lnr-menu fa fa-bars"></i></button>
         </div>
 
         <div class="navbar-brand">
-            <a [routerLink]="['/admin']"><img src="#" alt="Logo Pecuaria" class="img-responsive logo"></a>
+            <a [routerLink]="['/admin']"><img src="assets/images/Wikipec.png" alt="Logo Pecuaria"
+                    class="img-responsive logo"></a>
         </div>
 
-        <div class="navbar-right">
-            <!--      <form id="navbar-search" class="navbar-form search-form">
+        <!--- <div class="navbar-right">-->
+        <!--      <form id="navbar-search" class="navbar-form search-form">
                 <input value="" class="form-control" [placeholder]="Buscar" type="text">
                 <button type="button" class="btn btn-default"><i class="icon-magnifier"></i></button>
             </form>
         -->
-            <div id="navbar-menu">
-                <ul class="nav navbar-nav">
-                    <!--
+        <div id="navbar-menu">
+            <ul class="nav navbar-nav">
+
+                <!--
                   <li>
                       <a [routerLink]="['/admin/file-manager/file-documents']" class="icon-menu d-none d-sm-block d-md-none d-lg-block"><i class="fa fa-folder-open-o"></i></a>
                   </li>
@@ -31,7 +33,7 @@
                       <a [routerLink]="['/admin/app/app-inbox']" class="icon-menu d-none d-sm-block"><i class="icon-envelope"></i><span class="notification-dot"></span></a>
                   </li>
                   -->
-                    <li class="dropdown" ngbDropdown>
+                <!--<li class="dropdown" ngbDropdown>
                         <a class="dropdown-toggle icon-menu" ngbDropdownToggle>
                             <i class="icon-bell"></i>
                             <span class="notification-dot"></span>
@@ -96,8 +98,8 @@
                             <li class="footer"><a href="javascript:void(0);"
                                     class="more">{{'layout-header-view-all' | translate}}</a></li>
                         </ul>
-                    </li>
-                    <!--
+                    </li>-->
+                <!--
                   <li class="dropdown" ngbDropdown>
                       <a class="dropdown-toggle icon-menu" ngbDropdownToggle><i class="icon-equalizer"></i></a>
                       <ul class="dropdown-menu user-menu menu-icon" ngbDropdownMenu>
@@ -113,13 +115,12 @@
                       </ul>
                   </li>
                   -->
-                    <li>
+                <!---  <li>
                         <a (click)="fnLogout()" class="icon-menu" href="javascript:void(0)">
                             <i class="icon-login"></i>
                         </a>
-                    </li>
-                </ul>
-            </div>
+                    </li>-->
+            </ul>
         </div>
     </div>
 </nav>

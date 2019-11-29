@@ -20,12 +20,16 @@ export class ConsultaEnfermedadAnimalComponent implements OnInit {
     this.obs_Animal = this.animalApi_service._AnimalArray_recoveryAnimal;
     console.log(this.obs_Animal)
     this.obs_Consulta = this.consultaApi_service._ConsultaArray_recoveryConsulta;
+    console.log(this.obs_Consulta)
   }
 
   ngOnInit() {
     this.fnGetAnimal()
   }
 
+  ngOnDestroy() {
+    this.consultaApi_service.fnResetConsultas()
+  }
   fnGetAnimal() {
     this.animalApi_service.fnGetAnimal()
       .then(() => { })

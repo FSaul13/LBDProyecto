@@ -1,6 +1,6 @@
 <br>
 
-
+<br>
 <h1>Tratamientos por enfermedad</h1>
 
 <br>
@@ -20,4 +20,32 @@
     </select>
   </div>
 
+</div>
+
+
+
+
+<div class="container">
+  <div class="card-columns">
+    <div class="card animated fadeIn fast" style="width: 18rem; background-color: #D5C2A2;"
+      *ngFor="let tratamiento of obs_Consulta|async, let i = index">
+      <img class="card-img-top"
+        src="https://www.kienyke.com/wp-content/uploads/2018/06/WhatsApp-Image-2018-06-29-at-2.53.43-PM.jpeg"
+        alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title">Tratamiento</h5>
+        <p class="card-text">Tipo Tratamiento: {{tratamiento._tipo_tratamiento}}.</p>
+
+        <p *ngIf="tratamiento.show" class="card-text">Indicaciones:
+          {{tratamiento._indicaciones}}.</p>
+
+
+        <button (click)="tratamiento.show=!show" type="button" class="btn btn-outline-primary btn-block">
+          Conocer mas
+        </button>
+
+      </div>
+    </div>
+
+  </div>
 </div>

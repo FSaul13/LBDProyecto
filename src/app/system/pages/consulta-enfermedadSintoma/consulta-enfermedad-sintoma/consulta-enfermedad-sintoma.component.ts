@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ConsultasService } from 'app/system/services/consultas.service';
 
 @Component({
   selector: 'app-consulta-enfermedad-sintoma',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ConsultaEnfermedadSintomaComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private consultaApi_service: ConsultasService
+  ) { }
 
   ngOnInit() {
+  }
+  ngOnDestroy() {
+    this.consultaApi_service.fnResetConsultas()
   }
 
 }

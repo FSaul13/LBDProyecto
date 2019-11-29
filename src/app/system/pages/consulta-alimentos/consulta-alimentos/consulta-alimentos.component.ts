@@ -12,6 +12,7 @@ export class ConsultaAlimentosComponent implements OnInit {
   obs_Consulta: Observable<any[]>;
   obs_Animal: Observable<any[]>;
   num_idAnimal: number = 0;
+  show: boolean = false;
   constructor(
     private consultaApi_service: ConsultasService,
     private animalApi_service: AnimalService
@@ -23,6 +24,9 @@ export class ConsultaAlimentosComponent implements OnInit {
 
   ngOnInit() {
     this.fnGetAnimal()
+  }
+  ngOnDestroy() {
+    this.consultaApi_service.fnResetConsultas()
   }
 
   fnGetAnimal() {

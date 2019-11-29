@@ -2,18 +2,18 @@
     <div class="sidebar-scroll" style="margin-top:3rem;">
         <div class="sidebar-scroll">
             <div class="user-account">
-                <img src="assets/images/user.png" class="rounded-circle user-photo" alt="User Profile Picture">
+                <img src="assets/images/user-imagen.png" class="rounded-circle user-photo" alt="User Profile Picture">
                 <div class="dropdown" ngbDropdown>
-                    <span>Tablero</span>
+                    <span>Menu</span>
                     <a href="javascript:void(0);" class="dropdown-toggle user-name" ngbDropdownToggle>
                         <strong class="txt-userName">{{str_usuario}}</strong>
                     </a>
-                    <ul class="dropdown-menu dropdown-menu-right account" ngbDropdownMenu>
+                    <!---  <ul class="dropdown-menu dropdown-menu-right account" ngbDropdownMenu>
 
                         <li class="divider"></li>
 
                         <li><a href="javascript:void()" (click)="fnLogout()"><i class="icon-power"></i>Logout</a></li>
-                    </ul>
+                    </ul>-->
                 </div>
                 <hr>
 
@@ -21,7 +21,7 @@
             <!-- Nav tabs -->
             <ul class="nav nav-tabs">
                 <li class="nav-item"><a class="nav-link" [ngClass]="{'active':navTab == 'menu'}"
-                        (click)="changeNavTab('menu')">Adm tablas</a></li>
+                        (click)="changeNavTab('menu')">Admon tablas</a></li>
                 <li class="nav-item"><a class="nav-link" [ngClass]="{'active':navTab == 'system'}"
                         (click)="changeNavTab('system')">Consultas</a></li>
 
@@ -32,7 +32,7 @@
                 <div class="tab-pane" id="menu" [ngClass]="{'active':navTab == 'menu' || !navTab}">
                     <nav id="left-sidebar-nav" class="sidebar-nav">
                         <ul id="main-menu" class="metismenu">
-                            <li routerLink="/system/admin/users/control" routerLinkActive="active"
+                            <!--<li routerLink="/system/admin/users/control" routerLinkActive="active"
                                 [routerLinkActiveOptions]="{exact: true}">
                                 <a (click)="activeInactiveMenu('users')">
                                     <i class="icon-home"></i>
@@ -45,7 +45,7 @@
                                     <i class="icon-home"></i>
                                     <span>Tipos usuario</span>
                                 </a>
-                            </li>
+                            </li>-->
 
                             <li routerLink="/system/admin/aliment/control" routerLinkActive="active"
                                 [routerLinkActiveOptions]="{exact: true}">
@@ -75,13 +75,7 @@
                                     <span>Medicamentos</span>
                                 </a>
                             </li>
-                            <li routerLink="/system/admin/animal-alimento/control" routerLinkActive="active"
-                                [routerLinkActiveOptions]="{exact: true}">
-                                <a (click)="activeInactiveMenu('animal-alimento')">
-                                    <i class="icon-home"></i>
-                                    <span>Alimento-Animal</span>
-                                </a>
-                            </li>
+
                             <li routerLink="/system/admin/tratamiento/control" routerLinkActive="active"
                                 [routerLinkActiveOptions]="{exact: true}">
                                 <a (click)="activeInactiveMenu('tratamiento')">
@@ -122,14 +116,14 @@
                             <li routerLink="/system/admin/consulta-enfermedadSintoma" routerLinkActive="active"
                                 [routerLinkActiveOptions]="{exact: true}">
                                 <a (click)="activeInactiveMenu('sintoma')">
-                                    <i class="icon-search"></i>
+                                    <i class="fas fa-search"></i>
                                     <span>Enfermedad Sintoma</span>
                                 </a>
                             </li>
                             <li routerLink="/system/admin/consulta-enfermedad" routerLinkActive="active"
                                 [routerLinkActiveOptions]="{exact: true}">
                                 <a (click)="activeInactiveMenu('consulta-enfermedad')">
-                                    <i class="icon-home"></i>
+                                    <i class="fas fa-search"></i>
                                     <span>
                                         Enfermedades por animal</span>
                                 </a>
@@ -137,28 +131,28 @@
                             <li routerLink="/system/admin/consulta-medicamentos" routerLinkActive="active"
                                 [routerLinkActiveOptions]="{exact: true}">
                                 <a (click)="activeInactiveMenu('consulta-medicamentos')">
-                                    <i class="icon-home"></i>
+                                    <i class="fas fa-search"></i>
                                     <span>Medicamentos por tratamiento</span>
                                 </a>
                             </li>
                             <li routerLink="/system/admin/consulta-tratamientos" routerLinkActive="active"
                                 [routerLinkActiveOptions]="{exact: true}">
                                 <a (click)="activeInactiveMenu('consulta-tratamientos')">
-                                    <i class="icon-home"></i>
+                                    <i class="fas fa-search"></i>
                                     <span>Tratamientos por enfermedad</span>
                                 </a>
                             </li>
                             <li routerLink="/system/admin/consulta-sintomas" routerLinkActive="active"
                                 [routerLinkActiveOptions]="{exact: true}">
                                 <a (click)="activeInactiveMenu('consulta-sintomas')">
-                                    <i class="icon-home"></i>
+                                    <i class="fas fa-search"></i>
                                     <span>Sintomas por enfermedad</span>
                                 </a>
                             </li>
                             <li routerLink="/system/admin/enfermedades-peligrosas" routerLinkActive="active"
                                 [routerLinkActiveOptions]="{exact: true}">
                                 <a (click)="activeInactiveMenu('enfermedades-peligrosas')">
-                                    <i class="icon-home"></i>
+                                    <i class="fas fa-search"></i>
                                     <span>Enfermedades Peligrosas</span>
                                 </a>
                             </li>

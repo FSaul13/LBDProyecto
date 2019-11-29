@@ -26,6 +26,10 @@ export class ConsultaMedicamentosTratamientoComponent implements OnInit {
     this.fnGetTratamiento()
   }
 
+  ngOnDestroy() {
+    this.consultaApi_service.fnResetConsultas()
+  }
+
   fnGetTratamiento() {
     this.TratamientoApi_service.fnGetTratamiento()
       .then(() => { })

@@ -2389,7 +2389,7 @@ html.fullscreen-bg #wrapper {
     top: 5px;
     left: 0;
     width: 100%;
-    background: #084879;
+    background: #627E43;
     z-index: 99;
     border-bottom: 1px solid #eee
 }
@@ -2813,7 +2813,7 @@ html.fullscreen-bg #wrapper {
     margin-top: 61px;
     position: fixed;
     left: 5px;
-    background-color: #7d7f7d;
+    background-color: #9CD260;
     z-index: 9
 }
 

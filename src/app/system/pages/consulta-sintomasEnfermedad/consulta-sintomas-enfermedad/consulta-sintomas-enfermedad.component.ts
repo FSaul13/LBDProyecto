@@ -21,6 +21,9 @@ export class ConsultaSintomasEnfermedadComponent implements OnInit {
     console.log(this.obs_Enfermedad)
     this.obs_Consulta = this.consultaApi_service._ConsultaArray_recoveryConsulta;
   }
+  ngOnDestroy() {
+    this.consultaApi_service.fnResetConsultas()
+  }
 
   ngOnInit() {
     this.fnGetAnimal()
