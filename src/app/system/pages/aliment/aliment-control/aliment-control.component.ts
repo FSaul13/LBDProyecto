@@ -44,7 +44,7 @@ export class AlimentControlComponent implements OnInit {
 
   arrayAny_columns: any[] = [
     { name: "_nombre", title: "Nombre" },
-    { name: "_descripcion", title: "Descripcion" }
+    { name: "_presentacion", title: "Presentacion" }
   ]
 
   settingsButtons_all: TableButtons = {

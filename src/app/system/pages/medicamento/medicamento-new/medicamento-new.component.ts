@@ -61,7 +61,7 @@ export class MedicamentoNewComponent implements OnInit {
         type: 'number'
       } as FormInput,
       _imagen_muestra: {
-        label: 'Laboratorio',
+        label: 'Imagen muestra',
         trim: true,
         type: 'text'
       } as FormInput

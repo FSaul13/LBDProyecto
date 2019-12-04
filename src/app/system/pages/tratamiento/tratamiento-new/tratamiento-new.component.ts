@@ -49,7 +49,7 @@ export class TratamientoNewComponent implements OnInit {
         type: "table",
         label: 'Enfermedad',
         options: this.enfermedadApi_service._EnfermedadArray_recoveryEnfermedad,
-        tableColumns: [{ title: 'Nombre', name: ' _nombre_comun' }, { title: 'Virus', name: '_virus_causante' }],
+        tableColumns: [{ title: 'Nombre', name: '_nombre_comun' }, { title: 'Virus', name: '_virus_causante' }],
         tableFilters: {
           filters: [
             { type: "text", label: "Nombre", filterColum: "_nombre_comun" } as FormTableFilters,

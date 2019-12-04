@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { HeaderSettings } from 'app/system/components/action-header/action-header-models/header-settings.model';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -14,6 +14,7 @@ import { FormTableFilters } from 'app/system/components/form/models-form/form-ta
 import { FormTableFiltersSettings } from 'app/system/components/form/models-form/form-table-filters-settings.model';
 import { FormTablePagination } from 'app/system/components/form/models-form/form-table-pagination.model';
 import { AnimalService } from 'app/system/services/animal.service';
+import { FormComponent } from 'app/system/components/form/form/form.component';
 
 @Component({
   selector: 'app-aliment-edit',
@@ -24,6 +25,7 @@ export class AlimentEditComponent implements OnInit {
 
   sub_AlimentSubscription: Subscription;
   bln_loadForm: boolean = true;
+  @ViewChild(FormComponent) formComponent: ElementRef;
 
   headerSettings_header: HeaderSettings = {
     backButton: true
@@ -142,6 +144,17 @@ export class AlimentEditComponent implements OnInit {
     this.sub_AlimentSubscription = this.AlimentService_apis._Aliment_recoveryproductCode.subscribe(res => {
 
       if (res._id_alimento) {
+        console.log(res)
+        const data = [];
+        res._animal.forEach(val => {
+          console.log(val.id_animal)
+          data.push(val.id_animal);
+        })
+        console.log(data);
+        this.forSettings_config.fields._animal._initTable = {
+          _column: 'id_animal',
+          _values: data
+        };
         this.FormGroupEditAliment.setValue({
           _id_alimento: res._id_alimento,
           _presentacion: res._presentacion,
@@ -150,10 +163,15 @@ export class AlimentEditComponent implements OnInit {
           _precio: res._precio,
           _imagen_alimento: res._imagen_alimento,
           _nombre: res._nombre,
-          _animal: res._animal,
+          _animal: []
 
 
         });
+        setTimeout(() => {
+
+          const formComponent: FormComponent = this.formComponent as any;
+          formComponent.fnInitTablesValue();
+        }, 1000);
       }
       else {
         this.FormGroupEditAliment.markAsUntouched();

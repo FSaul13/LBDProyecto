@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { HeaderSettings } from 'app/system/components/action-header/action-header-models/header-settings.model';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -15,6 +15,7 @@ import { FormTableFilters } from 'app/system/components/form/models-form/form-ta
 import { FormTableFiltersSettings } from 'app/system/components/form/models-form/form-table-filters-settings.model';
 import { FormTablePagination } from 'app/system/components/form/models-form/form-table-pagination.model';
 import { AnimalService } from 'app/system/services/animal.service';
+import { FormComponent } from 'app/system/components/form/form/form.component';
 
 @Component({
   selector: 'app-enfermedad-edit',
@@ -26,6 +27,8 @@ export class EnfermedadEditComponent implements OnInit {
 
   sub_EnfermedadSubscription: Subscription;
   bln_loadForm: boolean = true;
+  @ViewChild(FormComponent) formComponent: ElementRef;
+
 
   headerSettings_header: HeaderSettings = {
     backButton: true
@@ -133,16 +136,32 @@ export class EnfermedadEditComponent implements OnInit {
 
     this.sub_EnfermedadSubscription = this.EnfermedadService_apis._Enfermedad_recoveryproductCode.subscribe(res => {
       if (res._id_enfermedad) {
+
+        const data = [];
+        res._animal.forEach(val => {
+          console.log(val.id_animal)
+          data.push(val.id_animal);
+        })
+        console.log(data);
+        this.forSettings_config.fields._animal._initTable = {
+          _column: 'id_animal',
+          _values: data
+        };
         this.FormGroupEditEnfermedad.setValue({
           _id_enfermedad: res._id_enfermedad,
           _nombre_comun: res._nombre_comun,
           _grado_mortalidad: res._grado_mortalidad,
           _virus_causante: res._virus_causante,
           _causas_infeccion: res._causas_infeccion,
-          _animal: res._animal
+          _animal: []
 
 
         });
+        setTimeout(() => {
+
+          const formComponent: FormComponent = this.formComponent as any;
+          formComponent.fnInitTablesValue();
+        }, 1000);
       }
       else {
         this.FormGroupEditEnfermedad.markAsUntouched();

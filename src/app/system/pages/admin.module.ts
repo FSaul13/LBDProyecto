@@ -22,7 +22,10 @@ import { ConsultaEnfermedadSintomaComponent } from './consulta-enfermedadSintoma
 import { ConsultaEnfermedadAnimalComponent } from './consulta-enfermedadAnimal/consulta-enfermedad-animal/consulta-enfermedad-animal.component';
 import { ConsultaMedicamentosTratamientoComponent } from './consulta-medicamentosTratamiento/consulta-medicamentos-tratamiento/consulta-medicamentos-tratamiento.component';
 import { ConsultaEnfermedadPeligrosasComponent } from './consulta-enfermedadPeligrosas/consulta-enfermedad-peligrosas/consulta-enfermedad-peligrosas.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormModule } from '../components/form/form.module';
+import { TableModule } from '../components/table/table.module';
+import { ActionHeaderModule } from '../components/action-header/action-header.module';
 
 @NgModule({
 	imports: [
@@ -35,7 +38,11 @@ import { FormsModule } from '@angular/forms';
 		FullCalendarModule,
 		RouterModule,
 		LayoutModule,
-		FormsModule
+		FormsModule,
+		ReactiveFormsModule,
+		TableModule,
+		ActionHeaderModule,
+		FormModule
 
 	],
 	declarations: [

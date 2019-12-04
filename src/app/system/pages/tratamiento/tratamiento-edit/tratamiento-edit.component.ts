@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { HeaderSettings } from 'app/system/components/action-header/action-header-models/header-settings.model';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -14,6 +14,7 @@ import { FormTableFilters } from 'app/system/components/form/models-form/form-ta
 import { FormTableFiltersSettings } from 'app/system/components/form/models-form/form-table-filters-settings.model';
 import { FormTablePagination } from 'app/system/components/form/models-form/form-table-pagination.model';
 import { EnfermedadService } from 'app/system/services/enfermedad.service';
+import { FormComponent } from 'app/system/components/form/form/form.component';
 
 @Component({
   selector: 'app-tratamiento-edit',
@@ -24,6 +25,7 @@ export class TratamientoEditComponent implements OnInit {
 
   sub_TratamientoSubscription: Subscription;
   bln_loadForm: boolean = true;
+  @ViewChild(FormComponent) formComponent: ElementRef;
 
   headerSettings_header: HeaderSettings = {
     backButton: true
@@ -55,7 +57,7 @@ export class TratamientoEditComponent implements OnInit {
         type: "table",
         label: 'Enfermedad',
         options: this.enfermedadApi_service._EnfermedadArray_recoveryEnfermedad,
-        tableColumns: [{ title: 'Nombre', name: ' _nombre_comun' }, { title: 'Virus', name: '_virus_causante' }],
+        tableColumns: [{ title: 'Nombre', name: '_nombre_comun' }, { title: 'Virus', name: '_virus_causante' }],
         tableFilters: {
           filters: [
             { type: "text", label: "Nombre", filterColum: "_nombre_comun" } as FormTableFilters,
@@ -122,16 +124,30 @@ export class TratamientoEditComponent implements OnInit {
   fnSubscribetoTratamiento(): void {
 
     this.sub_TratamientoSubscription = this.TratamientoService_apis._Tratamiento_recoveryproductCode.subscribe(res => {
+
       if (res._id_tratamiento) {
+        console.log(res)
+        const data = [];
+        res._enfermedad.forEach(val => {
+          console.log(val)
+          data.push(val.id_enfermedad);
+        })
+        console.log(data);
+        this.forSettings_config.fields._enfermedad._initTable = {
+          _column: '_id_enfermedad',
+          _values: data
+        };
         this.FormGroupEditTratamiento.setValue({
           _id_tratamiento: res._id_tratamiento,
           _indicaciones: res._indicaciones,
           _tipo_tratamiento: res._tipo_tratamiento,
-          _enfermedad: res._enfermedad
-
-
-
+          _enfermedad: []
         });
+        setTimeout(() => {
+
+          const formComponent: FormComponent = this.formComponent as any;
+          formComponent.fnInitTablesValue();
+        }, 1000);
       }
       else {
         this.FormGroupEditTratamiento.markAsUntouched();
@@ -178,6 +194,7 @@ export class TratamientoEditComponent implements OnInit {
 
     console.log(str2)
     console.log("llego");
+
     let editTratamiento = {
       _id_tratamiento: event.data._id_tratamiento,
       _indicaciones: event.data._indicaciones,

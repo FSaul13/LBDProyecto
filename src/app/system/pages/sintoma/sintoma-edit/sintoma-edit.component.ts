@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { HeaderSettings } from 'app/system/components/action-header/action-header-models/header-settings.model';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -14,6 +14,7 @@ import { EnfermedadService } from 'app/system/services/enfermedad.service';
 import { FormTableFilters } from 'app/system/components/form/models-form/form-table-filters.model';
 import { FormTableFiltersSettings } from 'app/system/components/form/models-form/form-table-filters-settings.model';
 import { FormTablePagination } from 'app/system/components/form/models-form/form-table-pagination.model';
+import { FormComponent } from 'app/system/components/form/form/form.component';
 
 @Component({
   selector: 'app-sintoma-edit',
@@ -24,6 +25,7 @@ export class SintomaEditComponent implements OnInit {
 
   sub_SintomaSubscription: Subscription;
   bln_loadForm: boolean = true;
+  @ViewChild(FormComponent) formComponent: ElementRef;
 
   headerSettings_header: HeaderSettings = {
     backButton: true
@@ -54,7 +56,7 @@ export class SintomaEditComponent implements OnInit {
         type: "table",
         label: 'Enfermedad',
         options: this.enfermedadApi_service._EnfermedadArray_recoveryEnfermedad,
-        tableColumns: [{ title: 'Nombre', name: ' _nombre_comun' }, { title: 'Virus', name: '_virus_causante' }],
+        tableColumns: [{ title: 'Nombre', name: '_nombre_comun' }, { title: 'Virus', name: '_virus_causante' }],
         tableFilters: {
           filters: [
             { type: "text", label: "Nombre", filterColum: "_nombre_comun" } as FormTableFilters,
@@ -117,11 +119,22 @@ export class SintomaEditComponent implements OnInit {
 
     this.sub_SintomaSubscription = this.SintomaService_apis._Sintoma_recoveryproductCode.subscribe(res => {
       if (res._id_sintoma) {
+        console.log(res)
+        const data = [];
+        res._enfermedad.forEach(val => {
+          console.log(val)
+          data.push(val.id_enfermedad);
+        })
+        console.log(data);
+        this.forSettings_config.fields._enfermedad._initTable = {
+          _column: '_id_enfermedad',
+          _values: data
+        };
         this.FormGroupEditSintoma.setValue({
           _id_sintoma: res._id_sintoma,
           _descripcion: res._descripcion,
           _imagen_muestra: res._imagen_muestra,
-          _enfermedad: res._enfermedad
+          _enfermedad: []
         });
       }
       else {
@@ -129,6 +142,11 @@ export class SintomaEditComponent implements OnInit {
         this.FormGroupEditSintoma.reset();
       }
     });
+    setTimeout(() => {
+
+      const formComponent: FormComponent = this.formComponent as any;
+      formComponent.fnInitTablesValue();
+    }, 1000);
   }
 
 

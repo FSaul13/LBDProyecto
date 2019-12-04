@@ -46,12 +46,12 @@ export class AlimentNewComponent implements OnInit {
         type: 'textarea'
       } as FormInput,
       _indicaciones_uso: {
-        label: 'Indicaciones',
+        label: 'Indicaciones de uso',
         trim: true,
         type: 'textarea'
       } as FormInput,
       _contenido_alimenticio: {
-        label: 'Indicaciones',
+        label: 'Contenido alimenticio',
         trim: true,
         type: 'textarea'
       } as FormInput,

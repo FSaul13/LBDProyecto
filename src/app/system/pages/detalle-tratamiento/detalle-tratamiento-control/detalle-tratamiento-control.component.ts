@@ -45,9 +45,10 @@ export class DetalleTratamientoControlComponent implements OnInit {
   arrayAny_columns: any[] = [
     { name: "Sintoma", title: "Medicamento" },
     { name: "Tratamiento", title: "Tratamiento" },
-    { name: "_max_can_med", title: "Mexima cantidad Medicamentos" },
-    { name: "_min_cant_med", title: "Minima cantidad Medicamentos" }
+    { name: "_max_cant_med", title: "Mexima cantidad Medicamentos" },
+    { name: "_min_can_med", title: "Minima cantidad Medicamentos" }
   ]
+  _
 
   settingsButtons_all: TableButtons = {
     delete: true,

@@ -52,7 +52,7 @@ export class AnimalNewComponent implements OnInit {
         } as FormInput,
       _imagen_muestra:
         {
-          label: 'Tipo Animal',
+          label: 'Imagen muestra',
           trim: true,
           type: 'text'
         } as FormInput,
