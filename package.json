@@ -36,7 +36,7 @@
     "font-awesome": "^4.7.0",
     "fullcalendar": "3.6.1",
     "jquery": "^1.12.4",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "ng-fullcalendar": "1.7.1",
     "ng-multiselect-dropdown": "^0.2.3",
     "ngx-chips": "^2.1.0",
